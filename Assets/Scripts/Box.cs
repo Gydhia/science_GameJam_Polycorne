@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    [ExecuteAlways]
     public class Box : MonoBehaviour
     {
         public BoxSO BoxSO;
@@ -23,7 +22,9 @@ namespace Assets.Scripts
         /// </summary>
         public Hand[] HandsLeft;
         public Hand[] HandsRight;
-        public GameObject HandPrefab;
+        public Hand HandPrefab;
+
+        public bool Refresh;
 
         public void Start()
         {
@@ -37,26 +38,52 @@ namespace Assets.Scripts
                 this.CardSpaces[i] = new CardSpace();
                 this.CardSpaces[i].Card = new Card(this.BoxSO.Cards[i]);
             }
+        }
 
-            //hands init
-            this.HandsLeft = new Hand[this.BoxSO.TrackWidth];
-            this.HandsRight = new Hand[this.BoxSO.TrackWidth];
-
-            float height = this.transform.localScale.y;
-            float width = this.transform.localScale.x;
-            for (int j = 0; j < this.HandsLeft.Length; j++)
+        [ExecuteAlways]
+        public void Update()
+        {
+            if (this.Refresh)
             {
-                GameObject newHand = GameObject.Instantiate(this.HandPrefab, this.transform);
-                newHand.transform.localPosition = new Vector3(0, (height / this.HandsLeft.Length) * j, 0);
-            }
+                if (this.BoxSO != null)
+                {
+                    foreach (Transform child in this.gameObject.transform)
+                    {
+                        GameObject.Destroy(child.gameObject);
+                    }
 
-            for (int j = 0; j < this.HandsRight.Length; j++)
+                    //hands init
+                    this.HandsLeft = new Hand[this.BoxSO.TrackWidth];
+                    this.HandsRight = new Hand[this.BoxSO.TrackWidth];
+
+                    float height = this.GetComponent<SpriteRenderer>().bounds.size.x;
+                    float width = this.GetComponent<SpriteRenderer>().bounds.size.y;
+                    for (int j = 0; j < this.HandsLeft.Length; j++)
+                    {
+                        Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.transform);
+                        newHand.transform.localPosition = new Vector3(0, (height / this.HandsLeft.Length) * j, 0);
+                        this.HandsLeft[j] = newHand;
+                    }
+
+                    for (int j = 0; j < this.HandsRight.Length; j++)
+                    {
+                        Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.transform);
+                        newHand.transform.localPosition = new Vector3(width, (height / this.HandsRight.Length) * j, 0);
+                        this.HandsRight[j] = newHand;
+                    }
+                }
+                this.Refresh = false;
+            }
+        }
+
+        public void OnValidate()
+        {
+            this.Refresh = true;
+
+            if (this.BoxSO != null)
             {
-                GameObject newHand = GameObject.Instantiate(this.HandPrefab, this.transform);
-                newHand.transform.localPosition = new Vector3(width, (height / this.HandsLeft.Length) * j, 0);
+                this.gameObject.GetComponent<SpriteRenderer>().size = new Vector2(this.BoxSO.TrackWidth, this.BoxSO.TrackLenght);
             }
-
-            this.gameObject.transform.localScale = new Vector3(this.BoxSO.TrackLenght, this.BoxSO.TrackWidth);
         }
     }
 }
