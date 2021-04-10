@@ -7,9 +7,8 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Card : Box
+    public class Card : TrainHandler
     {
-
-
+        private CardSpace CardSpace;
     }
 }

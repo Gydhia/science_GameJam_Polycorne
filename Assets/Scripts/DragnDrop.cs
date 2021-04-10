@@ -25,13 +25,22 @@ namespace Assets.Scripts
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            
+            Debug.Log("test");
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
+            Card card = this.gameObject.GetComponent<Card>();
+            if (card != null)
+            {
+                if(card.CardSpace != null)
+                {
+                    card.CardSpace.Card = null;
+                    card.CardSpace = null;
+                }
+            }
         }
 
         public void OnDrag(PointerEventData eventData)

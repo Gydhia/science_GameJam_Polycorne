@@ -17,8 +17,8 @@ namespace Assets.Scripts
 
         public int[] TrainArrivals;
 
-        public Box StartStation;
-        public Box EndStation;
+        public TrainHandler StartStation;
+        public TrainHandler EndStation;
         public int NumberOfTrains = 100;
 
         private static Board _boardInstance;
