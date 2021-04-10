@@ -16,6 +16,7 @@ namespace Assets.Scripts
 
         public Vector2Int positionInBox;
         public string CopyFromBox;
+        public float OverlapWeight = 1;
 
         [Range(0, 1)]
         public float Padding = 0;
@@ -48,7 +49,7 @@ namespace Assets.Scripts
 
         public void OnDrop(PointerEventData eventData)
         {
-            if (string.IsNullOrEmpty(this.CopyFromBox))
+            if (string.IsNullOrEmpty(this.CopyFromBox) && this.Box != Board.Instance.StartStation && this.Box != Board.Instance.EndStation)
             {
                 Debug.Log(eventData);
                 if (eventData.pointerDrag != null)

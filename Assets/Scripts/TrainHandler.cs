@@ -75,21 +75,52 @@ namespace Assets.Scripts
                     this.CardSpaces[0, 0] != null &&
                     this.CardSpaces[0, 0].Card != null)
                 {
+                    // choose which card to use if overlap.
+                    int y = 0;
+
                     if (Hand.LeftHand)
-                        Train.PlaceOnHand(this.CardSpaces[0, 0].Card.HandsLeft[Hand.Index]);
+                    {
+                        if (this.CardSpaces.GetLength(1) > 1)
+                        {
+                            y = -1;
+                            float total_weight = 0;
+                            for (int i = 0; i < this.CardSpaces.GetLength(1); i++) total_weight += this.CardSpaces[0, i].OverlapWeight;
+                            var result = this.rand.NextDouble() * total_weight;
+                            while (result > 0)
+                            {
+                                y++;
+                                result -= this.CardSpaces[0, y].OverlapWeight;
+                            }
+                        }
+                        Train.PlaceOnHand(this.CardSpaces[0, y].Card.HandsLeft[Hand.Index]);
+                    }
                     else
-                        Train.PlaceOnHand(this.CardSpaces[this.CardSpaces.GetLength(0) - 1, 0].Card.HandsRight[Hand.Index]);
+                    {
+                        if (this.CardSpaces.GetLength(1) > 1)
+                        {
+                            y = -1;
+                            float total_weight = 0;
+                            for (int i = 0; i < this.CardSpaces.GetLength(1); i++) total_weight += this.CardSpaces[this.CardSpaces.GetLength(0) - 1, i].OverlapWeight;
+                            var result = this.rand.NextDouble() * total_weight;
+                            while (result > 0)
+                            {
+                                y++;
+                                result -= this.CardSpaces[this.CardSpaces.GetLength(0) - 1, y].OverlapWeight;
+                            }
+                        }
+                        Train.PlaceOnHand(this.CardSpaces[this.CardSpaces.GetLength(0) - 1, y].Card.HandsRight[Hand.Index]);
+                    }
                 }
                 else
                 {
                     // HERE IS A FAKE BEHAVIOUR:
                     // it should fail, but let's connect across the BOX for now
-                    Hand exit;
-                    if (Hand.LeftHand)
-                        exit = this.HandsRight.First(h => h.Index == Hand.Index);
-                    else
-                        exit = this.HandsLeft.First(h => h.Index == Hand.Index);
-                    Train.PlaceOnHand(exit);
+                    //Hand exit;
+                    //if (Hand.LeftHand)
+                    //    exit = this.HandsRight.First(h => h.Index == Hand.Index);
+                    //else
+                    //    exit = this.HandsLeft.First(h => h.Index == Hand.Index);
+                    //Train.PlaceOnHand(exit);
                 }
 
             }
@@ -120,6 +151,6 @@ namespace Assets.Scripts
 
         public abstract void RegenerateHands();
 
-        public abstract void RegenerateCardsspace();
+        public abstract void RegenerateCardsspace(bool forceReset = false);
     }
 }
