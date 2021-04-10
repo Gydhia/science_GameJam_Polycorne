@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Assets.Scripts
     public class Box : MonoBehaviour
     {
         public BoxSO BoxSO;
-        private BoxSO PreviousBoxSO;
+        public BoxSO PreviousBoxSO;
 
         /// <summary>
         /// List of space available for cards
@@ -29,11 +30,81 @@ namespace Assets.Scripts
         public Transform HandsContainer;
 
         public SpriteRenderer SpriteRenderer;
+        public double[] OutputDistribution;
+        public System.Random rand;
+
+        public IEnumerable<Hand> AllHands => this.HandsLeft.Concat(this.HandsRight);
 
         public void Start()
         {
             if (this.BoxSO == null)
-                throw new Exception("BoxSO is not defined for this Box");            
+                throw new Exception("BoxSO is not defined for this Box");
+
+            this.rand = new System.Random();
+
+            foreach(var hand in this.AllHands)
+                if(hand.ConnectEndOfTrack)
+                    hand.ConnectedTrack.OnTrainArrivedAtEnd += TrainArrived;
+
+        }
+
+        private void TrainArrived(Train Train, Hand Hand)
+        {
+            //TODO: register stats about arrived trains
+
+            // HERE IS A FAKE BEHAVIOUR:
+            Hand exit = null;
+            if (Hand.LeftHand)
+                exit = this.HandsRight.First(h => h.Index == Hand.Index);
+            else
+                exit = this.HandsLeft.First(h => h.Index == Hand.Index);
+
+            if(exit != null)
+                Train.PlaceOnHand(exit);
+        }
+
+        public void SendManyTrains(int HowMany)
+        {
+            StartCoroutine(this.sendManyTrains(100));
+        }
+
+        private IEnumerator sendManyTrains(int HowMany)
+        {
+            for (int i = 0; i < HowMany; i++)
+            {
+                this.SendTrain();
+                yield return i / (float)HowMany;
+            }
+            yield break;
+        }
+
+        public void SendTrain()
+        {
+            var train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"));
+            int trackID = this.DecideOutput();
+            train.PlaceOnHand(this.HandsRight.ElementAt(trackID));
+        }
+
+        private int DecideOutput()
+        {
+            if (this.OutputDistribution == null || this.OutputDistribution.Count() <= 1)
+                // if no distribution was set, no weights: return a random output
+                return this.rand.Next(0, this.HandsRight.Count());
+
+            double total_weight = this.OutputDistribution.Sum();
+            // if no weight was set, no weights: return a random output
+            if (total_weight == 0)
+                return this.rand.Next(0, this.HandsRight.Count());
+
+            var result = this.rand.NextDouble() * total_weight;
+
+            int chosen_output = -1;
+            while (result > 0)
+            {
+                chosen_output++;
+                result -= this.OutputDistribution.ElementAt(chosen_output);
+            }
+            return chosen_output;
         }
 
         public void OnValidate()
@@ -69,16 +140,20 @@ namespace Assets.Scripts
                     {
                         Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
                         newHand.transform.localPosition = new Vector3(0, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                        newHand.Index = j;
+                        newHand.LeftHand = true;
+                        newHand.name = "LEFT HAND #" + j;
                         this.HandsLeft[j] = newHand;
                     }
-
                     for (int j = 0; j < this.HandsRight.Length; j++)
                     {
                         Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
                         newHand.transform.localPosition = new Vector3(canvascardhlength, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                        newHand.Index = j;
+                        newHand.LeftHand = false;
+                        newHand.name = "RIGHT HAND #" + j;
                         this.HandsRight[j] = newHand;
                     }
-
 
                     //cardspace init
                     foreach (Transform child in this.CardSpaceContainer)
@@ -116,5 +191,6 @@ namespace Assets.Scripts
                 }
             }
         }
+
     }
 }
