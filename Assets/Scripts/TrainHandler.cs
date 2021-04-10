@@ -92,7 +92,8 @@ namespace Assets.Scripts
                                 result -= this.CardSpaces[0, y].OverlapWeight;
                             }
                         }
-                        Train.PlaceOnHand(this.CardSpaces[0, y].Card.HandsLeft[Hand.Index]);
+                        if (this.CardSpaces[0, y].Card != null)
+                            Train.PlaceOnHand(this.CardSpaces[0, y].Card.HandsLeft[Hand.Index]);
                     }
                     else
                     {
@@ -108,7 +109,8 @@ namespace Assets.Scripts
                                 result -= this.CardSpaces[this.CardSpaces.GetLength(0) - 1, y].OverlapWeight;
                             }
                         }
-                        Train.PlaceOnHand(this.CardSpaces[this.CardSpaces.GetLength(0) - 1, y].Card.HandsRight[Hand.Index]);
+                        if (this.CardSpaces[this.CardSpaces.GetLength(0) - 1, y].Card != null)
+                            Train.PlaceOnHand(this.CardSpaces[this.CardSpaces.GetLength(0) - 1, y].Card.HandsRight[Hand.Index]);
                     }
                 }
                 else
