@@ -58,20 +58,22 @@ namespace Assets.Scripts
                 }
 
                 //hands init
-                this.HandsLeft = new Hand[this.BoxSO.TrackWidth];
-                this.HandsRight = new Hand[this.BoxSO.TrackWidth];
+                int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
+                int nbhands = this.BoxSO.TrackWidth * handcount;
+                this.HandsLeft = new Hand[nbhands];
+                this.HandsRight = new Hand[nbhands];
 
                 for (int j = 0; j < this.HandsLeft.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.Handscontainer);
-                    newHand.transform.localPosition = new Vector3(0, ((this.BoxSO.TrackWidth / this.HandsLeft.Length) * j) + 0.5f, 0);
+                    newHand.transform.localPosition = new Vector3(0, (j * (this.BoxSO.TrackWidth / (float)nbhands)) + (this.BoxSO.TrackWidth * 0.5f / nbhands), 0);
                     this.HandsLeft[j] = newHand;
                 }
 
                 for (int j = 0; j < this.HandsRight.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.Handscontainer);
-                    newHand.transform.localPosition = new Vector3(this.BoxSO.TrackLenght, ((this.BoxSO.TrackWidth / this.HandsRight.Length) * j) + 0.5f, 0);
+                    newHand.transform.localPosition = new Vector3(this.BoxSO.TrackLenght, (j * (this.BoxSO.TrackWidth / (float)nbhands)) + (this.BoxSO.TrackWidth * 0.5f / nbhands), 0);
                     this.HandsRight[j] = newHand;
                 }
             }

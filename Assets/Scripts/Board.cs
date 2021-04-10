@@ -7,11 +7,9 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class LevelSO : ScriptableObject
+    public class Board : MonoBehaviour
     {
-        public static int HandsCount;
+        public int HandsCount;
         public BoxSO[] Boxes;
-
-
     }
 }
