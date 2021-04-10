@@ -49,5 +49,61 @@ namespace Assets.Scripts
 
         }
 
+        public override void RegenerateHands()
+        {
+            if (this.HandsContainer == null)
+                return;
+
+            float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
+            float canvascardheight = this.gameObject.GetComponent<RectTransform>().rect.height;
+            float canvascardhlength = this.gameObject.GetComponent<RectTransform>().rect.height;
+
+            foreach (Transform child in this.HandsContainer)
+            {
+                UnityEditor.EditorApplication.delayCall += () =>
+                {
+                    GameObject.DestroyImmediate(child.gameObject);
+
+                };
+            }
+
+            int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
+            int nbhands = 1 * handcount;
+
+
+            if (Board.Instance.StartStation != this)
+            {
+                this.HandsLeft = new Hand[nbhands];
+                for (int j = 0; j < this.HandsLeft.Length; j++)
+                {
+                    Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
+                    newHand.transform.localPosition = new Vector3(0, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.transform.Rotate(new Vector3(0, 0, 180));
+                    newHand.Index = j;
+                    newHand.LeftHand = true;
+                    newHand.name = "LEFT HAND #" + j;
+                    this.HandsLeft[j] = newHand;
+                }
+            }
+            if (Board.Instance.EndStation != this)
+            {
+                this.HandsRight = new Hand[nbhands];
+                for (int j = 0; j < this.HandsRight.Length; j++)
+                {
+                    Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
+                    newHand.transform.localPosition = new Vector3(canvascardhlength, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.Index = j;
+                    newHand.LeftHand = false;
+                    newHand.name = "RIGHT HAND #" + j;
+                    this.HandsRight[j] = newHand;
+                }
+            }
+        }
+
+        public override void RegenerateCardsspace()
+        {
+            
+        }
+
     }
 }
