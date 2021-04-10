@@ -42,9 +42,17 @@ namespace Assets.Scripts
 
             this.rand = new System.Random();
 
-            foreach(var hand in this.AllHands)
-                if(hand.ConnectEndOfTrack)
-                    hand.ConnectedTrack.OnTrainArrivedAtEnd += TrainArrived;
+            foreach (var hand in this.AllHands)
+            {
+                if (hand.ConnectedTrack != null)
+                {
+                    if (hand.ConnectEndOfTrack)
+                        hand.ConnectedTrack.OnTrainArrivedAtEnd += TrainArrived;
+                    else
+                        hand.ConnectedTrack.OnTrainArrivedAtStart += TrainArrived;
+                }
+            }
+
 
         }
 
@@ -56,15 +64,24 @@ namespace Assets.Scripts
             }
             else
             {
-                // HERE IS A FAKE BEHAVIOUR:
-                Hand exit = null;
-                if (Hand.LeftHand)
-                    exit = this.HandsRight.First(h => h.Index == Hand.Index);
-                else
-                    exit = this.HandsLeft.First(h => h.Index == Hand.Index);
 
-                if (exit != null)
-                    Train.PlaceOnHand(exit);
+                // HERE IS A FAKE BEHAVIOUR:
+                if (this.CardSpaces != null && this.CardSpaces[0, 0] != null)
+                {
+                    if (Hand.LeftHand)
+                        Train.PlaceOnHand(this.CardSpaces[0, 0].Card.HandsLeft[Hand.Index]);
+                    else
+                        Train.PlaceOnHand(this.CardSpaces[0, 0].Card.HandsRight[Hand.Index]);
+                }
+                //Hand exit = this.Card.HandLeft[0];
+
+                //if (Hand.LeftHand)
+                //    exit = this.HandsRight.First(h => h.Index == Hand.Index);
+                //else
+                //    exit = this.HandsLeft.First(h => h.Index == Hand.Index);
+
+                //if (exit != null)
+                //    Train.PlaceOnHand(exit);
             }
 
         }
@@ -146,34 +163,38 @@ namespace Assets.Scripts
                     }
 
                     //cardspace init
-                    foreach (Transform child in this.CardSpaceContainer)
+                    if (this.CardSpaceContainer != null)
                     {
-                        UnityEditor.EditorApplication.delayCall += () =>
+                        foreach (Transform child in this.CardSpaceContainer)
                         {
-                            GameObject.DestroyImmediate(child.gameObject);
+                            UnityEditor.EditorApplication.delayCall += () =>
+                            {
+                                GameObject.DestroyImmediate(child.gameObject);
 
-                        };
-                    }
-
-                    this.CardSpaces = new CardSpace[this.BoxSO.CardSpaceLength, this.BoxSO.CardSpaceHeight];
-                    for (int i = 0; i < this.BoxSO.CardSpaceLength; i++)
-                    {
-                        for (int j = 0; j < this.BoxSO.CardSpaceHeight; j++)
-                        {
-                            this.CardSpaces[i, j] = new CardSpace();
-                            this.CardSpaces[i, j].Card = new Card(this.BoxSO.Cards[i, j]);
+                            };
                         }
-                    }
 
-                    for (int k = 0; k < this.BoxSO.CardSpaceLength; k++)
-                    {
-                        for (int l = 0; l < this.BoxSO.CardSpaceHeight; l++)
+                        this.CardSpaces = new CardSpace[this.BoxSO.CardSpaceLength, this.BoxSO.CardSpaceHeight];
+                        for (int i = 0; i < this.BoxSO.CardSpaceLength; i++)
                         {
-                            CardSpace cardspace = GameObject.Instantiate<CardSpace>(this.CardSpacePrefab, this.CardSpaceContainer);
-                            float x = (k * (canvascardhlength / (float)this.BoxSO.CardSpaceLength)) + (canvascardhlength * 0.5f / (float)this.BoxSO.CardSpaceLength);
-                            float y = (l * (canvascardheight / (float)this.BoxSO.CardSpaceHeight)) + (canvascardheight * 0.5f / (float)this.BoxSO.CardSpaceHeight);
-                            cardspace.transform.localPosition = new Vector3(x, y, 0);
-                            this.CardSpaces[k, l] = cardspace;
+                            for (int j = 0; j < this.BoxSO.CardSpaceHeight; j++)
+                            {
+                                this.CardSpaces[i, j] = new CardSpace();
+                                // TEMPORARY: Generate a card from prefab
+                                this.CardSpaces[i, j].Card = GameObject.Instantiate(Resources.Load<Card>("prefabs/card"));
+                            }
+                        }
+
+                        for (int k = 0; k < this.BoxSO.CardSpaceLength; k++)
+                        {
+                            for (int l = 0; l < this.BoxSO.CardSpaceHeight; l++)
+                            {
+                                CardSpace cardspace = GameObject.Instantiate<CardSpace>(this.CardSpacePrefab, this.CardSpaceContainer);
+                                float x = (k * (canvascardhlength / (float)this.BoxSO.CardSpaceLength)) + (canvascardhlength * 0.5f / (float)this.BoxSO.CardSpaceLength);
+                                float y = (l * (canvascardheight / (float)this.BoxSO.CardSpaceHeight)) + (canvascardheight * 0.5f / (float)this.BoxSO.CardSpaceHeight);
+                                cardspace.transform.localPosition = new Vector3(x, y, 0);
+                                this.CardSpaces[k, l] = cardspace;
+                            }
                         }
                     }
 

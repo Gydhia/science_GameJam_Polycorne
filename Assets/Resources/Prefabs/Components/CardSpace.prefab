@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d7888007b04a234bab238d37b1056b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Card: {fileID: 0}
   Padding: 0.05
   SpriteRenderer: {fileID: 5481265921240605880}
   ColorEmpty: {r: 0, g: 1, b: 0, a: 1}

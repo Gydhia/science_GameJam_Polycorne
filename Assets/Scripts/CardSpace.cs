@@ -19,6 +19,16 @@ namespace Assets.Scripts
         public Color ColorEmpty = Color.green;
         public Color ColorUsed = Color.blue;
 
+
+        public void Start()
+        {
+            if (this.Card != null)
+            {
+                this.Card.transform.position = this.transform.position;
+            }
+        }
+
+
         public void OnValidate()
         {
             if (!Application.isPlaying)
