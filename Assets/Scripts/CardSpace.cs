@@ -57,6 +57,7 @@ namespace Assets.Scripts
                     Card card = eventData.pointerDrag.GetComponent<Card>();
                     this.Card = card;
                     this.Card.CardSpace = this;
+                    // replicate the card where it is supposed to be
                     if (!string.IsNullOrEmpty(this.Box.CardNameForPlayer))
                     {
                         var other_cardspace = FindObjectsOfType<CardSpace>().Where(cs => cs.CopyFromBox == this.Box.CardNameForPlayer);
@@ -69,12 +70,13 @@ namespace Assets.Scripts
                         }
                     }
                 }
+                else // nothing here
+                    eventData.pointerDrag.GetComponent<DragnDrop>().OnCancelDrag(eventData);
             }
-            else
+            else // This box is READONLY
             {
-                // can't move here, this is locked.
+                eventData.pointerDrag.GetComponent<DragnDrop>().OnCancelDrag(eventData);
             }
-            eventData.Reset();
         }
 
     }

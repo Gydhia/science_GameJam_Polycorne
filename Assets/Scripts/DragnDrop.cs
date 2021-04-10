@@ -14,6 +14,7 @@ namespace Assets.Scripts
         private RectTransform rectTransform;
         private CanvasGroup canvasGroup;
         private RectTransform canvasRectTransform;
+        private Vector3 originDrag;
 
         private void Start()
         {
@@ -21,6 +22,7 @@ namespace Assets.Scripts
             canvasGroup = GetComponent<CanvasGroup>();
             canvas = GameObject.FindObjectOfType<Board>().UICanvas;
             canvasRectTransform = this.gameObject.GetComponent<RectTransform>();
+
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -28,10 +30,19 @@ namespace Assets.Scripts
             Debug.Log("test");
         }
 
+        public void OnCancelDrag(PointerEventData eventData)
+        {
+            eventData.pointerDrag = null;
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;
+            this.transform.position = originDrag;
+        }
+
         public void OnBeginDrag(PointerEventData eventData)
         {
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
+            originDrag = this.transform.position;
             Card card = this.gameObject.GetComponent<Card>();
             if (card != null)
             {
@@ -39,14 +50,16 @@ namespace Assets.Scripts
                 {
                     // this cardspace is readonly
                     if (!string.IsNullOrEmpty(card.CardSpace.CopyFromBox))
-                        eventData.Reset();
-
-                    if(!string.IsNullOrEmpty(card.CardSpace.Box.CardNameForPlayer))
+                    {
+                        OnCancelDrag(eventData);
+                        return;
+                    }
+                    if (!string.IsNullOrEmpty(card.CardSpace.Box.CardNameForPlayer))
                     {
                         var other_cardspace = FindObjectsOfType<CardSpace>().Where(cs => cs.CopyFromBox == card.CardSpace.Box.CardNameForPlayer);
                         foreach (var carspace_to_copy in other_cardspace)
                         {
-                            GameObject.Destroy(carspace_to_copy.Card);
+                            GameObject.Destroy(carspace_to_copy.Card.gameObject);
                             carspace_to_copy.Card = null;
                         }
                     }
@@ -54,7 +67,6 @@ namespace Assets.Scripts
                     card.CardSpace = null;
                 }
             }
-            eventData.Reset();
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -67,10 +79,9 @@ namespace Assets.Scripts
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            eventData.pointerDrag = null;
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
-
-            //this.rectTransform.anchoredPosition = LimitRectBoundsToCanvas();
         }
 
 
