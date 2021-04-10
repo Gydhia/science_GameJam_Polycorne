@@ -64,15 +64,28 @@ namespace Assets.Scripts
             }
             else
             {
-
-                // HERE IS A FAKE BEHAVIOUR:
-                if (this.CardSpaces != null && this.CardSpaces[0, 0] != null)
+                if (this.CardSpaces != null && 
+                    this.CardSpaces.Length > 0 &&
+                    this.CardSpaces[0, 0] != null)
                 {
                     if (Hand.LeftHand)
                         Train.PlaceOnHand(this.CardSpaces[0, 0].Card.HandsLeft[Hand.Index]);
                     else
-                        Train.PlaceOnHand(this.CardSpaces[0, 0].Card.HandsRight[Hand.Index]);
+                        Train.PlaceOnHand(this.CardSpaces[this.CardSpaces.GetLength(0) - 1, 0].Card.HandsRight[Hand.Index]);
                 }
+                else
+                {
+                    // HERE IS A FAKE BEHAVIOUR:
+                    // it should fail, but let's connect across the BOX for now
+                    Hand exit;
+                    if (Hand.LeftHand)
+                        exit = this.HandsRight.First(h => h.Index == Hand.Index);
+                    else
+                        exit = this.HandsLeft.First(h => h.Index == Hand.Index);
+                    Train.PlaceOnHand(exit);
+                }
+
+
                 //Hand exit = this.Card.HandLeft[0];
 
                 //if (Hand.LeftHand)
