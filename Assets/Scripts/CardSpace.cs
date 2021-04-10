@@ -23,7 +23,7 @@ namespace Assets.Scripts
         {
             if (!Application.isPlaying)
             {
-                float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
+                float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
                 float canvascardwidth = (1 * pixerperunit) - (Padding * pixerperunit);
                 float canvascardhlength = 1 * pixerperunit - (Padding * pixerperunit);
 
