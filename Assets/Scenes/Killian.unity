@@ -315,10 +315,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Musics:
-  - {fileID: 11400000, guid: 906fd3ebd30d42c42abf0ee5902642d0, type: 2}
+  - {fileID: 11400000, guid: e411ab88510d0964996073bf98945f59, type: 2}
+  - {fileID: 11400000, guid: 6573d09a0674b744193d4734499f3011, type: 2}
   Sounds: []
   MusicsContainer: {fileID: 583750423}
   SoundsContainer: {fileID: 1405552023}
+  AudioMixer: {fileID: 24100000, guid: 8faf1ee0c2931ed47b0d6d0b7e198c23, type: 2}
+  AudioMixerGroup: {fileID: 24300002, guid: 8faf1ee0c2931ed47b0d6d0b7e198c23, type: 2}
+  FadingTime: 1.5
 --- !u!4 &767957895
 Transform:
   m_ObjectHideFlags: 0

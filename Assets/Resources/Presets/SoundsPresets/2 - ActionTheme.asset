@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: ActionTheme
   m_EditorClassIdentifier: 
   MusicID: 2
-  MainLines: []
-  MelodicLines: []
+  MainLines:
+  - {fileID: 11400000, guid: c28f3b9756920b34e95fa48060232beb, type: 2}
+  MelodicLines:
+  - {fileID: 11400000, guid: 005f2b8f81bbde34d9305be794fb1122, type: 2}
+  - {fileID: 11400000, guid: 69d6ddc289db82143a8ffab84815b19f, type: 2}
   AccompanimentLines: []
   BarsToWait: 0100
-  EndingLine: {fileID: 0}
