@@ -28,7 +28,8 @@ public class Tracks : MonoBehaviour
     {
         this.StopWatchingTrain(Train);
         // forward event to whomever is connected to this track
-        this.OnTrainArrivedAtEnd.Invoke(Train, Tracks);
+        if (this.OnTrainArrivedAtEnd != null)
+            this.OnTrainArrivedAtEnd.Invoke(Train, Tracks);
     }
 
     internal void StopWatchingTrain(Train train)

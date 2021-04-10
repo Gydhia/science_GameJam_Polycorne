@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,8 +38,21 @@ public class TrainStation : MonoBehaviour
         int indexOfTrack = this.Inputs.IndexOf(Tracks);
         if (this.Outputs != null && this.Outputs.Count() > indexOfTrack)
             Train.PlaceOnTracks(this.Outputs.ElementAt(indexOfTrack));
-        else
-            GameObject.Destroy(Train.gameObject);
+    }
+
+    public void SendManyTrains(int HowMany)
+    {
+        StartCoroutine(this.sendManyTrains(100));
+    }
+
+    private IEnumerator sendManyTrains(int HowMany)
+    {
+        for (int i = 0; i < HowMany; i++)
+        {
+            this.SendTrain();
+            yield return i / (float)HowMany;
+        }
+        yield break;
     }
 
     public void SendTrain()

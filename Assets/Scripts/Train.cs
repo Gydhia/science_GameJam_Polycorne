@@ -32,16 +32,23 @@ public class Train : MonoBehaviour
             else
                 this.MoveAlongPath(Time.deltaTime * this.speed);
         }
+
         if (this.currentPath != null)
         {
             this.transform.position = Vector3.Lerp(this.currentPath.line.GetPosition(this.lastWaypoint), this.currentPath.line.GetPosition(this.lastWaypoint + 1), this.percentToNextWaypoint);
+        }
+        else
+        {
+            GameObject.Destroy(this.gameObject);
         }
     }
 
     private void ArrivedAtEndOfTracks()
     {
+        var tracksTheTrainIsLeaving = this.currentPath;
+        this.currentPath = null;
         if (this.OnArrivedAtEndOfTracks != null)
-            this.OnArrivedAtEndOfTracks.Invoke(this, this.currentPath);
+            this.OnArrivedAtEndOfTracks.Invoke(this, tracksTheTrainIsLeaving);
 /*        this.currentPath.StopWatchingTrain();
         GameObject.Destroy(this.gameObject);*/
     }
