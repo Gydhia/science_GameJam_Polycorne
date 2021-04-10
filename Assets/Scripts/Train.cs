@@ -51,7 +51,16 @@ public class Train : MonoBehaviour
 
         if (this.currentPath != null)
         {
-            this.transform.position = Vector3.Lerp(this.currentPath.line.GetPosition(this.lastWaypoint), this.currentPath.line.GetPosition(this.lastWaypoint + 1), this.percentToNextWaypoint);
+            Vector3 positionOnLine;
+            if (this.speed > 0)
+                positionOnLine = Vector3.Lerp(this.currentPath.line.GetPosition(this.lastWaypoint), this.currentPath.line.GetPosition(this.lastWaypoint + 1), this.percentToNextWaypoint);
+            else
+                positionOnLine = Vector3.Lerp(this.currentPath.line.GetPosition(this.lastWaypoint - 1), this.currentPath.line.GetPosition(this.lastWaypoint), this.percentToNextWaypoint);
+
+            if (!this.currentPath.line.useWorldSpace)
+                positionOnLine += this.currentPath.line.transform.position;
+            this.transform.position = positionOnLine;
+
         }
         else
         {
@@ -63,8 +72,9 @@ public class Train : MonoBehaviour
     {
         var tracksTheTrainIsLeaving = this.currentPath;
         this.currentPath = null;
-        if (this.OnArrivedAtEndOfTracks != null)
-            this.OnArrivedAtEndOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtEnd);
+            tracksTheTrainIsLeaving.Train_OnArrivedAtEndOfTracks(this);
+        //if (this.OnArrivedAtEndOfTracks != null)
+            //this.OnArrivedAtEndOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtEnd);
         /*        this.currentPath.StopWatchingTrain();
                 GameObject.Destroy(this.gameObject);*/
     }
@@ -72,8 +82,9 @@ public class Train : MonoBehaviour
     {
         var tracksTheTrainIsLeaving = this.currentPath;
         this.currentPath = null;
-        if (this.OnArrivedAtBeginningOfTracks != null)
-            this.OnArrivedAtBeginningOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtBeginning);
+        tracksTheTrainIsLeaving.Train_OnArrivedAtStartOfTracks(this);
+        //if (this.OnArrivedAtBeginningOfTracks != null)
+        //this.OnArrivedAtBeginningOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtBeginning);
         /*        this.currentPath.StopWatchingTrain();
                 GameObject.Destroy(this.gameObject);*/
     }
@@ -92,9 +103,9 @@ public class Train : MonoBehaviour
         {
             this.currentPath = hand.ConnectedTrack;
             this.lastWaypoint = hand.ConnectedTrack.line.positionCount - 1;
-            this.percentToNextWaypoint = 0;
+            this.percentToNextWaypoint = 1;
             this.speed = -Math.Abs(this.speed);
-            this.currentPath.StartWatchingTrain(this);
+            //this.currentPath.StartWatchingTrain(this);
         }
         else
         {
@@ -102,35 +113,64 @@ public class Train : MonoBehaviour
             this.lastWaypoint = 0;
             this.percentToNextWaypoint = 0;
             this.speed = Math.Abs(this.speed);
-            this.currentPath.StartWatchingTrain(this);
+            //this.currentPath.StartWatchingTrain(this);
         }
     }
 
     public void MoveAlongPath(float distance)
     {
-        var lengthTillNextWP = (this.currentPath.line.GetPosition(this.lastWaypoint + 1) - this.currentPath.line.GetPosition(this.lastWaypoint)).magnitude;
+        float lengthTillNextWP;
+        if (distance > 0)
+            lengthTillNextWP = (this.currentPath.line.GetPosition(this.lastWaypoint + 1) - this.currentPath.line.GetPosition(this.lastWaypoint)).magnitude;
+        else if (distance < 0)
+            lengthTillNextWP = (this.currentPath.line.GetPosition(this.lastWaypoint - 1) - this.currentPath.line.GetPosition(this.lastWaypoint)).magnitude;
+        else
+            return;
+
         this.percentToNextWaypoint += distance / lengthTillNextWP;
+
         if (this.percentToNextWaypoint >= 1)
         {
             float extralength = (this.percentToNextWaypoint - 1) * lengthTillNextWP;
             this.percentToNextWaypoint = 0;
-            if (this.speed > 0)
-            {
-                this.lastWaypoint++;
-                if (this.lastWaypoint < this.currentPath.line.positionCount - 1)
-                    this.MoveAlongPath(extralength);
-                else
-                    this.ArrivedAtEndOfTracks();
-            }
-            else if (this.speed < 0)
-            {
-                this.lastWaypoint--;
-                if (this.lastWaypoint > 0)
-                    this.MoveAlongPath(extralength);
-                else
-                    this.ArrivedAtBeginningOfTracks();
-            }
+            this.lastWaypoint++;
+            if (this.lastWaypoint < this.currentPath.line.positionCount - 1)
+                this.MoveAlongPath(extralength);
+            else
+                this.ArrivedAtEndOfTracks();
         }
+        else if (this.percentToNextWaypoint <= 0)
+        {
+            float extralength = (this.percentToNextWaypoint) * lengthTillNextWP;
+            this.percentToNextWaypoint = 1;
+            this.lastWaypoint--;
+            if (this.lastWaypoint > 0)
+                this.MoveAlongPath(extralength);
+            else
+                this.ArrivedAtBeginningOfTracks();
+        }
+
+        //if (this.percentToNextWaypoint >= 1)
+        //{
+        //    float extralength = (this.percentToNextWaypoint - 1) * lengthTillNextWP;
+        //    this.percentToNextWaypoint = 0;
+        //    if (this.speed > 0)
+        //    {
+        //        this.lastWaypoint++;
+        //        if (this.lastWaypoint < this.currentPath.line.positionCount - 1)
+        //            this.MoveAlongPath(extralength);
+        //        else
+        //            this.ArrivedAtEndOfTracks();
+        //    }
+        //    else if (this.speed < 0)
+        //    {
+        //        this.lastWaypoint--;
+        //        if (this.lastWaypoint > 0)
+        //            this.MoveAlongPath(extralength);
+        //        else
+        //            this.ArrivedAtBeginningOfTracks();
+        //    }
+        //}
     }
 
 }

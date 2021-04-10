@@ -149,7 +149,9 @@ namespace Assets.Scripts
                     float y = (l * (canvascardheight / (float)this.BoxSO.CardSpaceHeight)) + (canvascardheight * 0.5f / (float)this.BoxSO.CardSpaceHeight);
                     cardspace.transform.localPosition = new Vector3(x, y, 0);
                     cardspace.Box = this;
+                    cardspace.positionInBox = new Vector2Int(k, l);
                     this.CardSpaces[k, l] = cardspace;
+
                 }
             }
         }
