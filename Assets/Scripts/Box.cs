@@ -13,6 +13,9 @@ namespace Assets.Scripts
         public BoxSO BoxSO;
         public BoxSO PreviousBoxSO;
 
+        public UnityEngine.UI.Text Label;
+        public string CardNameForPlayer = "";
+        
         public void Start()
         {
             if (this.BoxSO == null)

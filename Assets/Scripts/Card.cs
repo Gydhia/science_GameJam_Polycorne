@@ -11,7 +11,6 @@ namespace Assets.Scripts
     {
         public CardSpace CardSpace;
 
-
         protected override void TrainArrived(Train Train, Hand Hand)
         {
             Hand exit = null;
