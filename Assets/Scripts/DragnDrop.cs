@@ -37,10 +37,24 @@ namespace Assets.Scripts
             {
                 if(card.CardSpace != null)
                 {
+                    // this cardspace is readonly
+                    if (!string.IsNullOrEmpty(card.CardSpace.CopyFromBox))
+                        eventData.Reset();
+
+                    if(!string.IsNullOrEmpty(card.CardSpace.Box.CardNameForPlayer))
+                    {
+                        var other_cardspace = FindObjectsOfType<CardSpace>().Where(cs => cs.CopyFromBox == card.CardSpace.Box.CardNameForPlayer);
+                        foreach (var carspace_to_copy in other_cardspace)
+                        {
+                            GameObject.Destroy(carspace_to_copy.Card);
+                            carspace_to_copy.Card = null;
+                        }
+                    }
                     card.CardSpace.Card = null;
                     card.CardSpace = null;
                 }
             }
+            eventData.Reset();
         }
 
         public void OnDrag(PointerEventData eventData)

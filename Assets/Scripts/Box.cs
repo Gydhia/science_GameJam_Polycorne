@@ -26,6 +26,9 @@ namespace Assets.Scripts
         public Hand HandPrefab;
         public Transform HandsContainer;
 
+        public UnityEngine.UI.Text Label;
+        public string CardNameForPlayer = "";
+
         public void Start()
         {
             if (this.BoxSO == null)

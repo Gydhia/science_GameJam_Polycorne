@@ -15,6 +15,7 @@ namespace Assets.Scripts
         public Box Box;
 
         public Vector2Int positionInBox;
+        public string CopyFromBox;
 
         [Range(0, 1)]
         public float Padding = 0;
@@ -47,14 +48,33 @@ namespace Assets.Scripts
 
         public void OnDrop(PointerEventData eventData)
         {
-            Debug.Log(eventData);
-            if (eventData.pointerDrag != null)
+            if (string.IsNullOrEmpty(this.CopyFromBox))
             {
-                eventData.pointerDrag.GetComponent<RectTransform>().position = this.GetComponent<RectTransform>().position;
-                Card card = eventData.pointerDrag.GetComponent<Card>();
-                this.Card = card;
-                this.Card.CardSpace = this;
+                Debug.Log(eventData);
+                if (eventData.pointerDrag != null)
+                {
+                    eventData.pointerDrag.GetComponent<RectTransform>().position = this.GetComponent<RectTransform>().position;
+                    Card card = eventData.pointerDrag.GetComponent<Card>();
+                    this.Card = card;
+                    this.Card.CardSpace = this;
+                    if (!string.IsNullOrEmpty(this.Box.CardNameForPlayer))
+                    {
+                        var other_cardspace = FindObjectsOfType<CardSpace>().Where(cs => cs.CopyFromBox == this.Box.CardNameForPlayer);
+                        foreach (var carspace_to_copy in other_cardspace)
+                        {
+                            var cardcopy = GameObject.Instantiate(card, card.transform.parent);
+                            cardcopy.transform.position = carspace_to_copy.transform.position;
+                            carspace_to_copy.Card = cardcopy;
+                            cardcopy.CardSpace = carspace_to_copy;
+                        }
+                    }
+                }
             }
+            else
+            {
+                // can't move here, this is locked.
+            }
+            eventData.Reset();
         }
 
     }
