@@ -14,6 +14,8 @@ namespace Assets.Scripts
         public Card Card;
         public Box Box;
 
+        public Vector2Int positionInBox;
+
         [Range(0, 1)]
         public float Padding = 0;
         //public SpriteRenderer SpriteRenderer;
@@ -29,7 +31,6 @@ namespace Assets.Scripts
                 this.Card.transform.position = this.transform.position;
             }
         }
-
 
         public void OnValidate()
         {

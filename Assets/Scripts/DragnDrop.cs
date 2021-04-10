@@ -47,8 +47,8 @@ namespace Assets.Scripts
         {
             //Vector2 delta = ScreenToCanvas(eventData.position) - ScreenToCanvas(eventData.position - eventData.delta);
             //rectTransform.anchoredPosition += delta * canvas.scaleFactor;
-            //this.rectTransform.anchoredPosition += eventData.delta / this.canvas.scaleFactor;
-            this.transform.position = Input.mousePosition;
+            this.rectTransform.anchoredPosition += eventData.delta / this.canvas.scaleFactor;
+            //this.transform.position = Input.mousePosition;
         }
 
         public void OnEndDrag(PointerEventData eventData)
