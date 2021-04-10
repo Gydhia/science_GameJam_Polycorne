@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e85de160dbdf042a5de969a08e8c13, type: 3}
+  m_Name: 2 - Bass line 1
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 6a283930cf0277346aa87c4be43fb5ba, type: 3}
+  Reverb: {fileID: 11400000, guid: 2de38a81676bdc94e8fecfbcf09931ef, type: 2}
+  Echo: {fileID: 0}
