@@ -22,7 +22,7 @@ namespace Assets.Scripts
                 throw new Exception("BoxSO is not defined for this Box");
 
             if (this.CardSpaces == null)
-                this.CardSpaces = new CardSpace[this.BoxSO.CardSpaceLength, this.BoxSO.CardSpaceHeight];
+                RegenerateCardsspace();
 
             base.Start();
         }
