@@ -13,22 +13,9 @@ namespace Assets.Scripts
         public BoxSO BoxSO;
         public BoxSO PreviousBoxSO;
 
-        /// <summary>
-        /// List of space available for cards
-        /// </summary>
-        public CardSpace CardSpacePrefab;
-        public Transform CardSpaceContainer;
-
-        /// <summary>
-        /// First half on left
-        /// Second half on right
-        /// </summary>
-        public Hand HandPrefab;
-        public Transform HandsContainer;
-
         public UnityEngine.UI.Text Label;
         public string CardNameForPlayer = "";
-
+        
         public void Start()
         {
             if (this.BoxSO == null)
@@ -63,7 +50,7 @@ namespace Assets.Scripts
             }
         }
 
-        public void RegenerateHands()
+        public override void RegenerateHands()
         {
             if (this.HandsContainer == null)
                 return;
@@ -114,7 +101,7 @@ namespace Assets.Scripts
             }
         }
 
-        public void RegenerateCardsspace()
+        public override void RegenerateCardsspace()
         {
             if (this.CardSpaceContainer == null)
                 return;
@@ -158,6 +145,5 @@ namespace Assets.Scripts
                 }
             }
         }
-
     }
 }

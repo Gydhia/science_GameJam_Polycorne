@@ -7,13 +7,26 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class TrainHandler : MonoBehaviour
+    public abstract class TrainHandler : MonoBehaviour
     {
 
         /// <summary>
         /// List of space available for cards
         /// </summary>
         public CardSpace[,] CardSpaces;
+
+        /// <summary>
+        /// List of space available for cards
+        /// </summary>
+        public CardSpace CardSpacePrefab;
+        public Transform CardSpaceContainer;
+
+        /// <summary>
+        /// First half on left
+        /// Second half on right
+        /// </summary>
+        public Hand HandPrefab;
+        public Transform HandsContainer;
 
         /// <summary>
         /// First half on left
@@ -103,5 +116,9 @@ namespace Assets.Scripts
             }
             return chosen_output;
         }
+
+        public abstract void RegenerateHands();
+
+        public abstract void RegenerateCardsspace();
     }
 }
