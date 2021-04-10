@@ -19,11 +19,21 @@ namespace Assets.Scripts
         public Color ColorEmpty = Color.green;
         public Color ColorUsed = Color.blue;
 
+
+        public void Start()
+        {
+            if (this.Card != null)
+            {
+                this.Card.transform.position = this.transform.position;
+            }
+        }
+
+
         public void OnValidate()
         {
             if (!Application.isPlaying)
             {
-                float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
+                float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
                 float canvascardwidth = 1 - Padding;
                 float canvascardhlength = 1 - Padding;
 

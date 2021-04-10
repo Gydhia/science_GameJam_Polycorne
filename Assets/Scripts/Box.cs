@@ -42,50 +42,51 @@ namespace Assets.Scripts
 
             this.rand = new System.Random();
 
-            foreach(var hand in this.AllHands)
-                if(hand.ConnectEndOfTrack)
-                    hand.ConnectedTrack.OnTrainArrivedAtEnd += TrainArrived;
+            foreach (var hand in this.AllHands)
+            {
+                if (hand.ConnectedTrack != null)
+                {
+                    if (hand.ConnectEndOfTrack)
+                        hand.ConnectedTrack.OnTrainArrivedAtEnd += TrainArrived;
+                    else
+                        hand.ConnectedTrack.OnTrainArrivedAtStart += TrainArrived;
+                }
+            }
+
 
         }
 
         private void TrainArrived(Train Train, Hand Hand)
         {
-            //TODO: register stats about arrived trains
-
-            // HERE IS A FAKE BEHAVIOUR:
-            Hand exit = null;
-            if (Hand.LeftHand)
-                exit = this.HandsRight.First(h => h.Index == Hand.Index);
-            else
-                exit = this.HandsLeft.First(h => h.Index == Hand.Index);
-
-            if(exit != null)
-                Train.PlaceOnHand(exit);
-        }
-
-        public void SendManyTrains(int HowMany)
-        {
-            StartCoroutine(this.sendManyTrains(100));
-        }
-
-        private IEnumerator sendManyTrains(int HowMany)
-        {
-            for (int i = 0; i < HowMany; i++)
+            if (Board.Instance.EndStation == this)
             {
-                this.SendTrain();
-                yield return i / (float)HowMany;
+                Board.Instance.RegisterTrainArrival(Train, Hand);
             }
-            yield break;
+            else
+            {
+
+                // HERE IS A FAKE BEHAVIOUR:
+                if (this.CardSpaces != null && this.CardSpaces[0, 0] != null)
+                {
+                    if (Hand.LeftHand)
+                        Train.PlaceOnHand(this.CardSpaces[0, 0].Card.HandsLeft[Hand.Index]);
+                    else
+                        Train.PlaceOnHand(this.CardSpaces[0, 0].Card.HandsRight[Hand.Index]);
+                }
+                //Hand exit = this.Card.HandLeft[0];
+
+                //if (Hand.LeftHand)
+                //    exit = this.HandsRight.First(h => h.Index == Hand.Index);
+                //else
+                //    exit = this.HandsLeft.First(h => h.Index == Hand.Index);
+
+                //if (exit != null)
+                //    Train.PlaceOnHand(exit);
+            }
+
         }
 
-        public void SendTrain()
-        {
-            var train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"));
-            int trackID = this.DecideOutput();
-            train.PlaceOnHand(this.HandsRight.ElementAt(trackID));
-        }
-
-        private int DecideOutput()
+        public int DecideOutput()
         {
             if (this.OutputDistribution == null || this.OutputDistribution.Count() <= 1)
                 // if no distribution was set, no weights: return a random output
@@ -149,27 +150,33 @@ namespace Assets.Scripts
             int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
             int nbhands = this.BoxSO.CardSpaceHeight * handcount;
 
-            this.HandsLeft = new Hand[nbhands];
-            this.HandsRight = new Hand[nbhands];
 
-            for (int j = 0; j < this.HandsLeft.Length; j++)
+            if (Board.Instance.StartStation != this)
             {
-                Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
-                newHand.transform.localPosition = new Vector3(0, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
-                newHand.transform.Rotate(new Vector3(0, 0, 180));
-                newHand.Index = j;
-                newHand.LeftHand = true;
-                newHand.name = "LEFT HAND #" + j;
-                this.HandsLeft[j] = newHand;
+                this.HandsLeft = new Hand[nbhands];
+                for (int j = 0; j < this.HandsLeft.Length; j++)
+                {
+                    Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
+                    newHand.transform.localPosition = new Vector3(0, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.transform.Rotate(new Vector3(0, 0, 180));
+                    newHand.Index = j;
+                    newHand.LeftHand = true;
+                    newHand.name = "LEFT HAND #" + j;
+                    this.HandsLeft[j] = newHand;
+                }
             }
-            for (int j = 0; j < this.HandsRight.Length; j++)
+            if (Board.Instance.EndStation != this)
             {
-                Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
-                newHand.transform.localPosition = new Vector3(canvascardhlength, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
-                newHand.Index = j;
-                newHand.LeftHand = false;
-                newHand.name = "RIGHT HAND #" + j;
-                this.HandsRight[j] = newHand;
+                this.HandsRight = new Hand[nbhands];
+                for (int j = 0; j < this.HandsRight.Length; j++)
+                {
+                    Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
+                    newHand.transform.localPosition = new Vector3(canvascardhlength, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.Index = j;
+                    newHand.LeftHand = false;
+                    newHand.name = "RIGHT HAND #" + j;
+                    this.HandsRight[j] = newHand;
+                }
             }
         }
 
