@@ -11,5 +11,6 @@ namespace Assets.Scripts
     {
         public int HandsCount;
         public BoxSO[] Boxes;
+        public Canvas UICanvas;
     }
 }

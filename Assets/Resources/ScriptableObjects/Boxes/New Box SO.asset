@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57cc589f19d61ad4ea5d0ebfa8c67c20, type: 3}
   m_Name: New Box SO
   m_EditorClassIdentifier: 
-  TrackLenght: 0
-  TrackWidth: 0
+  CardSpaceLenght: 10
+  CardSpaceHeight: 1
   Cards: []
