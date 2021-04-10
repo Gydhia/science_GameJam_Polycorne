@@ -7,10 +7,12 @@ using UnityEngine;
 
 public class Train : MonoBehaviour
 {
-    public LineRenderer currentPath;
+    public Tracks currentPath;
     public int lastWaypoint;
     public float percentToNextWaypoint;
     public float speed;
+
+    public event NavigationNotification OnArrivedAtEndOfTracks; // event
 
     public void Start()
     {
@@ -21,9 +23,9 @@ public class Train : MonoBehaviour
     {
         if (this.currentPath != null)
         {
-            if (this.lastWaypoint == this.currentPath.positionCount - 1)
+            if (this.lastWaypoint == this.currentPath.line.positionCount - 1)
                 this.ArrivedAtEndOfTracks();
-            else if (this.lastWaypoint == this.currentPath.positionCount - 2 && this.percentToNextWaypoint >= 1)
+            else if (this.lastWaypoint == this.currentPath.line.positionCount - 2 && this.percentToNextWaypoint >= 1)
             {
                 this.ArrivedAtEndOfTracks();
             }
@@ -32,34 +34,41 @@ public class Train : MonoBehaviour
         }
         if (this.currentPath != null)
         {
-            this.transform.position = Vector3.Lerp(this.currentPath.GetPosition(this.lastWaypoint), this.currentPath.GetPosition(this.lastWaypoint + 1), this.percentToNextWaypoint);
+            this.transform.position = Vector3.Lerp(this.currentPath.line.GetPosition(this.lastWaypoint), this.currentPath.line.GetPosition(this.lastWaypoint + 1), this.percentToNextWaypoint);
         }
     }
 
     private void ArrivedAtEndOfTracks()
     {
-        this.currentPath = null;
-        GameObject.Destroy(this.gameObject);
+        if (this.OnArrivedAtEndOfTracks != null)
+            this.OnArrivedAtEndOfTracks.Invoke(this, this.currentPath);
+/*        this.currentPath.StopWatchingTrain();
+        GameObject.Destroy(this.gameObject);*/
     }
 
-    public void PlaceOnTracks(LineRenderer tracks)
+    public void OnDestroy()
+    {
+
+    }
+
+    public void PlaceOnTracks(Tracks tracks)
     {
         this.currentPath = tracks;
         this.lastWaypoint = 0;
         this.percentToNextWaypoint = 0;
-
+        this.currentPath.StartWatchingTrain(this);
     }
 
     public void MoveAlongPath(float distance)
     {
-        var lengthTillNextWP = (this.currentPath.GetPosition(this.lastWaypoint + 1) - this.currentPath.GetPosition(this.lastWaypoint)).magnitude;
+        var lengthTillNextWP = (this.currentPath.line.GetPosition(this.lastWaypoint + 1) - this.currentPath.line.GetPosition(this.lastWaypoint)).magnitude;
         this.percentToNextWaypoint += distance / lengthTillNextWP;
         if (this.percentToNextWaypoint >= 1)
         {
             float extralength = (this.percentToNextWaypoint - 1) * lengthTillNextWP;
             this.lastWaypoint++;
             this.percentToNextWaypoint = 0;
-            if (this.lastWaypoint < this.currentPath.positionCount - 1)
+            if (this.lastWaypoint < this.currentPath.line.positionCount - 1)
                 this.MoveAlongPath(extralength);
             else
                 this.ArrivedAtEndOfTracks();

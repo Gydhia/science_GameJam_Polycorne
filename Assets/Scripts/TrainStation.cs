@@ -7,7 +7,10 @@ using UnityEngine;
 
 public class TrainStation : MonoBehaviour
 {
-    public List<LineRenderer> Outputs;
+    public List<Tracks> Outputs;
+    public List<Transform> OutputsVisuals;
+    public List<Tracks> Inputs;
+    public List<Transform> InputsVisuals;
     public List<double> OutputDistribution;
     public System.Random rand;
 
@@ -15,6 +18,27 @@ public class TrainStation : MonoBehaviour
     public void Start()
     {
         this.rand = new System.Random();
+
+        for (int i = 0; i < Outputs.Count() && i < this.OutputsVisuals.Count(); i++)
+        {
+            Outputs.ElementAt(i).line.SetPosition(0, this.OutputsVisuals.ElementAt(i).transform.position);
+        }
+        for (int i = 0; i < Inputs.Count() && i < this.InputsVisuals.Count(); i++)
+        {
+            var inputTrack = Inputs.ElementAt(i);
+            inputTrack.line.SetPosition(inputTrack.line.positionCount - 1, this.InputsVisuals.ElementAt(i).transform.position);
+            inputTrack.OnTrainArrivedAtEnd += TrainArrived;
+        }
+    }
+
+    private void TrainArrived(Train Train, Tracks Tracks)
+    {
+        //TODO: register stats about arrived trains
+        int indexOfTrack = this.Inputs.IndexOf(Tracks);
+        if (this.Outputs != null && this.Outputs.Count() > indexOfTrack)
+            Train.PlaceOnTracks(this.Outputs.ElementAt(indexOfTrack));
+        else
+            GameObject.Destroy(Train.gameObject);
     }
 
     public void SendTrain()

@@ -129,4 +129,4 @@ MonoBehaviour:
   currentPath: {fileID: 0}
   lastWaypoint: 0
   percentToNextWaypoint: 0
-  speed: 100
+  speed: 250
