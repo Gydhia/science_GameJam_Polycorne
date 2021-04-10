@@ -257,7 +257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: credits
+  m_text: "cr\xE9dits"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
   m_sharedMaterial: {fileID: -7920862850341316355, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
@@ -954,7 +954,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 46634424}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -7130,7 +7130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: play.
+  m_text: jouer.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
   m_sharedMaterial: {fileID: -7920862850341316355, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
@@ -7309,7 +7309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: help
+  m_text: aide
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
   m_sharedMaterial: {fileID: -7920862850341316355, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
@@ -8533,7 +8533,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: exit
+  m_text: quitter
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
   m_sharedMaterial: {fileID: -7920862850341316355, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
