@@ -72,8 +72,9 @@ public class Train : MonoBehaviour
     {
         var tracksTheTrainIsLeaving = this.currentPath;
         this.currentPath = null;
-        if (this.OnArrivedAtEndOfTracks != null)
-            this.OnArrivedAtEndOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtEnd);
+            tracksTheTrainIsLeaving.Train_OnArrivedAtEndOfTracks(this);
+        //if (this.OnArrivedAtEndOfTracks != null)
+            //this.OnArrivedAtEndOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtEnd);
         /*        this.currentPath.StopWatchingTrain();
                 GameObject.Destroy(this.gameObject);*/
     }
@@ -81,8 +82,9 @@ public class Train : MonoBehaviour
     {
         var tracksTheTrainIsLeaving = this.currentPath;
         this.currentPath = null;
-        if (this.OnArrivedAtBeginningOfTracks != null)
-            this.OnArrivedAtBeginningOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtBeginning);
+        tracksTheTrainIsLeaving.Train_OnArrivedAtStartOfTracks(this);
+        //if (this.OnArrivedAtBeginningOfTracks != null)
+        //this.OnArrivedAtBeginningOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtBeginning);
         /*        this.currentPath.StopWatchingTrain();
                 GameObject.Destroy(this.gameObject);*/
     }
@@ -103,7 +105,7 @@ public class Train : MonoBehaviour
             this.lastWaypoint = hand.ConnectedTrack.line.positionCount - 1;
             this.percentToNextWaypoint = 1;
             this.speed = -Math.Abs(this.speed);
-            this.currentPath.StartWatchingTrain(this);
+            //this.currentPath.StartWatchingTrain(this);
         }
         else
         {
@@ -111,7 +113,7 @@ public class Train : MonoBehaviour
             this.lastWaypoint = 0;
             this.percentToNextWaypoint = 0;
             this.speed = Math.Abs(this.speed);
-            this.currentPath.StartWatchingTrain(this);
+            //this.currentPath.StartWatchingTrain(this);
         }
     }
 

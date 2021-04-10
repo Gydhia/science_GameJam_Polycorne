@@ -26,28 +26,28 @@ public class Track : MonoBehaviour
 
     internal void StartWatchingTrain(Train train)
     {
-        train.OnArrivedAtEndOfTracks += Train_OnArrivedAtEndOfTracks;
-        train.OnArrivedAtBeginningOfTracks += Train_OnArrivedAtStartOfTracks;
+        //train.OnArrivedAtEndOfTracks += Train_OnArrivedAtEndOfTracks;
+        //train.OnArrivedAtBeginningOfTracks += Train_OnArrivedAtStartOfTracks;
     }
 
-    private void Train_OnArrivedAtEndOfTracks(Train Train, Hand Hand)
+    public void Train_OnArrivedAtEndOfTracks(Train Train)
     {
         this.StopWatchingTrain(Train);
         // forward event to whomever is connected to this track
         if (this.OnTrainArrivedAtEnd != null)
-            this.OnTrainArrivedAtEnd.Invoke(Train, Hand);
+            this.OnTrainArrivedAtEnd.Invoke(Train, this.HandAtEnd);
     }
-    private void Train_OnArrivedAtStartOfTracks(Train Train, Hand Hand)
+    public void Train_OnArrivedAtStartOfTracks(Train Train)
     {
         this.StopWatchingTrain(Train);
         // forward event to whomever is connected to this track
         if (this.OnTrainArrivedAtStart != null)
-            this.OnTrainArrivedAtStart.Invoke(Train, Hand);
+            this.OnTrainArrivedAtStart.Invoke(Train, this.HandAtBeginning);
     }
 
     internal void StopWatchingTrain(Train train)
     {
-        train.OnArrivedAtEndOfTracks -= Train_OnArrivedAtEndOfTracks;
-        train.OnArrivedAtEndOfTracks -= Train_OnArrivedAtStartOfTracks;
+        //train.OnArrivedAtEndOfTracks -= Train_OnArrivedAtEndOfTracks;
+        //train.OnArrivedAtEndOfTracks -= Train_OnArrivedAtStartOfTracks;
     }
 }
