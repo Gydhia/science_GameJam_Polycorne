@@ -11,18 +11,40 @@ namespace Assets.Scripts.UI
 {
     public class MainMenu : MonoBehaviour
     {
-        public Button PlayButton;
-        public Button CreditsButton;
-        public Button ExitButton;
+        public GameObject CreditsPopup;
+        public GameObject HelpPopup;
+        public GameObject Title;
+        public GameObject Buttons;
 
-        void OnClickPlayButton()
+        public void OnClickPlayButton()
         {
             SceneManager.LoadScene("SceneDuJeu");
         }
 
+        public void OnClickCreditsButton()
+        {
+            Title.SetActive(false);
+            Buttons.SetActive(false);
+            CreditsPopup.SetActive(true);
+        }
+
+        public void OnClickHelpButton()
+        {
+            Title.SetActive(false);
+            Buttons.SetActive(false);
+            HelpPopup.SetActive(true);
+        }
+
+        public void OnClickCloseButton()
+        {
+            Title.SetActive(true);
+            Buttons.SetActive(true);
+            CreditsPopup.SetActive(false);
+            HelpPopup.SetActive(false);
+        }
+
         public void OnClickExitButton()
         {
-            print("ouiiiiiiii");
             Application.Quit();
         }
     }

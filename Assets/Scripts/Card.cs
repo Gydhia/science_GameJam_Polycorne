@@ -7,7 +7,7 @@ public class Card : MonoBehaviour
 {
     public Hand[] Left;
     public Hand[] Right;
-    public Connections[] Connections;
+    private Connections[] Connections;
 
     public Card(CardSO cardSO)
     {
