@@ -16,6 +16,7 @@ namespace Assets.Scripts
             if(eventData.pointerDrag != null)
             {
                 eventData.pointerDrag.GetComponent<RectTransform>().position = this.GetComponent<RectTransform>().position;
+
             }
         }
     }

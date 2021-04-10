@@ -6,7 +6,7 @@ namespace ScienceGameJam.UnityEditor
 {
    
     [CustomEditor(typeof(Box))]
-    public class BaseUIPanelInspector : Editor
+    public class BoxInspector : Editor
     {
         Box target;
 

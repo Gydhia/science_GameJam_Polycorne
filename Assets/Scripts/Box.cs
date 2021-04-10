@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Box : MonoBehaviour
+    public class Box : TrainHandler
     {
         public BoxSO BoxSO;
         public BoxSO PreviousBoxSO;
@@ -16,7 +16,6 @@ namespace Assets.Scripts
         /// <summary>
         /// List of space available for cards
         /// </summary>
-        public CardSpace[,] CardSpaces;
         public CardSpace CardSpacePrefab;
         public Transform CardSpaceContainer;
 
@@ -24,101 +23,18 @@ namespace Assets.Scripts
         /// First half on left
         /// Second half on right
         /// </summary>
-        public Hand[] HandsLeft;
-        public Hand[] HandsRight;
         public Hand HandPrefab;
         public Transform HandsContainer;
-
-        //public SpriteRenderer SpriteRenderer;
-        public double[] OutputDistribution;
-        public System.Random rand;
-
-        public IEnumerable<Hand> AllHands => this.HandsLeft.Concat(this.HandsRight);
 
         public void Start()
         {
             if (this.BoxSO == null)
                 throw new Exception("BoxSO is not defined for this Box");
 
-            this.rand = new System.Random();
+            if (this.CardSpaces == null)
+                this.CardSpaces = new CardSpace[this.BoxSO.CardSpaceLength, this.BoxSO.CardSpaceHeight];
 
-            foreach (var hand in this.AllHands)
-            {
-                if (hand.ConnectedTrack != null)
-                {
-                    if (hand.ConnectEndOfTrack)
-                        hand.ConnectedTrack.OnTrainArrivedAtEnd += TrainArrived;
-                    else
-                        hand.ConnectedTrack.OnTrainArrivedAtStart += TrainArrived;
-                }
-            }
-
-
-        }
-
-        private void TrainArrived(Train Train, Hand Hand)
-        {
-            if (Board.Instance.EndStation == this)
-            {
-                Board.Instance.RegisterTrainArrival(Train, Hand);
-            }
-            else
-            {
-                if (this.CardSpaces != null && 
-                    this.CardSpaces.Length > 0 &&
-                    this.CardSpaces[0, 0] != null)
-                {
-                    if (Hand.LeftHand)
-                        Train.PlaceOnHand(this.CardSpaces[0, 0].Card.HandsLeft[Hand.Index]);
-                    else
-                        Train.PlaceOnHand(this.CardSpaces[this.CardSpaces.GetLength(0) - 1, 0].Card.HandsRight[Hand.Index]);
-                }
-                else
-                {
-                    // HERE IS A FAKE BEHAVIOUR:
-                    // it should fail, but let's connect across the BOX for now
-                    Hand exit;
-                    if (Hand.LeftHand)
-                        exit = this.HandsRight.First(h => h.Index == Hand.Index);
-                    else
-                        exit = this.HandsLeft.First(h => h.Index == Hand.Index);
-                    Train.PlaceOnHand(exit);
-                }
-
-
-                //Hand exit = this.Card.HandLeft[0];
-
-                //if (Hand.LeftHand)
-                //    exit = this.HandsRight.First(h => h.Index == Hand.Index);
-                //else
-                //    exit = this.HandsLeft.First(h => h.Index == Hand.Index);
-
-                //if (exit != null)
-                //    Train.PlaceOnHand(exit);
-            }
-
-        }
-
-        public int DecideOutput()
-        {
-            if (this.OutputDistribution == null || this.OutputDistribution.Count() <= 1)
-                // if no distribution was set, no weights: return a random output
-                return this.rand.Next(0, this.HandsRight.Count());
-
-            double total_weight = this.OutputDistribution.Sum();
-            // if no weight was set, no weights: return a random output
-            if (total_weight == 0)
-                return this.rand.Next(0, this.HandsRight.Count());
-
-            var result = this.rand.NextDouble() * total_weight;
-
-            int chosen_output = -1;
-            while (result > 0)
-            {
-                chosen_output++;
-                result -= this.OutputDistribution.ElementAt(chosen_output);
-            }
-            return chosen_output;
+            base.Start();
         }
 
         public void OnValidate()
@@ -132,7 +48,6 @@ namespace Assets.Scripts
                     float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
 
                     this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(canvascardhlength, canvascardheight);
-                    //this.SpriteRenderer.size = new Vector2(canvascardhlength, canvascardheight);
 
                     //hands init
                     this.RegenerateHands();
@@ -147,6 +62,9 @@ namespace Assets.Scripts
 
         public void RegenerateHands()
         {
+            if (this.HandsContainer == null)
+                return;
+
             float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
             float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
             float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
@@ -195,6 +113,9 @@ namespace Assets.Scripts
 
         public void RegenerateCardsspace()
         {
+            if (this.CardSpaceContainer == null)
+                return;
+
             float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
             float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
             float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
@@ -227,6 +148,7 @@ namespace Assets.Scripts
                     float x = (k * (canvascardhlength / (float)this.BoxSO.CardSpaceLength)) + (canvascardhlength * 0.5f / (float)this.BoxSO.CardSpaceLength);
                     float y = (l * (canvascardheight / (float)this.BoxSO.CardSpaceHeight)) + (canvascardheight * 0.5f / (float)this.BoxSO.CardSpaceHeight);
                     cardspace.transform.localPosition = new Vector3(x, y, 0);
+                    cardspace.Box = this;
                     this.CardSpaces[k, l] = cardspace;
                 }
             }

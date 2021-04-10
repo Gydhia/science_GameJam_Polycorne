@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts
 {
     [ExecuteAlways]
-    public class CardSpace : MonoBehaviour
+    public class CardSpace : MonoBehaviour, IDropHandler
     {
         public Card Card;
+        public Box Box;
 
         [Range(0, 1)]
         public float Padding = 0;
@@ -42,7 +44,17 @@ namespace Assets.Scripts
             }
         }
 
-
+        public void OnDrop(PointerEventData eventData)
+        {
+            Debug.Log(eventData);
+            if (eventData.pointerDrag != null)
+            {
+                eventData.pointerDrag.GetComponent<RectTransform>().position = this.GetComponent<RectTransform>().position;
+                Card card = eventData.pointerDrag.GetComponent<Card>();
+                this.Card = card;
+                this.Card.CardSpace = this;
+            }
+        }
 
     }
 }
