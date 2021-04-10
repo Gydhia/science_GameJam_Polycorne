@@ -67,7 +67,8 @@ namespace Assets.Scripts
             }
 
             int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
-            int nbhands = 1 * handcount;
+            int nbhands = handcount;
+            int handsoffset = 0;
 
 
             if (Board.Instance.StartStation != this)
@@ -76,7 +77,7 @@ namespace Assets.Scripts
                 for (int j = 0; j < this.HandsLeft.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
-                    newHand.transform.localPosition = new Vector3(0, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.transform.localPosition = new Vector3(0, canvascardheight - ((0.5f + j) * (canvascardheight / (float)(nbhands + handsoffset))), 0);
                     newHand.transform.Rotate(new Vector3(0, 0, 180));
                     newHand.Index = j;
                     newHand.LeftHand = true;
@@ -90,7 +91,7 @@ namespace Assets.Scripts
                 for (int j = 0; j < this.HandsRight.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
-                    newHand.transform.localPosition = new Vector3(canvascardhlength, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.transform.localPosition = new Vector3(canvascardhlength, canvascardheight - ((0.5f + j) * (canvascardheight / (float)(nbhands + handsoffset))), 0);
                     newHand.Index = j;
                     newHand.LeftHand = false;
                     newHand.name = "RIGHT HAND #" + j;

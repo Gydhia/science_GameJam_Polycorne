@@ -69,8 +69,8 @@ namespace Assets.Scripts
             }
 
             int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
-            int nbhands = this.BoxSO.CardSpaceHeight * handcount;
-
+            int nbhands = handcount;
+            int handsoffset = (this.BoxSO.CardSpaceHeight - 1) * handcount;
 
             if (Board.Instance.StartStation != this)
             {
@@ -78,7 +78,7 @@ namespace Assets.Scripts
                 for (int j = 0; j < this.HandsLeft.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
-                    newHand.transform.localPosition = new Vector3(0, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.transform.localPosition = new Vector3(0, canvascardheight - ((0.5f + j) * (canvascardheight / (float)(nbhands + handsoffset))), 0);
                     newHand.transform.Rotate(new Vector3(0, 0, 180));
                     newHand.Index = j;
                     newHand.LeftHand = true;
@@ -92,7 +92,7 @@ namespace Assets.Scripts
                 for (int j = 0; j < this.HandsRight.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
-                    newHand.transform.localPosition = new Vector3(canvascardhlength, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.transform.localPosition = new Vector3(canvascardhlength, canvascardheight - ((0.5f + j) * (canvascardheight / (float)(nbhands + handsoffset))), 0);
                     newHand.Index = j;
                     newHand.LeftHand = false;
                     newHand.name = "RIGHT HAND #" + j;
@@ -136,7 +136,7 @@ namespace Assets.Scripts
                 {
                     CardSpace cardspace = GameObject.Instantiate<CardSpace>(this.CardSpacePrefab, this.CardSpaceContainer);
                     float x = (k * (canvascardhlength / (float)this.BoxSO.CardSpaceLength)) + (canvascardhlength * 0.5f / (float)this.BoxSO.CardSpaceLength);
-                    float y = (l * (canvascardheight / (float)this.BoxSO.CardSpaceHeight)) + (canvascardheight * 0.5f / (float)this.BoxSO.CardSpaceHeight);
+                    float y = ((this.BoxSO.CardSpaceHeight - l - 1) * (canvascardheight / (float)this.BoxSO.CardSpaceHeight)) + (canvascardheight * 0.5f / (float)this.BoxSO.CardSpaceHeight);
                     cardspace.transform.localPosition = new Vector3(x, y, 0);
                     cardspace.Box = this;
                     cardspace.positionInBox = new Vector2Int(k, l);
