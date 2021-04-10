@@ -9,9 +9,10 @@ using UnityEngine;
 
 public class Track : MonoBehaviour
 {
-    public LineRenderer line;
-    public Hand HandAtBeginning;
-    public Hand HandAtEnd;
+    public LineRenderer line { get; set; }
+
+    public Hand HandAtBeginning { get; set; }
+    public Hand HandAtEnd { get; set; }
 
     public event NavigationNotification OnTrainArrivedAtEnd; // event
 

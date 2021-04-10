@@ -126,8 +126,10 @@ namespace Assets.Scripts
                 {
                     UnityEditor.EditorApplication.delayCall += () =>
                     {
-                        GameObject.DestroyImmediate(child.gameObject);
-
+                        if (Application.isPlaying)
+                            GameObject.Destroy(child.gameObject);
+                        else
+                            GameObject.DestroyImmediate(child.gameObject);
                     };
                 }
 
@@ -142,6 +144,9 @@ namespace Assets.Scripts
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.Handscontainer);
                     newHand.transform.localPosition = new Vector3(0, (j * (canvascardwidth / (float)nbhands)) + (canvascardwidth * 0.5f / nbhands), 0);
+                    newHand.Index = j;
+                    newHand.LeftHand = true;
+                    newHand.name = "LEFT HAND #" + j;
                     this.HandsLeft[j] = newHand;
                 }
 
@@ -149,6 +154,9 @@ namespace Assets.Scripts
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.Handscontainer);
                     newHand.transform.localPosition = new Vector3(canvascardhlength, (j * (canvascardwidth / (float)nbhands)) + (canvascardwidth * 0.5f / nbhands), 0);
+                    newHand.Index = j;
+                    newHand.LeftHand = false;
+                    newHand.name = "RIGHT HAND #" + j;
                     this.HandsRight[j] = newHand;
                 }
             }

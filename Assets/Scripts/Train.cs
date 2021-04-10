@@ -61,7 +61,7 @@ public class Train : MonoBehaviour
 
     public void PlaceOnHand(Hand hand)
     {
-        if (hand == null)
+        if (hand == null || hand.ConnectedTrack == null)
             return;
 
         if (hand.LeftHand)

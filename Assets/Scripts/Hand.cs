@@ -14,13 +14,19 @@ namespace Assets.Scripts
         public int Index;
         public bool LeftHand = false;
 
-        public void Start()
+        public void Update()
         {
             if (this.ConnectedTrack != null)
                 if (ConnectEndOfTrack)
+                {
                     this.ConnectedTrack.line.SetPosition(this.ConnectedTrack.line.positionCount - 1, this.transform.position);
+                    this.ConnectedTrack.HandAtEnd = this;
+                }
                 else
+                {
                     this.ConnectedTrack.line.SetPosition(0, this.transform.position);
+                    this.ConnectedTrack.HandAtBeginning = this;
+                }
         }
     }
 }
