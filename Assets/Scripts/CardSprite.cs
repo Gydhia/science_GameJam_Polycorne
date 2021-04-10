@@ -7,8 +7,11 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Card : TrainHandler
+    public class CardSprite : DragnDrop
     {
-        public CardSpace CardSpace;
+        public SpriteRenderer SpriteRenderer;
+        public Sprite Sprite;
+
+
     }
 }

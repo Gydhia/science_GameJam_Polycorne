@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57cc589f19d61ad4ea5d0ebfa8c67c20, type: 3}
-  m_Name: 2x3
+  m_Name: 10x1
   m_EditorClassIdentifier: 
-  CardSpaceLength: 2
-  CardSpaceHeight: 3
+  CardSpaceLength: 10
+  CardSpaceHeight: 1
