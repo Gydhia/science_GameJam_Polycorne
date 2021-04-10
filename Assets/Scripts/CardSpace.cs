@@ -16,6 +16,7 @@ namespace Assets.Scripts
 
         public Vector2Int positionInBox;
         public string CopyFromBox;
+        public float OverlapWeight = 1;
 
         [Range(0, 1)]
         public float Padding = 0;
