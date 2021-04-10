@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts;
 
 public class Card : TrainHandler
 {
@@ -27,7 +28,7 @@ public class Card : TrainHandler
     public static Card GenerateMultiplyCards(Card A, Card B)
     {
         int cpt = 0;
-        Card C = new Card(new CardSO());
+        Card C = new Card();
 
         foreach (var connection in A.Connections)
         {
@@ -52,7 +53,7 @@ public class Card : TrainHandler
     public static Card GenerateFlippedCard(Card A)
     {
         int cpt = 0;
-        Card B = new Card(new CardSO());
+        Card B = new Card();
 
         foreach (var connection in A.Connections)
         {
