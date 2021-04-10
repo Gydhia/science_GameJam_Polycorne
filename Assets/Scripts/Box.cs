@@ -29,7 +29,7 @@ namespace Assets.Scripts
         public Hand HandPrefab;
         public Transform HandsContainer;
 
-        public SpriteRenderer SpriteRenderer;
+        //public SpriteRenderer SpriteRenderer;
         public double[] OutputDistribution;
         public System.Random rand;
 
@@ -119,7 +119,7 @@ namespace Assets.Scripts
                     float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
 
                     this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(canvascardhlength, canvascardheight);
-                    this.SpriteRenderer.size = new Vector2(canvascardhlength, canvascardheight);
+                    //this.SpriteRenderer.size = new Vector2(canvascardhlength, canvascardheight);
 
                     //hands init
                     this.RegenerateHands();

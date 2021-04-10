@@ -47,7 +47,7 @@ namespace Assets.Scripts
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
 
-            this.rectTransform.anchoredPosition = LimitRectBoundsToCanvas();
+            //this.rectTransform.anchoredPosition = LimitRectBoundsToCanvas();
         }
 
 
