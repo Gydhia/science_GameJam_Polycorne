@@ -142,6 +142,7 @@ namespace Assets.Scripts
                         {
                             Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
                             newHand.transform.localPosition = new Vector3(0, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                            newHand.transform.Rotate(new Vector3(0,0,180));
                             newHand.Index = j;
                             newHand.LeftHand = true;
                             newHand.name = "LEFT HAND #" + j;
