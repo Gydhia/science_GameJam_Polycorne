@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 public class Train : MonoBehaviour
 {
-    public Tracks currentPath;
+    public Track currentPath;
     public int lastWaypoint;
     public float percentToNextWaypoint;
     public float speed;
@@ -48,7 +49,7 @@ public class Train : MonoBehaviour
         var tracksTheTrainIsLeaving = this.currentPath;
         this.currentPath = null;
         if (this.OnArrivedAtEndOfTracks != null)
-            this.OnArrivedAtEndOfTracks.Invoke(this, tracksTheTrainIsLeaving);
+            this.OnArrivedAtEndOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtEnd);
 /*        this.currentPath.StopWatchingTrain();
         GameObject.Destroy(this.gameObject);*/
     }
@@ -58,12 +59,22 @@ public class Train : MonoBehaviour
 
     }
 
-    public void PlaceOnTracks(Tracks tracks)
+    public void PlaceOnHand(Hand hand)
     {
-        this.currentPath = tracks;
-        this.lastWaypoint = 0;
-        this.percentToNextWaypoint = 0;
-        this.currentPath.StartWatchingTrain(this);
+        if (hand == null)
+            return;
+
+        if (hand.LeftHand)
+        {
+            // TODO: support going
+        }
+        else
+        {
+            this.currentPath = hand.ConnectedTrack;
+            this.lastWaypoint = 0;
+            this.percentToNextWaypoint = 0;
+            this.currentPath.StartWatchingTrain(this);
+        }
     }
 
     public void MoveAlongPath(float distance)
