@@ -72,7 +72,8 @@ namespace Assets.Scripts
             {
                 if (this.CardSpaces != null &&
                     this.CardSpaces.Length > 0 &&
-                    this.CardSpaces[0, 0] != null)
+                    this.CardSpaces[0, 0] != null &&
+                    this.CardSpaces[0, 0].Card != null)
                 {
                     if (Hand.LeftHand)
                         Train.PlaceOnHand(this.CardSpaces[0, 0].Card.HandsLeft[Hand.Index]);
