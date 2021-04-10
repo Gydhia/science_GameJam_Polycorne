@@ -100,7 +100,7 @@ namespace Assets.Scripts
             }
         }
 
-        public override void RegenerateCardsspace()
+        public override void RegenerateCardsspace(bool forceReset = false)
         {
             
         }

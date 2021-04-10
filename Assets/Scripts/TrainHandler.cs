@@ -151,6 +151,6 @@ namespace Assets.Scripts
 
         public abstract void RegenerateHands();
 
-        public abstract void RegenerateCardsspace();
+        public abstract void RegenerateCardsspace(bool forceReset = false);
     }
 }

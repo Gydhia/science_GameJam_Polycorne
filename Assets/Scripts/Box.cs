@@ -101,10 +101,22 @@ namespace Assets.Scripts
             }
         }
 
-        public override void RegenerateCardsspace()
+        public override void RegenerateCardsspace(bool forceReset = false)
         {
             if (this.CardSpaceContainer == null)
                 return;
+            // deal with existing data
+            var existing_cardspaces = this.CardSpaceContainer.GetComponentsInChildren<CardSpace>();
+            if (!forceReset && existing_cardspaces.Count() > 0)
+            {
+                this.CardSpaces = new CardSpace[existing_cardspaces.Max(cs => cs.positionInBox.x) + 1, existing_cardspaces.Max(cs => cs.positionInBox.y) + 1];
+                foreach (var existing_cardspace in existing_cardspaces)
+                {
+                    existing_cardspace.Box = this;
+                    this.CardSpaces[existing_cardspace.positionInBox.x, existing_cardspace.positionInBox.y] = existing_cardspace;
+                }
+                return;
+            }
 
             float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
             float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
@@ -116,7 +128,6 @@ namespace Assets.Scripts
                 UnityEditor.EditorApplication.delayCall += () =>
                 {
                     GameObject.DestroyImmediate(child.gameObject);
-
                 };
             }
 
