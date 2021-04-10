@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    [CreateAssetMenu(menuName = "CardSO")]
     public class CardSO : ScriptableObject
     {
         public int NumberHands;
@@ -21,5 +22,3 @@ namespace Assets.Scripts
         }
     }
 }
-
-    [CreateAssetMenu(menuName = "CardSO")]
