@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cards : MonoBehaviour
+public class Card : MonoBehaviour
 {
     public void connectLine(Vector3 start, Vector3 end)
     {
