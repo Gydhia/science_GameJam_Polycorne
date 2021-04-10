@@ -16,17 +16,23 @@ namespace Assets.Scripts
         public float Padding = 0;
         public SpriteRenderer SpriteRenderer;
 
-        public Color ColorEmpty;
-        public Color ColorUsed;
+        public Color ColorEmpty = Color.green;
+        public Color ColorUsed = Color.blue;
 
         public void OnValidate()
         {
-            float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
-            float canvascardwidth = (1 * pixerperunit) - (Padding * pixerperunit);
-            float canvascardhlength = 1 * pixerperunit - (Padding * pixerperunit);
+            if (!Application.isPlaying)
+            {
+                float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
+                float canvascardwidth = (1 * pixerperunit) - (Padding * pixerperunit);
+                float canvascardhlength = 1 * pixerperunit - (Padding * pixerperunit);
 
-            this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(canvascardhlength, canvascardwidth);
-            this.SpriteRenderer.size = new Vector2(canvascardhlength, canvascardwidth);
+                this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(canvascardhlength, canvascardwidth);
+                this.SpriteRenderer.size = new Vector2(canvascardhlength, canvascardwidth);
+            }
         }
+
+
+
     }
 }
