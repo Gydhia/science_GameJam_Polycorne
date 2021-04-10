@@ -1903,6 +1903,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: trainstation 2x1
       objectReference: {fileID: 0}
+    - target: {fileID: 5063966840277157050, guid: 1b4bcd3cce5638048b94ed534e57b0b9, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5578284051766838581, guid: 1b4bcd3cce5638048b94ed534e57b0b9, type: 3}
       propertyPath: ConnectedTrack
       value: 
@@ -1914,6 +1918,10 @@ PrefabInstance:
     - target: {fileID: 6862999735525452332, guid: 1b4bcd3cce5638048b94ed534e57b0b9, type: 3}
       propertyPath: ConnectEndOfTrack
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7751413328824069844, guid: 1b4bcd3cce5638048b94ed534e57b0b9, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8215109315314136859, guid: 1b4bcd3cce5638048b94ed534e57b0b9, type: 3}
       propertyPath: ConnectedTrack
@@ -3200,6 +3208,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2606937720503511504, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2629364655912016085, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: m_Name
       value: trainstation_end
@@ -3944,6 +3956,14 @@ PrefabInstance:
       propertyPath: ConnectEndOfTrack
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2606937720503511504, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606937720503511504, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2629364655912016084, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: CardNameForPlayer
       value: A
@@ -4169,6 +4189,14 @@ PrefabInstance:
     - target: {fileID: 1884028677878607529, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: ConnectEndOfTrack
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606937720503511504, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606937720503511504, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2629364655912016084, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: CardNameForPlayer
@@ -5400,6 +5428,10 @@ PrefabInstance:
     - target: {fileID: 2339740352126687788, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606937720503511504, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2629364655912016084, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: HandsLeft.Array.data[0]
@@ -6756,6 +6788,10 @@ PrefabInstance:
       propertyPath: ConnectedTrack
       value: 
       objectReference: {fileID: 1977084125}
+    - target: {fileID: 5663249388936475430, guid: 64fe137987d3d6c40b9168cc6a2ba9b5, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5772095408426002642, guid: 64fe137987d3d6c40b9168cc6a2ba9b5, type: 3}
       propertyPath: ConnectedTrack
       value: 
@@ -6796,6 +6832,10 @@ PrefabInstance:
       propertyPath: ConnectedTrack
       value: 
       objectReference: {fileID: 1601802956}
+    - target: {fileID: 8002545831495395873, guid: 64fe137987d3d6c40b9168cc6a2ba9b5, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8243209543326099179, guid: 64fe137987d3d6c40b9168cc6a2ba9b5, type: 3}
       propertyPath: ConnectedTrack
       value: 
