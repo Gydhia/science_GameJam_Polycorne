@@ -45,11 +45,15 @@ namespace Assets.Scripts
 
         }
 
-        private void TrainArrived(Train Train, Hand Hand)
+        protected virtual void TrainArrived(Train Train, Hand Hand)
         {
             if (Board.Instance.EndStation == this)
             {
                 Board.Instance.RegisterTrainArrival(Train, Hand);
+            }
+            else if (Board.Instance.StartStation == this)
+            {
+                return;
             }
             else
             {
@@ -74,16 +78,6 @@ namespace Assets.Scripts
                     Train.PlaceOnHand(exit);
                 }
 
-
-                //Hand exit = this.Card.HandLeft[0];
-
-                //if (Hand.LeftHand)
-                //    exit = this.HandsRight.First(h => h.Index == Hand.Index);
-                //else
-                //    exit = this.HandsLeft.First(h => h.Index == Hand.Index);
-
-                //if (exit != null)
-                //    Train.PlaceOnHand(exit);
             }
 
         }
