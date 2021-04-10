@@ -8,13 +8,18 @@ namespace Assets.Scripts
     [CreateAssetMenu(menuName = "Box")]
     public class BoxSO : ScriptableObject
     {
-        public int CardSpaceLenght;
+        public int CardSpaceLength;
         public int CardSpaceHeight;
-        public CardSO[] Cards;
+        public CardSO[,] Cards;
 
         public void Awake()
         {
-            this.Cards = new CardSO[this.CardSpaceLenght * this.CardSpaceHeight];
+            this.Cards = new CardSO[this.CardSpaceLength, this.CardSpaceHeight];
+        }
+
+        public void OnValidate()
+        {
+            this.Cards = new CardSO[this.CardSpaceLength,this.CardSpaceHeight];
         }
     }
 }

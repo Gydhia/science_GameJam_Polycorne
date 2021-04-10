@@ -7,8 +7,26 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class CardSpace
+    [ExecuteAlways]
+    public class CardSpace : MonoBehaviour
     {
         public Card Card;
+
+        [Range(0, 1)]
+        public float Padding = 0;
+        public SpriteRenderer SpriteRenderer;
+
+        public Color ColorEmpty;
+        public Color ColorUsed;
+
+        public void OnValidate()
+        {
+            float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
+            float canvascardwidth = (1 * pixerperunit) - (Padding * pixerperunit);
+            float canvascardhlength = 1 * pixerperunit - (Padding * pixerperunit);
+
+            this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(canvascardhlength, canvascardwidth);
+            this.SpriteRenderer.size = new Vector2(canvascardhlength, canvascardwidth);
+        }
     }
 }
