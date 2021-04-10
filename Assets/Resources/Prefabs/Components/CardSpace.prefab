@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Padding: 0.05
   SpriteRenderer: {fileID: 5481265921240605880}
+  ColorEmpty: {r: 0, g: 1, b: 0, a: 1}
+  ColorUsed: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &4274613588964912447
 GameObject:
   m_ObjectHideFlags: 0
