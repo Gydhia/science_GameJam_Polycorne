@@ -39,7 +39,7 @@ namespace Assets.Scripts
 
             this.rand = new System.Random();
             //cards init
-            this.CardSpaces = new CardSpace[this.BoxSO.TrackLenght * this.BoxSO.TrackWidth];
+            this.CardSpaces = new CardSpace[this.BoxSO.CardSpaceLenght * this.BoxSO.CardSpaceHeight];
             for(int i = 0; i < this.BoxSO.Cards.Length ; i++)
             {
                 this.CardSpaces[i] = new CardSpace();
@@ -115,8 +115,12 @@ namespace Assets.Scripts
         {
             if (this.BoxSO != null)
             {
-                this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(this.BoxSO.TrackLenght, this.BoxSO.TrackWidth);
-                this.SpriteRenderer.size = new Vector2(this.BoxSO.TrackLenght, this.BoxSO.TrackWidth);
+                float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
+                float canvascardwidth = this.BoxSO.CardSpaceHeight * pixerperunit;
+                float canvascardhlength = this.BoxSO.CardSpaceLenght * pixerperunit;
+
+                this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(canvascardhlength, canvascardwidth);
+                this.SpriteRenderer.size = new Vector2(canvascardhlength, canvascardwidth);
 
                 foreach (Transform child in this.Handscontainer)
                 {
@@ -129,21 +133,22 @@ namespace Assets.Scripts
 
                 //hands init
                 int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
-                int nbhands = this.BoxSO.TrackWidth * handcount;
+                int nbhands = this.BoxSO.CardSpaceHeight * handcount;
+
                 this.HandsLeft = new Hand[nbhands];
                 this.HandsRight = new Hand[nbhands];
 
                 for (int j = 0; j < this.HandsLeft.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.Handscontainer);
-                    newHand.transform.localPosition = new Vector3(0, (j * (this.BoxSO.TrackWidth / (float)nbhands)) + (this.BoxSO.TrackWidth * 0.5f / nbhands), 0);
+                    newHand.transform.localPosition = new Vector3(0, (j * (canvascardwidth / (float)nbhands)) + (canvascardwidth * 0.5f / nbhands), 0);
                     this.HandsLeft[j] = newHand;
                 }
 
                 for (int j = 0; j < this.HandsRight.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.Handscontainer);
-                    newHand.transform.localPosition = new Vector3(this.BoxSO.TrackLenght, (j * (this.BoxSO.TrackWidth / (float)nbhands)) + (this.BoxSO.TrackWidth * 0.5f / nbhands), 0);
+                    newHand.transform.localPosition = new Vector3(canvascardhlength, (j * (canvascardwidth / (float)nbhands)) + (canvascardwidth * 0.5f / nbhands), 0);
                     this.HandsRight[j] = newHand;
                 }
             }
