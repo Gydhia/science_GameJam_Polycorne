@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 
-public class Tracks : MonoBehaviour
+public class Track : MonoBehaviour
 {
-    public LineRenderer line;
+    public LineRenderer line { get; set; }
+
+    public Hand HandAtBeginning { get; set; }
+    public Hand HandAtEnd { get; set; }
 
     public event NavigationNotification OnTrainArrivedAtEnd; // event
 
@@ -24,12 +28,12 @@ public class Tracks : MonoBehaviour
         train.OnArrivedAtEndOfTracks += Train_OnArrivedAtEndOfTracks;
     }
 
-    private void Train_OnArrivedAtEndOfTracks(Train Train, Tracks Tracks)
+    private void Train_OnArrivedAtEndOfTracks(Train Train, Hand Hand)
     {
         this.StopWatchingTrain(Train);
         // forward event to whomever is connected to this track
         if (this.OnTrainArrivedAtEnd != null)
-            this.OnTrainArrivedAtEnd.Invoke(Train, Tracks);
+            this.OnTrainArrivedAtEnd.Invoke(Train, Hand);
     }
 
     internal void StopWatchingTrain(Train train)
