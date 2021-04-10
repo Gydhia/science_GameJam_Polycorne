@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 535026441163505008}
   - component: {fileID: 5539428788301006197}
   m_Layer: 5
-  m_Name: card4_A
+  m_Name: card4_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,6 +181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f8e4b2de62e34498c9b586e3ec6d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardSpacePrefab: {fileID: 0}
+  CardSpaceContainer: {fileID: 0}
+  HandPrefab: {fileID: 0}
+  HandsContainer: {fileID: 0}
   HandsLeft:
   - {fileID: 6760764858527616794}
   - {fileID: 4502076352126932875}
@@ -404,10 +408,10 @@ PrefabInstance:
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: ConnectedTrack
       value: 
-      objectReference: {fileID: 1443222310251075659}
+      objectReference: {fileID: 5602537187557322021}
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: ConnectEndOfTrack
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: Index
@@ -637,11 +641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040738, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -36.6
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040738, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040738, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_SizeDelta.x
@@ -677,7 +681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_UseWorldSpace
@@ -685,23 +689,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[0].x
-      value: 50
+      value: -14.500549
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: 40
+      value: -42.091583
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: 40
+      value: -42.239075
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: 25
+      value: 87.52753
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[2].x
-      value: 25
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[2].y
@@ -725,7 +729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name
@@ -996,7 +1000,7 @@ PrefabInstance:
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: ConnectedTrack
       value: 
-      objectReference: {fileID: 7851183684289429660}
+      objectReference: {fileID: 1443222310251075659}
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: ConnectEndOfTrack
       value: 1
@@ -1084,11 +1088,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040738, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040738, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 24.9
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040738, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1172,7 +1176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name
@@ -1305,11 +1309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: -15
+      value: 39.82544
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: 50
+      value: 49.120422
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_SortingOrder
@@ -1321,7 +1325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name
@@ -1451,7 +1455,7 @@ PrefabInstance:
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: ConnectedTrack
       value: 
-      objectReference: {fileID: 5602537187557322021}
+      objectReference: {fileID: 7851183684289429660}
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: ConnectEndOfTrack
       value: 1
@@ -1592,7 +1596,7 @@ PrefabInstance:
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: ConnectedTrack
       value: 
-      objectReference: {fileID: 5602537187557322021}
+      objectReference: {fileID: 7851183684289429660}
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: Index
       value: 0
@@ -1733,7 +1737,7 @@ PrefabInstance:
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: ConnectedTrack
       value: 
-      objectReference: {fileID: 5078883623436683062}
+      objectReference: {fileID: 5602537187557322021}
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: ConnectEndOfTrack
       value: 1
@@ -1874,10 +1878,14 @@ PrefabInstance:
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: ConnectedTrack
       value: 
-      objectReference: {fileID: 7851183684289429660}
+      objectReference: {fileID: 5078883623436683062}
     - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: Index
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
+      propertyPath: ConnectEndOfTrack
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6628168236621221484, guid: 1c185c014b683484abce699d7baf950c, type: 3}
       propertyPath: m_Name
@@ -1998,7 +2006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_UseWorldSpace
@@ -2014,15 +2022,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: 15
+      value: 14.904785
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: -25
+      value: 49.682556
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[2].x
-      value: -25
+      value: 49.975708
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[2].y
@@ -2030,7 +2038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[3].x
-      value: -50
+      value: 49.975708
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[3].y
@@ -2046,7 +2054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name

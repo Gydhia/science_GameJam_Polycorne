@@ -13,26 +13,13 @@ namespace Assets.Scripts
         public BoxSO BoxSO;
         public BoxSO PreviousBoxSO;
 
-        /// <summary>
-        /// List of space available for cards
-        /// </summary>
-        public CardSpace CardSpacePrefab;
-        public Transform CardSpaceContainer;
-
-        /// <summary>
-        /// First half on left
-        /// Second half on right
-        /// </summary>
-        public Hand HandPrefab;
-        public Transform HandsContainer;
-
         public void Start()
         {
             if (this.BoxSO == null)
                 throw new Exception("BoxSO is not defined for this Box");
 
             if (this.CardSpaces == null)
-                this.CardSpaces = new CardSpace[this.BoxSO.CardSpaceLength, this.BoxSO.CardSpaceHeight];
+                RegenerateCardsspace();
 
             base.Start();
         }
@@ -60,7 +47,7 @@ namespace Assets.Scripts
             }
         }
 
-        public void RegenerateHands()
+        public override void RegenerateHands()
         {
             if (this.HandsContainer == null)
                 return;
@@ -111,7 +98,7 @@ namespace Assets.Scripts
             }
         }
 
-        public void RegenerateCardsspace()
+        public override void RegenerateCardsspace()
         {
             if (this.CardSpaceContainer == null)
                 return;
@@ -149,10 +136,11 @@ namespace Assets.Scripts
                     float y = (l * (canvascardheight / (float)this.BoxSO.CardSpaceHeight)) + (canvascardheight * 0.5f / (float)this.BoxSO.CardSpaceHeight);
                     cardspace.transform.localPosition = new Vector3(x, y, 0);
                     cardspace.Box = this;
+                    cardspace.positionInBox = new Vector2Int(k, l);
                     this.CardSpaces[k, l] = cardspace;
+
                 }
             }
         }
-
     }
 }
