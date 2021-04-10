@@ -4104,42 +4104,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53826f861b75b42d28d1df832f2278ea, type: 3}
---- !u!1 &1764669699 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3208341023050504646, guid: 53826f861b75b42d28d1df832f2278ea, type: 3}
-  m_PrefabInstance: {fileID: 1750049923}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1764669700 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2729251562437644687, guid: 53826f861b75b42d28d1df832f2278ea, type: 3}
   m_PrefabInstance: {fileID: 1750049923}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1764669704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764669699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6656ebfaa69a6418e66f8d3055dd85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 1919385754}
-  canvasRectTransform: {fileID: 1919385755}
---- !u!225 &1764669705
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764669699}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1001 &1876961167
 PrefabInstance:
   m_ObjectHideFlags: 0
