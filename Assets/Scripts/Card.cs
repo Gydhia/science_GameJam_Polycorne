@@ -1,18 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts;
-using UnityEngine;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Card : MonoBehaviour
+public class Card : TrainHandler
 {
     public Hand[] Left;
     public Hand[] Right;
     private Connections[] Connections;
-
-    public Card(CardSO cardSO)
-    {
-
-    }
+    public CardSpace CardSpace;
 
     //       A                B
     //  [2]--  --[2]   [2]---------[2]
