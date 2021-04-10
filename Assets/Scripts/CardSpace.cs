@@ -48,7 +48,7 @@ namespace Assets.Scripts
 
         public void OnDrop(PointerEventData eventData)
         {
-            if (string.IsNullOrEmpty(this.CopyFromBox))
+            if (string.IsNullOrEmpty(this.CopyFromBox) && this.Box != Board.Instance.StartStation && this.Box != Board.Instance.EndStation)
             {
                 Debug.Log(eventData);
                 if (eventData.pointerDrag != null)
