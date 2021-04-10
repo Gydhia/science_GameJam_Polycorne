@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1602202361
+  m_SortingLayer: 2
   m_SortingOrder: -1
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoxSO: {fileID: 0}
+  PreviousBoxSO: {fileID: 0}
   CardSpacePrefab: {fileID: 1212769817104253962, guid: 7e26fe7831c7fe94f9041be88b5ceabc, type: 3}
   CardSpaceContainer: {fileID: 1051022447626196462}
   HandsLeft: []
@@ -216,3 +217,4 @@ MonoBehaviour:
   HandPrefab: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
   HandsContainer: {fileID: 349167686528199129}
   SpriteRenderer: {fileID: 5861547192753709157}
+  OutputDistribution: []
