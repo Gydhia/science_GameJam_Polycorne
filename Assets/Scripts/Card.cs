@@ -9,6 +9,6 @@ namespace Assets.Scripts
 {
     public class Card : TrainHandler
     {
-        private CardSpace CardSpace;
+        public CardSpace CardSpace;
     }
 }
