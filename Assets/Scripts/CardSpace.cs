@@ -39,11 +39,13 @@ namespace Assets.Scripts
             }
         }
 
+#if UNITY_EDITOR
         public void OnValidate()
         {
+
             if (!Application.isPlaying)
             {
-                float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
+                //float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
                 float canvascardwidth = 1 - Padding;
                 float canvascardhlength = 1 - Padding;
 
@@ -51,6 +53,7 @@ namespace Assets.Scripts
                 //this.SpriteRenderer.size = new Vector2(canvascardhlength, canvascardwidth);
             }
         }
+#endif
 
         public void OnDrop(PointerEventData eventData)
         {
