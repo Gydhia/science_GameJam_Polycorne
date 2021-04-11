@@ -19,12 +19,14 @@ namespace Assets.Scripts.UI
 
         private void Start()
         {
-            SoundController.Instance.PlayMusic(SoundController.MusicNames.MenuTheme);
+            if (SoundController.Instance != null) 
+                SoundController.Instance.PlayMusic(SoundController.MusicNames.MenuTheme);
         }
 
         public void OnClickPlayButton()
         {
-            SoundController.Instance.StopMusic();
+            if (SoundController.Instance != null) 
+                SoundController.Instance.StopMusic();
             SceneManager.LoadScene("BoardLevel_1");
             SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
         }

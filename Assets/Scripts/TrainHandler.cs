@@ -63,7 +63,8 @@ namespace Assets.Scripts
             if (Board.Instance.IsEnd(this))
             {
                 Board.Instance.RegisterTrainArrival(Train, Hand);
-                SoundController.Instance.PlaySound(SoundController.SoundNames.WhispArrival);
+                if (SoundController.Instance != null) 
+                    SoundController.Instance.PlaySound(SoundController.SoundNames.WhispArrival);
             }
             else if (Board.Instance.StartStation == this)
             {

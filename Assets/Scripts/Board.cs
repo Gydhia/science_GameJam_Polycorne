@@ -54,8 +54,8 @@ namespace Assets.Scripts
                     cameraData.cameraStack.Add(CameraBoard);
                 }
             }
-
-            SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
+            if (SoundController.Instance != null)
+                SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
             this.ResetScores();
         }
 
@@ -81,10 +81,12 @@ namespace Assets.Scripts
             yield return new WaitForSeconds(1);
             while (trains.Any())
                 yield return 0;
-
-            SoundController.Instance.PlaySound(SoundController.SoundNames.LevelCompletion);
-            SoundController.Instance.StopMusic();
-            SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
+            if (SoundController.Instance != null)
+            {
+                SoundController.Instance.PlaySound(SoundController.SoundNames.LevelCompletion);
+                SoundController.Instance.StopMusic();
+                SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
+            }
             Debug.Log("FINI");
             IsRunning = false;
         }
