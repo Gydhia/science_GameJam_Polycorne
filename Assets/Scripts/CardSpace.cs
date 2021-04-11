@@ -74,7 +74,7 @@ namespace Assets.Scripts
                         var other_cardspace = FindObjectsOfType<CardSpace>().Where(cs => cs.CopyFromBox == this.Box.CardNameForPlayer);
                         foreach (var carspace_to_copy in other_cardspace)
                         {
-                            var cardcopy = GameObject.Instantiate(card, Board.Instance.transform);
+                            var cardcopy = GameObject.Instantiate(card, Board.Instance.card_deck.transform);
                             cardcopy.transform.position = carspace_to_copy.transform.position;
                             carspace_to_copy.Card = cardcopy;
                             cardcopy.CardSpace = carspace_to_copy;

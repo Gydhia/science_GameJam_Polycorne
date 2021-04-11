@@ -15,13 +15,7 @@ namespace Assets.Scripts
 
         public void Start()
         {
-            GameObject[] test2 = GameObject.FindGameObjectsWithTag("Board");
-            if (test2.Length > 0)
-            {
-                Board board = test2[0].GetComponent<Board>();
-
-                this.Board = board;
-            }
+            this.Board = GameObject.FindObjectOfType<Board>();
 
             GameObject[] test3 = GameObject.FindGameObjectsWithTag("ResultsPanel");
             if (test3.Length > 0)

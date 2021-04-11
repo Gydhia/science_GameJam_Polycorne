@@ -19,6 +19,10 @@ namespace Assets.Scripts.UI
         public GameObject PointScore;
         public GameObject FeufolletArrivedScore;
         public GameObject FeufolletLaunchedScore;
+        public GameObject LoseText;
+        public GameObject LoseText2;
+        public GameObject WinText;
+        public GameObject WinText2;
         private static GameUI _gameUIInstance;
 
         public static GameUI Instance
@@ -33,7 +37,7 @@ namespace Assets.Scripts.UI
 
         public void Start()
         {
-            Board Board = GameObject.FindObjectOfType<Board>();
+            this.Board = GameObject.FindObjectOfType<Board>();
         }
 
         public void StartTimeline()
@@ -52,6 +56,8 @@ namespace Assets.Scripts.UI
                     this.Board.Trainstation.SetActive(true);
                 if (this.Board.card_deck != null)
                     this.Board.card_deck.SetActive(true);
+                if (this.Board.Tracks != null)
+                    this.Board.Tracks.SetActive(true);
             }
         }
 
@@ -63,6 +69,8 @@ namespace Assets.Scripts.UI
                     this.Board.Trainstation.SetActive(true);
                 if (this.Board.card_deck != null)
                     this.Board.card_deck.SetActive(true);
+                if (this.Board.Tracks != null)
+                    this.Board.Tracks.SetActive(true);
             }
 
             if (SoundController.Instance != null)
@@ -79,6 +87,8 @@ namespace Assets.Scripts.UI
                     this.Board.Trainstation.SetActive(true);
                 if (this.Board.card_deck != null)
                     this.Board.card_deck.SetActive(true);
+                if (this.Board.Tracks != null)
+                    this.Board.Tracks.SetActive(true);
             }
             
 
@@ -96,13 +106,29 @@ namespace Assets.Scripts.UI
                     this.Board.Trainstation.SetActive(false);
                 if (this.Board.card_deck != null)
                     this.Board.card_deck.SetActive(false);
+                if (this.Board.Tracks != null)
+                    this.Board.Tracks.SetActive(false);
             }
             EndPopup.SetActive(true);
             PercentScore.GetComponent<TextMeshProUGUI>().text =
-                ((Board.Instance.Score / Board.Instance.NumberOfTrains) * 100).ToString() + "% de réussite";
+                Board.Instance.Score.ToString() + "% de réussite";
             PointScore.GetComponent<TextMeshProUGUI>().text = Board.Instance.Score.ToString() + " pts";
             FeufolletArrivedScore.GetComponent<TextMeshProUGUI>().text = Board.Instance.Score.ToString() + " feu follets arrivés";
             FeufolletLaunchedScore.GetComponent<TextMeshProUGUI>().text = Board.Instance.NumberOfTrains.ToString() + " feu follets partis";
+            if(Board.Instance.Score > 50)
+            {
+                this.WinText.SetActive(true);
+                this.WinText2.SetActive(true);
+                this.LoseText.SetActive(false);
+                this.LoseText2.SetActive(false);
+            }
+            else
+            {
+                this.WinText.SetActive(false);
+                this.WinText2.SetActive(false);
+                this.LoseText.SetActive(true);
+                this.LoseText2.SetActive(true);
+            }
             director.Stop();
         }
     }
