@@ -10,6 +10,7 @@ public class ResultsPanel : MonoBehaviour
     public RectTransform[] columns;
     public UnityEngine.UI.Text[] labels;
     public UnityEngine.UI.Text globalscore;
+    public TextMesh globalscoremesh;
     public string score_suffix = " pts";
     public void Start()
     {
@@ -24,7 +25,7 @@ public class ResultsPanel : MonoBehaviour
 
         if (total_arrivals > 0)
         {
-            for (int i = 0; i < trainArrivals.Length; i++)
+            for (int i = 0; i < trainArrivals.Length && i < this.columns.Count() && i < this.labels.Count(); i++)
             {
                 this.columns[i].sizeDelta = new Vector2(this.columns[i].sizeDelta.x, trainArrivals[i]);
                 this.labels[i].text = (100f * trainArrivals[i] / (float)expectedTotal).ToString("0") + "%";
@@ -32,15 +33,18 @@ public class ResultsPanel : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < this.columns.Length; i++)
+            for (int i = 0; i < this.columns.Length && i < this.columns.Count() && i < this.labels.Count(); i++)
             {
                 this.columns[i].sizeDelta = new Vector2(this.columns[i].sizeDelta.x, 0);
                 this.labels[i].text = "";
             }
         }
-        if (total_arrivals == 0)
-            globalscore.text = "";
-        else
-            globalscore.text = total_arrivals.ToString("0") + this.score_suffix;
+        string score = "";
+        if (total_arrivals > 0)
+            score = total_arrivals.ToString("0") + this.score_suffix;
+        if (this.globalscoremesh != null)
+            globalscoremesh.text = score;
+        if (this.globalscore != null)
+            globalscore.text = score;
     }
 }
