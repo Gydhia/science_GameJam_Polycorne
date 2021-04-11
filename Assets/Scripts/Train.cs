@@ -91,7 +91,7 @@ public class Train : MonoBehaviour
 
     public void OnDestroy()
     {
-
+        Board.Instance.trains.Remove(this);
     }
 
     public void PlaceOnHand(Hand hand)
