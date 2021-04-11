@@ -53,11 +53,15 @@ public class SoundController : MonoBehaviour
         }
         else {
             Destroy(this.gameObject);
-        }
-
-        InputController.Instance.OnMouseButtonDown += MouseClick;
+        }   
     }
-    
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+            PlaySound(SoundNames.Click);
+    }
+
     public void DoDatMusicWork()
     {
         PlayMusic(MusicNames.MenuTheme);

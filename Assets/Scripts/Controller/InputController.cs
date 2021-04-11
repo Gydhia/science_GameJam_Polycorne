@@ -12,23 +12,6 @@ namespace Assets.Scripts.Controller
         public Camera Camera;
         public float ScrollSpeed;
 
-        public delegate void MouseClick();
-        public event MouseClick OnMouseButtonDown;
-
-        public static InputController Instance;
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Destroy(this.gameObject);
-            }
-        }
-
-
         void Update()
         {
             if (Input.GetKey(KeyCode.RightArrow))
@@ -47,17 +30,7 @@ namespace Assets.Scripts.Controller
             {
                 Camera.transform.Translate(new Vector3(0, this.ScrollSpeed * Time.deltaTime, 0));
             }
-            if (Input.GetMouseButtonDown(0))
-            {
-                FireMouseClick();
-            }
-        }
-
-        public void FireMouseClick()
-        {
-            if(OnMouseButtonDown != null) {
-                OnMouseButtonDown.Invoke();
-            }
+            
         }
     }
 }

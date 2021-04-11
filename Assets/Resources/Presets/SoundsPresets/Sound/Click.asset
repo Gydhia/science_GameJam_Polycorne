@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 478434c928a35f2439015cddabed51cc, type: 3}
-  m_Name: Play
+  m_Name: Click
   m_EditorClassIdentifier: 
-  SoundID: 4
-  Sound: {fileID: 8300000, guid: ab68419ef7316ba4886476b7f8a3b98a, type: 3}
+  SoundID: 5
+  Sound: {fileID: 8300000, guid: 30ff91968a05a4049952a0c31957a5ab, type: 3}
