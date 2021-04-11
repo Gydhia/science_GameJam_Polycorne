@@ -44,7 +44,7 @@ namespace Assets.Scripts
         {
             trains = new List<Train>();
             GameObject[] test = GameObject.FindGameObjectsWithTag("CameraBoard");
-            if(test.Length > 0)
+            if(test.Length > 0) 
             {
                 Camera CameraBoard = (Camera)test[0].GetComponent<Camera>();
                 

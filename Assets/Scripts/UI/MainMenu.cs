@@ -25,7 +25,7 @@ namespace Assets.Scripts.UI
 
         public void OnClickPlayButton()
         {
-            SceneManager.LoadScene("BoardLevel_1");
+            SceneManager.LoadScene(GameObject.FindObjectOfType<Board>().NextLevel);
             SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
         }
 
