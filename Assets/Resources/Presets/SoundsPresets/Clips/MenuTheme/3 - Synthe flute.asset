@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e85de160dbdf042a5de969a08e8c13, type: 3}
+  m_Name: 3 - Synthe flute
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 61b5e27dec2b0a445a5ade5fed2f19be, type: 3}
+  BPM: 60
+  Reverb: {fileID: 11400000, guid: 0f13e3fca1bd5ae45af179893317fadd, type: 2}
+  Echo: {fileID: 0}
