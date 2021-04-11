@@ -10,6 +10,8 @@ namespace Assets.Scripts.UI
 {
     public class GameUI : MonoBehaviour
     {
+        public Board Board;
+        
         public PlayableDirector director;
         public GameObject EndPopup;
         public GameObject DialogPopup;
@@ -29,6 +31,11 @@ namespace Assets.Scripts.UI
             }
         }
 
+        public void Start()
+        {
+            Board Board = GameObject.FindObjectOfType<Board>();
+        }
+
         public void StartTimeline()
         {
             director.Play();
@@ -38,10 +45,23 @@ namespace Assets.Scripts.UI
         {
             DialogPopup.SetActive(false);
             EndPopup.SetActive(false);
+
+            if (this.Board != null)
+            {
+                if (this.Board.Trainstation != null)
+                    this.Board.Trainstation.SetActive(true);
+                if (this.Board.card_deck != null)
+                    this.Board.card_deck.SetActive(true);
+            }
         }
 
         public void OnClickRestartButton()
         {
+            if (this.Board.Trainstation != null)
+                this.Board.Trainstation.SetActive(true);
+            if (this.Board.card_deck != null)
+                this.Board.card_deck.SetActive(true);
+
             if (SoundController.Instance != null)
                 SoundController.Instance.StopMusic();
             SceneManager.LoadScene(Board.Instance.CurrentLevel);
@@ -50,6 +70,11 @@ namespace Assets.Scripts.UI
 
         public void OnClickNextButton()
         {
+            if (this.Board.Trainstation != null)
+                this.Board.Trainstation.SetActive(true);
+            if (this.Board.card_deck != null)
+                this.Board.card_deck.SetActive(true);
+
             if (SoundController.Instance != null)
                 SoundController.Instance.StopMusic();
             SceneManager.LoadScene(Board.Instance.NextLevel);
@@ -58,6 +83,13 @@ namespace Assets.Scripts.UI
 
         public void FireEndPopup()
         {
+            if (this.Board != null)
+            {
+                if(this.Board.Trainstation != null)
+                    this.Board.Trainstation.SetActive(false);
+                if (this.Board.card_deck != null)
+                    this.Board.card_deck.SetActive(false);
+            }
             EndPopup.SetActive(true);
             PercentScore.GetComponent<TextMeshProUGUI>().text =
                 ((Board.Instance.Score / Board.Instance.NumberOfTrains) * 100).ToString() + "% de réussite";

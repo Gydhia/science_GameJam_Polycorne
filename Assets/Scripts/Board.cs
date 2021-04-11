@@ -12,6 +12,10 @@ namespace Assets.Scripts
 {
     public class Board : MonoBehaviour
     {
+        public GameObject Trainstation;
+        public GameObject Tracks;
+        public GameObject card_deck;
+
         public int HandsCount;
         public BoxSO[] Boxes;
         public Canvas UICanvas;
