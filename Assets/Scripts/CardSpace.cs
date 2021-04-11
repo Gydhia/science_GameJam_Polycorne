@@ -57,7 +57,7 @@ namespace Assets.Scripts
 
         public void OnDrop(PointerEventData eventData)
         {
-            if (string.IsNullOrEmpty(this.CopyFromBox) && this.Box != Board.Instance.StartStation && !Board.Instance.IsEnd(this.Box))
+                if (string.IsNullOrEmpty(this.CopyFromBox) && this.Box != Board.Instance.StartStation && !Board.Instance.IsEnd(this.Box))
             {
                 Debug.Log(eventData);
                 if (eventData.pointerDrag != null)
@@ -74,7 +74,7 @@ namespace Assets.Scripts
                         var other_cardspace = FindObjectsOfType<CardSpace>().Where(cs => cs.CopyFromBox == this.Box.CardNameForPlayer);
                         foreach (var carspace_to_copy in other_cardspace)
                         {
-                            var cardcopy = GameObject.Instantiate(card, card.transform.parent);
+                            var cardcopy = GameObject.Instantiate(card, Board.Instance.transform);
                             cardcopy.transform.position = carspace_to_copy.transform.position;
                             carspace_to_copy.Card = cardcopy;
                             cardcopy.CardSpace = carspace_to_copy;
