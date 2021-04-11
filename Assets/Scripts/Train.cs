@@ -64,6 +64,7 @@ public class Train : MonoBehaviour
         }
         else
         {
+            SoundController.Instance.PlaySound(SoundController.SoundNames.WhispCrash);
             GameObject.Destroy(this.gameObject);
         }
     }
