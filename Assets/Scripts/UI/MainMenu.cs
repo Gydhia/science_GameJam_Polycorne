@@ -18,7 +18,8 @@ namespace Assets.Scripts.UI
 
         public void OnClickPlayButton()
         {
-            SceneManager.LoadScene("SceneDuJeu");
+            SceneManager.LoadScene("BoardLevel_1");
+            SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
         }
 
         public void OnClickCreditsButton()

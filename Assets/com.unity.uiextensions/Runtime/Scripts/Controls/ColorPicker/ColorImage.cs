@@ -14,7 +14,7 @@ public class ColorImage : MonoBehaviour
     private void Awake()
     {
         image = GetComponent<Image>();
-        picker.onValueChanged.AddListener(ColorChanged);
+        //picker.onValueChanged.AddListener(ColorChanged);
     }
 
     private void OnDestroy()
