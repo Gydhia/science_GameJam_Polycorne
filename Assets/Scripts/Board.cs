@@ -54,8 +54,10 @@ namespace Assets.Scripts
                     cameraData.cameraStack.Add(CameraBoard);
                 }
             }
-            if (SoundController.Instance != null)
+            if (SoundController.Instance != null && this.EndStations.Count() > 0) {
                 SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
+            }
+                
             this.ResetScores();
         }
 
@@ -84,7 +86,6 @@ namespace Assets.Scripts
             if (SoundController.Instance != null)
             {
                 SoundController.Instance.PlaySound(SoundController.SoundNames.LevelCompletion);
-                SoundController.Instance.StopMusic();
                 SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
             }
             Debug.Log("FINI");

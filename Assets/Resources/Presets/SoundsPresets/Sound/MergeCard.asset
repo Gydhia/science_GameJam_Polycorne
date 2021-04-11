@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478434c928a35f2439015cddabed51cc, type: 3}
   m_Name: MergeCard
   m_EditorClassIdentifier: 
-  SoundID: 6
+  SoundID: 8
   Sound: {fileID: 8300000, guid: 8b9f7cf0dac83204d817a7a5065aad1d, type: 3}

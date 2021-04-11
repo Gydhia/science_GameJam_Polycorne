@@ -41,7 +41,8 @@ public class SoundController : MonoBehaviour
     public AudioMixerGroup AudioMixerGroup;
     public float FadingTime = 1f;
 
-    private MusicSO _selectedMusic;
+    private MusicSO _selectedMusic = null;
+    private MusicSO _finishingMusic = null;
     private Coroutine _musicCoroutine;
 
     public static SoundController Instance;
@@ -86,7 +87,11 @@ public class SoundController : MonoBehaviour
 
     // MUSICS
     public void PlayMusic(MusicNames musicID)
-    {
+    { 
+        if(_selectedMusic != null) {
+            StopMusic();
+            _finishingMusic = _selectedMusic;
+        }
         _selectedMusic = Musics.Find(music => music.MusicID == musicID);
         if(_selectedMusic == null) {
             Debug.LogError("The music to play has not been found -- " + musicID);
@@ -96,18 +101,28 @@ public class SoundController : MonoBehaviour
             Debug.LogWarning("The music is already being played -- " + musicID);
             return;
         }
-            
+         
+        if(_finishingMusic != null) {
+            StartCoroutine(FadeMixerGroup.StartFade(AudioMixer, "Fading", FadingTime, -40f));
+            StartCoroutine(ChangePlayingMusic());
+        } else {
+            _musicCoroutine = StartCoroutine(PlayingMusic(_selectedMusic));
+        }
+    }
+
+    private IEnumerator ChangePlayingMusic()
+    {
+        yield return StoppingMusic();
         _musicCoroutine = StartCoroutine(PlayingMusic(_selectedMusic));
     }
 
     public IEnumerator PlayingMusic(MusicSO music)
     {
-        List<AudioSource> audios = new List<AudioSource>();
-        MusicSources.Add(music.MusicID, audios);
+        MusicSources[music.MusicID] = new List<AudioSource>();
 
         foreach (ClipSO clip in music.MainLines) {
             AudioSource audio = SetupAudioMusic(clip);
-            audios.Add(audio);
+            MusicSources[music.MusicID].Add(audio);
         }
 
         if (music.BarsToWait[0])
@@ -115,7 +130,7 @@ public class SoundController : MonoBehaviour
 
         foreach (ClipSO clip in music.MelodicLines) {
             AudioSource audio = SetupAudioMusic(clip);
-            audios.Add(audio);
+            MusicSources[music.MusicID].Add(audio);
         }
 
         if (music.BarsToWait[1])
@@ -123,7 +138,7 @@ public class SoundController : MonoBehaviour
 
         foreach (ClipSO clip in music.AccompanimentLines) {
             AudioSource audio = SetupAudioMusic(clip);
-            audios.Add(audio);
+            MusicSources[music.MusicID].Add(audio);
         }
     }
 
@@ -131,24 +146,21 @@ public class SoundController : MonoBehaviour
     {
         if (_selectedMusic == null) return;
         StopCoroutine(_musicCoroutine);
-
-        StartCoroutine(FadeMixerGroup.StartFade(AudioMixer, "Fading", FadingTime, -40f));
-        StartCoroutine(StoppingMusic(_selectedMusic));
     }
 
-    public IEnumerator StoppingMusic(MusicSO music)
+    public IEnumerator StoppingMusic()
     {
         yield return new WaitForSeconds(FadingTime);
 
-        for (int i = 0; i < MusicSources[_selectedMusic.MusicID].Count; i++)
+        for (int i = 0; i < MusicSources[_finishingMusic.MusicID].Count; i++)
         {
-            AudioSource audio = MusicSources[_selectedMusic.MusicID][i];
+            AudioSource audio = MusicSources[_finishingMusic.MusicID][i];
             Destroy(audio.gameObject);
         }
-        MusicSources[_selectedMusic.MusicID].Clear();
+        MusicSources[_finishingMusic.MusicID].Clear();
 
-        MusicSources.Remove(music.MusicID);
-        _selectedMusic = null;
+        MusicSources.Remove(_finishingMusic.MusicID);
+        _finishingMusic = null;
         AudioMixer.SetFloat("Fading", 0f);
     }
 
@@ -177,7 +189,10 @@ public class SoundController : MonoBehaviour
     // SOUNDS
     public void PlaySound(SoundNames soundID)
     {
-        StartCoroutine(PlayingSound(Sounds.Find(sound => sound.SoundID == soundID)));
+        SoundSO sound = Sounds.Find(s => s.SoundID == soundID);
+
+        if(sound != null)
+            StartCoroutine(PlayingSound(sound));
     }
 
     public IEnumerator PlayingSound(SoundSO sound)
