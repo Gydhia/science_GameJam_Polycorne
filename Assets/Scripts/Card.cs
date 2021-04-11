@@ -115,6 +115,7 @@ namespace Assets.Scripts
             float canvascardheight = this.gameObject.GetComponent<RectTransform>().rect.height;
             float canvascardhlength = this.gameObject.GetComponent<RectTransform>().rect.height;
 
+#if UNITY_EDITOR
             foreach (Transform child in this.HandsContainer)
             {
                 UnityEditor.EditorApplication.delayCall += () =>
@@ -123,6 +124,7 @@ namespace Assets.Scripts
 
                 };
             }
+#endif
 
             int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
             int nbhands = handcount;
