@@ -26,6 +26,16 @@ public class Track : MonoBehaviour
 
     }
 
+    public void OnDrawGizmos()
+    {
+        var _line = this.GetComponent<LineRenderer>();
+        Vector3 offset1 = Vector3.up * 10;
+        Vector3 offset2 = Vector3.up * 10 + Vector3.left * 100;
+        UnityEditor.Handles.Label(_line.GetPosition(0) + offset1 , this.name + " START", new GUIStyle() { fontSize = 12 });
+        UnityEditor.Handles.Label(_line.GetPosition(_line.positionCount - 1) + offset2, this.name + " END", new GUIStyle() { fontSize = 12 });
+
+    }
+
     internal void StartWatchingTrain(Train train)
     {
         //train.OnArrivedAtEndOfTracks += Train_OnArrivedAtEndOfTracks;

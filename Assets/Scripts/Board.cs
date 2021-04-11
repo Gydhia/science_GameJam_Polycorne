@@ -40,7 +40,8 @@ namespace Assets.Scripts
         public void ResetScores()
         {
             this.TrainArrivals = new int[this.HandsCount];
-            this.ResultsPanel.Refresh(null, this.NumberOfTrains);
+            if(this.ResultsPanel != null)
+                    this.ResultsPanel.Refresh(null, this.NumberOfTrains);
         }
 
         public void SendManyTrains(int HowMany)

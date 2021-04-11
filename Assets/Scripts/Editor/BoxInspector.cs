@@ -21,7 +21,7 @@ namespace ScienceGameJam.UnityEditor
         {
             if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Regenerate Cards Space"))
             {
-                this.target.RegenerateCardsspace();
+                this.target.RegenerateCardsspace(true);
             }
 
             if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Regenerate Hands"))
