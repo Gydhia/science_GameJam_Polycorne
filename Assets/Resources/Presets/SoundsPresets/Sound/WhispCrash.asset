@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WhispCrash
   m_EditorClassIdentifier: 
   SoundID: 0
-  Sound: {fileID: 0}
+  Sound: {fileID: 8300000, guid: fe15a2e2443bd0b44abc8dc1d7d6fcf5, type: 3}

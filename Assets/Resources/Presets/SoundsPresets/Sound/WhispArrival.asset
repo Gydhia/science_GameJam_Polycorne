@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478434c928a35f2439015cddabed51cc, type: 3}
   m_Name: WhispArrival
   m_EditorClassIdentifier: 
-  SoundID: 0
-  Sound: {fileID: 0}
+  SoundID: 2
+  Sound: {fileID: 8300000, guid: 11158d37385900142b78c408ef1053c8, type: 3}
