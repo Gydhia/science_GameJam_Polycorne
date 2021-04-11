@@ -1404,6 +1404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53620ce997bdfc244a939892018bca66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Board: {fileID: 0}
   director: {fileID: 942798966}
   EndPopup: {fileID: 1439103267}
   DialogPopup: {fileID: 546219692}
@@ -4337,7 +4338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1439103268
 RectTransform:
   m_ObjectHideFlags: 0

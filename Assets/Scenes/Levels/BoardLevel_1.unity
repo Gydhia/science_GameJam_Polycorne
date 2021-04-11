@@ -1913,7 +1913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -191.99704, y: 72}
+  m_AnchoredPosition: {x: -191.99707, y: 72}
   m_SizeDelta: {x: -383.9942, y: 143.98608}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1051094377
@@ -2236,6 +2236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f23a36690517743b7f1d6d9b64565b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Trainstation: {fileID: 43123572}
+  Tracks: {fileID: 1158585642}
+  card_deck: {fileID: 1051094375}
   HandsCount: 4
   Boxes: []
   UICanvas: {fileID: 1261751633}
