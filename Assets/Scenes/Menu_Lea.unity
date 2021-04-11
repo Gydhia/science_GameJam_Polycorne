@@ -6375,7 +6375,10 @@ MonoBehaviour:
   StartStation: {fileID: 0}
   EndStations: []
   NumberOfTrains: 100
+  Score: 0
   trains: []
+  NextLevel: BoardLevel_1
+  CurrentLevel: Menu_Lea
   IsRunning: 0
 --- !u!114 &590962793
 MonoBehaviour:
@@ -7842,7 +7845,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1b42f7eb75fcd3348b9c6533783e65ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 791588a22b4eb42488f5953f6a51a31c, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
