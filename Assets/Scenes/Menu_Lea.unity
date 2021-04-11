@@ -155,7 +155,7 @@ RectTransform:
   m_Father: {fileID: 963330801}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.00064212084, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -440,10 +440,10 @@ RectTransform:
   m_Father: {fileID: 808122529}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 180}
-  m_SizeDelta: {x: 453, y: 800}
+  m_SizeDelta: {x: 17, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &60892803
 MonoBehaviour:
@@ -465,36 +465,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'post-doctorant
-
-    LEONARD HARDIMAN
-
-
-    game design
-
-    AUREL JACQUOT
-
-
-    dev
-
-    JEREMIE
-    DARCIAUX
-
-    JIMMY FONTAINE
-
-
-    game artist
-
-    LEA MEDRANO
-
-
-    audio designer
-
-    KILLIAN
-    MOTEL'
+  m_text: "post-doctorant\nLEONARD HARDIMAN\n\nd\xE9veloppement et game design\nJEREMIE
+    DARCIAUX\nAURELIEN JACQUOT \nJIMMY FONTAINE\n\ngame artist\nLEA MEDRANO\n\naudio
+    designer\nKILLIAN MOTEL"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42edc34953d4743a2bf51fd52355e654, type: 2}
-  m_sharedMaterial: {fileID: -7920862850341316355, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
+  m_sharedMaterial: {fileID: 1458178126572964761, guid: 42edc34953d4743a2bf51fd52355e654, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -557,7 +533,7 @@ MonoBehaviour:
   m_margin: {x: -6.673989, y: 568.74304, z: 0, w: -489.3379}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &60892804
@@ -877,8 +853,8 @@ RectTransform:
   m_Father: {fileID: 2073624085}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.21627675}
-  m_AnchorMax: {x: 1, y: 0.99999976}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0.99999964}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1310,8 +1286,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 117.02}
-  m_SizeDelta: {x: 49.924927, y: 845.9509}
+  m_AnchoredPosition: {x: 0, y: 287}
+  m_SizeDelta: {x: 49.924927, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435201883
 MonoBehaviour:
@@ -6375,7 +6351,10 @@ MonoBehaviour:
   StartStation: {fileID: 0}
   EndStations: []
   NumberOfTrains: 100
+  Score: 0
   trains: []
+  NextLevel: BoardLevel_1
+  CurrentLevel: Menu_Lea
   IsRunning: 0
 --- !u!114 &590962793
 MonoBehaviour:
@@ -6609,7 +6588,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 28842709}
   m_Direction: 0
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9993579
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7447,10 +7426,10 @@ RectTransform:
   m_Father: {fileID: 259798972}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -218.19884, y: 0.00020528899}
-  m_SizeDelta: {x: 436, y: 700}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.0000446774, y: 0.00020528899}
+  m_SizeDelta: {x: -3.9999695, y: 700}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &952376539
 GameObject:
@@ -7842,7 +7821,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1b42f7eb75fcd3348b9c6533783e65ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 791588a22b4eb42488f5953f6a51a31c, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -7939,7 +7918,7 @@ MonoBehaviour:
   m_text: Help
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42edc34953d4743a2bf51fd52355e654, type: 2}
-  m_sharedMaterial: {fileID: -7920862850341316355, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
+  m_sharedMaterial: {fileID: 1458178126572964761, guid: 42edc34953d4743a2bf51fd52355e654, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8312,8 +8291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 436.39758, y: 642.6061}
+  m_AnchoredPosition: {x: 0, y: -170.33}
+  m_SizeDelta: {x: 800, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1320799092
 GameObject:
@@ -8396,8 +8375,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 215583428}
   m_HandleRect: {fileID: 215583427}
   m_Direction: 2
-  m_Value: 0.9999988
-  m_Size: 0.783723
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8713,7 +8692,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1623948972}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 590962793}
+        m_TargetAssemblyTypeName: Assets.Scripts.UI.MainMenu, Assembly-CSharp
+        m_MethodName: OnClickExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &1623948975
 Animator:
   serializedVersion: 3
@@ -8931,10 +8922,10 @@ RectTransform:
   m_Father: {fileID: 2103668939}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -32.974}
-  m_SizeDelta: {x: 394.43024, y: 576.6588}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -10}
+  m_SizeDelta: {x: -40, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1679935849
 MonoBehaviour:
@@ -8956,15 +8947,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Save the will''o wisps and help the greatest amount reach back to their
-    galaxy !
-
-
-    Drag and drop the tracks and pick a pattern in the card deck to
-    save les feu-follets !'
+  m_text: "Un jeu de puzzle o\xF9 le joueur doit compl\xE9ter un r\xE9seau de transport
+    afin de guider le nombre maximum de feux follets vers la s\xE9curit\xE9.\n\nEnti\xE8rement
+    contr\xF4l\xE9 \xE0 la souris, l'interaction principale \xE9tant le drag-n-drop.\n\nLe
+    niveau suivant se d\xE9bloquera une fois qu'un seuil de score a \xE9t\xE9 atteint."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42edc34953d4743a2bf51fd52355e654, type: 2}
-  m_sharedMaterial: {fileID: -7920862850341316355, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
+  m_sharedMaterial: {fileID: 1458178126572964761, guid: 42edc34953d4743a2bf51fd52355e654, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9576,7 +9565,7 @@ MonoBehaviour:
   m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42edc34953d4743a2bf51fd52355e654, type: 2}
-  m_sharedMaterial: {fileID: -7920862850341316355, guid: 6ddd85f65e54e4220b7d2ed8a1b6c7d0, type: 2}
+  m_sharedMaterial: {fileID: 1458178126572964761, guid: 42edc34953d4743a2bf51fd52355e654, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

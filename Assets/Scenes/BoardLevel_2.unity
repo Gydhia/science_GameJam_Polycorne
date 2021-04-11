@@ -4655,7 +4655,10 @@ MonoBehaviour:
   EndStations:
   - {fileID: 666429720}
   NumberOfTrains: 100
+  Score: 0
   trains: []
+  NextLevel: BoardLevel_6
+  CurrentLevel: BoardLevel_2
   IsRunning: 0
 --- !u!224 &2055371113
 RectTransform:

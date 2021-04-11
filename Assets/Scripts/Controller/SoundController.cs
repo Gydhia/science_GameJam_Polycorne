@@ -37,6 +37,8 @@ public class SoundController : MonoBehaviour
     public GameObject MusicsContainer;
     public GameObject SoundsContainer;
 
+    public float MusicVolume = -12f;
+
     public AudioMixer AudioMixer;
     public AudioMixerGroup AudioMixerGroup;
     public float FadingTime = 1f;
@@ -55,6 +57,11 @@ public class SoundController : MonoBehaviour
         else {
             Destroy(this.gameObject);
         }   
+    }
+
+    private void Start()
+    {
+        AudioMixer.SetFloat("Fading", MusicVolume);
     }
 
     private void Update()
@@ -161,7 +168,7 @@ public class SoundController : MonoBehaviour
 
         MusicSources.Remove(_finishingMusic.MusicID);
         _finishingMusic = null;
-        AudioMixer.SetFloat("Fading", 0f);
+        AudioMixer.SetFloat("Fading", MusicVolume);
     }
 
     public AudioSource SetupAudioMusic(ClipSO clipObject)

@@ -1184,6 +1184,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: STARGAREtrainstation_1x1_3 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6493885224945898395, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
+      propertyPath: OutputDistribution.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493885224945898395, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
+      propertyPath: OutputDistribution.Array.data[0]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493885224945898395, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
+      propertyPath: OutputDistribution.Array.data[1]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493885224945898395, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
+      propertyPath: OutputDistribution.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6493885224945898404, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2133,7 +2149,10 @@ MonoBehaviour:
   EndStations:
   - {fileID: 2125007033}
   NumberOfTrains: 100
+  Score: 0
   trains: []
+  NextLevel: BoardLevel_2
+  CurrentLevel: BoardLevel_1
   IsRunning: 0
 --- !u!224 &1261751635
 RectTransform:

@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 218330791032848171}
   - component: {fileID: 4330003826366529233}
   m_Layer: 0
-  m_Name: dialog_tuto
+  m_Name: dialog_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -550,8 +550,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64434cacd881584999de27bc83e865c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogPanel: {fileID: 218330791032848170}
-  Image: {fileID: 0}
+  DialogPanel: {fileID: 218330790734418329}
+  Image: {fileID: 218330791470214835}
   TitleText: {fileID: 218330790996585192}
   MainText: {fileID: 218330790893042605}
   NextBtn: {fileID: 218330790963910018}
