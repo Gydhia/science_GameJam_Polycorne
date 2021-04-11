@@ -37,13 +37,19 @@ namespace Assets.Scripts
         public void Start()
         {
             GameObject[] test = GameObject.FindGameObjectsWithTag("CameraBoard");
-            Camera CameraBoard = (Camera)test[0].GetComponent<Camera>();
+            if(test.Length > 0)
+            {
+                Camera CameraBoard = (Camera)test[0].GetComponent<Camera>();
+                
+                GameObject[] test2 = GameObject.FindGameObjectsWithTag("CameraMain");
+                if (test2.Length > 0)
+                {
+                    Camera CameraMain = (Camera)test2[0].GetComponent<Camera>();
 
-            GameObject[] test2 = GameObject.FindGameObjectsWithTag("CameraMain");
-            Camera CameraMain = (Camera)test2[0].GetComponent<Camera>();
-
-            UniversalAdditionalCameraData cameraData = CameraMain.GetUniversalAdditionalCameraData();
-            cameraData.cameraStack.Add(CameraBoard);
+                    UniversalAdditionalCameraData cameraData = CameraMain.GetUniversalAdditionalCameraData();
+                    cameraData.cameraStack.Add(CameraBoard);
+                }
+            }
 
             this.ResetScores();
         }
