@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Assets.Scripts
 {
@@ -13,6 +14,7 @@ namespace Assets.Scripts
         public int HandsCount;
         public BoxSO[] Boxes;
         public Canvas UICanvas;
+        public Canvas BoardCanvas;
         public ResultsPanel ResultsPanel;
 
         public int[] TrainArrivals;
@@ -34,13 +36,29 @@ namespace Assets.Scripts
 
         public void Start()
         {
+            GameObject[] test = GameObject.FindGameObjectsWithTag("CameraBoard");
+            if(test.Length > 0)
+            {
+                Camera CameraBoard = (Camera)test[0].GetComponent<Camera>();
+                
+                GameObject[] test2 = GameObject.FindGameObjectsWithTag("CameraMain");
+                if (test2.Length > 0)
+                {
+                    Camera CameraMain = (Camera)test2[0].GetComponent<Camera>();
+
+                    UniversalAdditionalCameraData cameraData = CameraMain.GetUniversalAdditionalCameraData();
+                    cameraData.cameraStack.Add(CameraBoard);
+                }
+            }
+
             this.ResetScores();
         }
 
         public void ResetScores()
         {
             this.TrainArrivals = new int[this.HandsCount];
-            this.ResultsPanel.Refresh(null, this.NumberOfTrains);
+            if(this.ResultsPanel != null)
+                    this.ResultsPanel.Refresh(null, this.NumberOfTrains);
         }
 
         public void SendManyTrains(int HowMany)
