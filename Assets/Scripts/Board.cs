@@ -55,6 +55,7 @@ namespace Assets.Scripts
                 }
             }
 
+            SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
             this.ResetScores();
         }
 

@@ -35,6 +35,7 @@ namespace Assets.Scripts
 
         public void ClickOnStart(int train)
         {
+            SoundController.Instance.StopMusic();
             SoundController.Instance.PlaySound(SoundController.SoundNames.Play);
             SoundController.Instance.PlayMusic(SoundController.MusicNames.ActionTheme);
             this.Board.SendManyTrains(train);

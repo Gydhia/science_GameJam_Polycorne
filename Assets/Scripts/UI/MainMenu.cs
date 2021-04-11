@@ -27,7 +27,6 @@ namespace Assets.Scripts.UI
             SoundController.Instance.StopMusic();
             SceneManager.LoadScene("BoardLevel_1");
             SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
-            SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
         }
 
         public void OnClickCreditsButton()
