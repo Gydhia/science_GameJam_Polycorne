@@ -59,7 +59,8 @@ namespace Assets.Scripts
                 Debug.Log(eventData);
                 if (eventData.pointerDrag != null)
                 {
-                    SoundController.Instance.PlaySound(SoundController.SoundNames.MergeCard);
+                    if(SoundController.Instance != null)
+                        SoundController.Instance.PlaySound(SoundController.SoundNames.MergeCard);
                     eventData.pointerDrag.GetComponent<RectTransform>().position = this.GetComponent<RectTransform>().position;
                     Card card = eventData.pointerDrag.GetComponent<Card>();
                     this.Card = card;
