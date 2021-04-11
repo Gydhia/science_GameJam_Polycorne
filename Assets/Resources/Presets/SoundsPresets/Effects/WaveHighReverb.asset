@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17169cd1590b7ab498aa57478abb6f5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 92a142bcedd332845abaf86a6a8a7123, type: 3}
   m_Name: WaveHighReverb
   m_EditorClassIdentifier: 
-  ReverbPreset: 26
+  MusicID: 1
+  MainLines: []
+  MelodicLines: []
+  AccompanimentLines: []
+  BarsToWait: 0101
