@@ -98,7 +98,7 @@ namespace Assets.Scripts
         public void SendTrain()
         {
             var hand = this.StartStation.DecideOutput();
-            if (hand != null)
+            if (hand != null || hand.ConnectedTrack == null)
             {
                 var train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"));
                 train.PlaceOnHand(hand);
