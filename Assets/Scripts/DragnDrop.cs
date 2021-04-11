@@ -82,6 +82,7 @@ namespace Assets.Scripts
             eventData.pointerDrag = null;
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
+            Debug.Log("");
         }
 
 
