@@ -10,6 +10,64 @@ namespace Assets.Scripts
     public class Card : TrainHandler
     {
         public CardSpace CardSpace;
+        private Connections[] Connections;
+
+        //       A                B
+        //  [2]--  --[2]   [2]---------[2]
+        //      |  |        
+        //  [1]--  --[1]   [1]---------[1]
+        //                  
+        //  [0]------[0]   [0]---------[0]
+        //
+        //         C   (multiply)
+        //  [2]--  --------------------[2]
+        //      |  |        
+        //  [1]--  --------------------[1]
+        //                  
+        //  [0]------------------------[0]
+        public static Card GenerateMultiplyCards(Card A, Card B)
+        {
+            int cpt = 0;
+            Card C = new Card();
+
+            foreach (var connection in A.Connections)
+            {
+                C.Connections[cpt].IndexStart = connection.IndexStart;
+                C.Connections[cpt].StartSide = connection.StartSide;
+
+                C.Connections[cpt].IndexEnd = connection.IndexEnd;
+                C.Connections[cpt].EndSide = connection.EndSide;
+
+                cpt += 1;
+            }
+
+            return C;
+        }
+
+        //        A             B
+        //  [2]--   /[2]   [2]\   --[2]
+        //      |  /           \  |
+        //  [1]-- /--[1] = [1]-- \--[1]
+        //      /  |            | \
+        //  [0]/   --[0]   [0]--   \[0]
+        public static Card GenerateFlippedCard(Card A)
+        {
+            int cpt = 0;
+            Card B = new Card();
+
+            foreach (var connection in A.Connections)
+            {
+                B.Connections[cpt].IndexStart = connection.IndexEnd;
+                B.Connections[cpt].StartSide = connection.StartSide;
+
+                B.Connections[cpt].IndexEnd = connection.IndexStart;
+                B.Connections[cpt].EndSide = connection.EndSide;
+
+                cpt += 1;
+            }
+
+            return B;
+        }
 
         protected override void TrainArrived(Train Train, Hand Hand)
         {
@@ -67,7 +125,8 @@ namespace Assets.Scripts
             }
 
             int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
-            int nbhands = 1 * handcount;
+            int nbhands = handcount;
+            int handsoffset = 0;
 
 
             if (Board.Instance.StartStation != this)
@@ -76,7 +135,7 @@ namespace Assets.Scripts
                 for (int j = 0; j < this.HandsLeft.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
-                    newHand.transform.localPosition = new Vector3(0, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.transform.localPosition = new Vector3(0, canvascardheight - ((0.5f + j) * (canvascardheight / (float)(nbhands + handsoffset))), 0);
                     newHand.transform.Rotate(new Vector3(0, 0, 180));
                     newHand.Index = j;
                     newHand.LeftHand = true;
@@ -90,7 +149,7 @@ namespace Assets.Scripts
                 for (int j = 0; j < this.HandsRight.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
-                    newHand.transform.localPosition = new Vector3(canvascardhlength, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.transform.localPosition = new Vector3(canvascardhlength, canvascardheight - ((0.5f + j) * (canvascardheight / (float)(nbhands + handsoffset))), 0);
                     newHand.Index = j;
                     newHand.LeftHand = false;
                     newHand.name = "RIGHT HAND #" + j;
@@ -99,10 +158,18 @@ namespace Assets.Scripts
             }
         }
 
-        public override void RegenerateCardsspace()
+        public override void RegenerateCardsspace(bool forceReset = false)
         {
             
         }
 
+    }
+
+    internal class Connections
+    {
+        public int IndexStart;
+        public int IndexEnd;
+        public string StartSide = "left";
+        public string EndSide = "right";
     }
 }
