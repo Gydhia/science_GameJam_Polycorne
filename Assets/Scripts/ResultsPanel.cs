@@ -16,14 +16,14 @@ public class ResultsPanel : MonoBehaviour
     {
     }
 
-    internal void Refresh(int[] trainArrivals, int expectedTotal)
+    internal void Refresh(int[] trainArrivals, int expectedTotal, int score)
     {
 
-        int total_arrivals = 0;
-        if(trainArrivals != null)
-            total_arrivals = trainArrivals.Sum();
+        //int total_arrivals = 0;
+        //if(trainArrivals != null)
+        //    total_arrivals = trainArrivals.Sum();
 
-        if (total_arrivals > 0)
+        if (score > 0)
         {
             for (int i = 0; i < trainArrivals.Length && i < this.columns.Count() && i < this.labels.Count(); i++)
             {
@@ -39,12 +39,13 @@ public class ResultsPanel : MonoBehaviour
                 this.labels[i].text = "";
             }
         }
-        string score = "";
-        if (total_arrivals > 0)
-            score = total_arrivals.ToString("0") + this.score_suffix;
+        
+        string score_str = "";
+        if (score > 0)
+            score_str = score.ToString("0") + this.score_suffix;
         if (this.globalscoremesh != null)
-            globalscoremesh.text = score;
+            globalscoremesh.text = score_str;
         if (this.globalscore != null)
-            globalscore.text = score;
+            globalscore.text = score_str;
     }
 }

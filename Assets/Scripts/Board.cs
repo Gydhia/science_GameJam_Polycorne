@@ -22,9 +22,12 @@ namespace Assets.Scripts
         public TrainHandler StartStation;
         public TrainHandler[] EndStations;
         public int NumberOfTrains = 100;
+        public int Score = 0;
         public List<Train> trains;
         
         private static Board _boardInstance;
+        public string NextLevel = "Menu_Lea";
+        public string CurrentLevel = "Menu_Lea";
 
         public bool IsRunning;
         public static Board Instance
@@ -63,9 +66,10 @@ namespace Assets.Scripts
 
         public void ResetScores()
         {
+            this.Score = 0;
             this.TrainArrivals = new int[this.HandsCount];
             if(this.ResultsPanel != null)
-                    this.ResultsPanel.Refresh(null, this.NumberOfTrains);
+                    this.ResultsPanel.Refresh(null, this.NumberOfTrains, 0);
         }
 
         public void SendManyTrains(int HowMany)
@@ -121,7 +125,9 @@ namespace Assets.Scripts
         internal void RegisterTrainArrival(Train train, Hand hand)
         {
             TrainArrivals[hand.Index]++;
-            this.ResultsPanel.Refresh(TrainArrivals, NumberOfTrains);
+            this.Score++;
+            this.ResultsPanel.Refresh(TrainArrivals, NumberOfTrains, this.Score);
+
         }
 
     }
