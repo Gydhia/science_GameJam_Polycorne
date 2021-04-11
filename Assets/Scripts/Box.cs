@@ -59,6 +59,7 @@ namespace Assets.Scripts
             float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
             float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
 
+#if UNITY_EDITOR
             foreach (Transform child in this.HandsContainer)
             {
                 UnityEditor.EditorApplication.delayCall += () =>
@@ -67,6 +68,7 @@ namespace Assets.Scripts
 
                 };
             }
+#endif
 
             int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
             int nbhands = handcount;
@@ -122,7 +124,7 @@ namespace Assets.Scripts
             float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
             float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
 
-
+#if UNITY_EDITOR
             foreach (Transform child in this.CardSpaceContainer)
             {
                 UnityEditor.EditorApplication.delayCall += () =>
@@ -130,6 +132,7 @@ namespace Assets.Scripts
                     GameObject.DestroyImmediate(child.gameObject);
                 };
             }
+#endif
 
             this.CardSpaces = new CardSpace[this.BoxSO.CardSpaceLength, this.BoxSO.CardSpaceHeight];
             /*for (int i = 0; i < this.BoxSO.CardSpaceLength; i++)
