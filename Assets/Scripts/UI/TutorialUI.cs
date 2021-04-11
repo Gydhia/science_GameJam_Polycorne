@@ -55,4 +55,13 @@ public class TutorialUI : MonoBehaviour
             _dialogIndex++;
         }
     }
+
+    public void RefreshTutorial()
+    {
+        _dialogIndex = 0;
+        TitleText.text = Title;
+        MainText.text = Dialogs[0];
+
+        ShowPopup();
+    }
 }

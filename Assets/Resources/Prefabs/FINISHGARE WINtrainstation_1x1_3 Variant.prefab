@@ -346,6 +346,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1449167825695286707, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3278660897250595581, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3645644567224458897, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
       propertyPath: m_Name
       value: FINISHGARE WINtrainstation_1x1_3 Variant
@@ -435,6 +443,22 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3645644567848057303, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627667393395166713, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442155937892170854, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500113101415547437, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996927338178349533, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
