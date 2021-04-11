@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1142472621603474874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7801222038776059759}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7801222038776059759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142472621603474874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7332642757913796880}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5455624076775238837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7332642757913796880}
+  - component: {fileID: 8911695284494507105}
+  m_Layer: 0
+  m_Name: SoundController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7332642757913796880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455624076775238837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1019.12787, y: 329.54562, z: 586.5301}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1938178708451458797}
+  - {fileID: 7801222038776059759}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8911695284494507105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455624076775238837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91249930734ea6d47902b9cde6b5f40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Musics:
+  - {fileID: 11400000, guid: e411ab88510d0964996073bf98945f59, type: 2}
+  - {fileID: 11400000, guid: 6573d09a0674b744193d4734499f3011, type: 2}
+  - {fileID: 11400000, guid: eee2afe71fc9a3248a9c03fd981405a4, type: 2}
+  Sounds:
+  - {fileID: 11400000, guid: b2322cd9340b424438807699b817904f, type: 2}
+  - {fileID: 11400000, guid: 7a6f298b03b93564ca4dd55b3a1731f1, type: 2}
+  - {fileID: 11400000, guid: d3f39c5c5a550244eb902835ebd9d9b6, type: 2}
+  - {fileID: 11400000, guid: 4025ee78ccf793548abbf99ab68307da, type: 2}
+  - {fileID: 11400000, guid: 3cdcb470d521247409ffdd529e700338, type: 2}
+  - {fileID: 11400000, guid: c73f2e061bee208419310171aefb8002, type: 2}
+  - {fileID: 11400000, guid: fe21ebd2c235bf4478a58fb6dca038db, type: 2}
+  - {fileID: 11400000, guid: a8dacf9b7e86e87429bd8e8f56a10865, type: 2}
+  MusicsContainer: {fileID: 5898950979839750627}
+  SoundsContainer: {fileID: 1142472621603474874}
+  AudioMixer: {fileID: 24100000, guid: 8faf1ee0c2931ed47b0d6d0b7e198c23, type: 2}
+  AudioMixerGroup: {fileID: 24300002, guid: 8faf1ee0c2931ed47b0d6d0b7e198c23, type: 2}
+  FadingTime: 1.5
+--- !u!1 &5898950979839750627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1938178708451458797}
+  m_Layer: 0
+  m_Name: Musics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1938178708451458797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5898950979839750627}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7332642757913796880}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

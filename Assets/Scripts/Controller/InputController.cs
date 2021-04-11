@@ -30,6 +30,7 @@ namespace Assets.Scripts.Controller
             {
                 Camera.transform.Translate(new Vector3(0, this.ScrollSpeed * Time.deltaTime, 0));
             }
+            
         }
     }
 }

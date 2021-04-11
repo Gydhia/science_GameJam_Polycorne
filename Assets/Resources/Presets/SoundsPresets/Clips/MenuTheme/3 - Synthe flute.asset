@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 61b5e27dec2b0a445a5ade5fed2f19be, type: 3}
   BPM: 60
-  Reverb: {fileID: 11400000, guid: 0f13e3fca1bd5ae45af179893317fadd, type: 2}
-  Echo: {fileID: 0}
+  Reverb: {fileID: 11400000, guid: 83b166c0e5b91154cbccccd14cdbe83d, type: 2}
+  Echo: {fileID: 11400000, guid: cb1456242515ba444ab39393a2c95379, type: 2}

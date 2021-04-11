@@ -48,6 +48,7 @@ namespace Assets.Scripts
             {
                 if (card.CardSpace != null)
                 {
+                    SoundController.Instance.PlaySound(SoundController.SoundNames.DragCard);
                     // this cardspace is readonly
                     if (!string.IsNullOrEmpty(card.CardSpace.CopyFromBox))
                     {
@@ -104,6 +105,10 @@ namespace Assets.Scripts
             }
 
             return localPosition;
+        }
+        public void PlayHoverSound()
+        {
+            SoundController.Instance.PlaySound(SoundController.SoundNames.HoverCard);
         }
     }
 }
