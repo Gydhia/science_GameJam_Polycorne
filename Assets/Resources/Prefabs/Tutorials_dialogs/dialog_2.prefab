@@ -552,12 +552,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogPanel: {fileID: 218330790734418329}
   Image: {fileID: 218330791470214835}
+  Help: {fileID: 0}
   TitleText: {fileID: 218330790996585192}
   MainText: {fileID: 218330790893042605}
   NextBtn: {fileID: 218330790963910018}
   CloseBtn: {fileID: 691331524043356433}
-  Dialogs: []
-  Title: Level on
+  Dialogs:
+  - "Wow, vous vous en \xEAtes mieux sortis que les pr\xE9c\xE9dents !<br> Qu'est-ce
+    qu'il leur est arriv\xE9 ?..<br> *Tousse tousse* Oh non, regardez !<br>"
+  - "Une distorsion de l'espace a modifi\xE9 la route du milieu...<br> Vous allez
+    maintenant devoir r\xE9fl\xE9chir un peu plus !<br>"
+  - "Vous voyez les cases \xE0 gauche ?<br> Lorsque vous y ajouterai une des cartes,
+    celle-ci sera automatiquement copi\xE9e sur la case de droite correspondante.<br>
+    Faites cependant attention, l'ordre \xE0 son importance !<br> N'h\xE9sitez pas
+    \xE0 exp\xE9rimenter de diverses mani\xE8res, jeune \xEAtre.<br>"
+  Title: Niveau 2
 --- !u!1 &218330791042528797
 GameObject:
   m_ObjectHideFlags: 0
