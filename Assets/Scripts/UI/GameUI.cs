@@ -10,6 +10,17 @@ namespace Assets.Scripts.UI
         public PlayableDirector director;
         public GameObject EndPopup;
         public GameObject DialogPopup;
+        private static GameUI _gameUIInstance;
+
+        public static GameUI Instance
+        {
+            get
+            {
+                if (GameUI._gameUIInstance == null)
+                    GameUI._gameUIInstance = GameObject.FindObjectOfType<GameUI>();
+                return GameUI._gameUIInstance;
+            }
+        }
 
         public void StartTimeline()
         {
@@ -20,6 +31,17 @@ namespace Assets.Scripts.UI
         {
             DialogPopup.SetActive(false);
             EndPopup.SetActive(false);
+        }
+
+        public void OnClickRestartButton()
+        {
+            
+        }
+
+        public void FireEndPopup()
+        {
+            EndPopup.SetActive(true);
+            director.Stop();
         }
     }
 }

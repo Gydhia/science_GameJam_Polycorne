@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.UI;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -89,6 +90,8 @@ namespace Assets.Scripts
             }
             Debug.Log("FINI");
             IsRunning = false;
+
+            GameUI.Instance.FireEndPopup();
         }
 
         private IEnumerator sendManyTrains(int HowMany)
