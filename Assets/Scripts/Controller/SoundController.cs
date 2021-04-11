@@ -7,15 +7,15 @@ public class SoundController : MonoBehaviour
 {   
     public enum SoundNames
     {
-        StarCollision,
+        WhispCrash,
         StarDeparture,
-        StarArrival,
+        WhispArrival,
 
         LevelCompletionSound,
-        
-        CardDrag,
-        CardDrop,
-        CardFusion
+
+        DragCard,
+        HoverCard,
+        MergeCard
     }
     public enum MusicNames
     {
@@ -26,7 +26,7 @@ public class SoundController : MonoBehaviour
     }
 
     private Dictionary<MusicNames, List<AudioSource>> MusicSources = new Dictionary<MusicNames, List<AudioSource>>();
-    private Dictionary<SoundNames, AudioSource> SoundSources = new Dictionary<SoundNames, AudioSource>();
+    private Dictionary<SoundNames, List<AudioSource>> SoundSources = new Dictionary<SoundNames, List<AudioSource>>();
 
     public List<MusicSO> Musics = new List<MusicSO>();
     public List<SoundSO> Sounds = new List<SoundSO>();
@@ -54,7 +54,7 @@ public class SoundController : MonoBehaviour
     
     public void DoDatMusicWork()
     {
-        PlayMusic(MusicNames.ActionTheme);
+        PlayMusic(MusicNames.MenuTheme);
     }
     public void DoDatMusicStop()
     {
@@ -160,13 +160,19 @@ public class SoundController : MonoBehaviour
     public IEnumerator PlayingSound(SoundSO sound)
     {
         AudioSource audio = Instantiate(Resources.Load("Prefabs/AudioPrefab") as GameObject, SoundsContainer.transform).GetComponent<AudioSource>();
-        SoundSources.Add(sound.SoundID, audio);
+
+        if (!SoundSources.ContainsKey(sound.SoundID))
+            SoundSources.Add(sound.SoundID, new List<AudioSource>());
+        SoundSources[sound.SoundID].Add(audio);
 
         audio.PlayOneShot(sound.Sound);
 
         yield return new WaitForSeconds(sound.Sound.length);
 
-        SoundSources.Remove(sound.SoundID);
+        SoundSources[sound.SoundID].Remove(audio);
+        if(SoundSources[sound.SoundID].Count <= 0)
+            SoundSources.Remove(sound.SoundID);
+
         Destroy(audio.gameObject);
     }
 }

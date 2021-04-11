@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 namespace Assets.Scripts
 {
     [ExecuteAlways]
-    public class CardSpace : MonoBehaviour, IDropHandler
+    public class CardSpace : MonoBehaviour, IDropHandler, IPointerDownHandler
     {
         public Card Card;
         public Box Box;
@@ -24,6 +24,11 @@ namespace Assets.Scripts
 
         public Color ColorEmpty = Color.green;
         public Color ColorUsed = Color.blue;
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            Debug.Log("test2");
+        }
 
 
         public void Start()
@@ -49,7 +54,7 @@ namespace Assets.Scripts
 
         public void OnDrop(PointerEventData eventData)
         {
-            if (string.IsNullOrEmpty(this.CopyFromBox) && this.Box != Board.Instance.StartStation && this.Box != Board.Instance.EndStation)
+            if (string.IsNullOrEmpty(this.CopyFromBox) && this.Box != Board.Instance.StartStation && !Board.Instance.IsEnd(this.Box))
             {
                 Debug.Log(eventData);
                 if (eventData.pointerDrag != null)

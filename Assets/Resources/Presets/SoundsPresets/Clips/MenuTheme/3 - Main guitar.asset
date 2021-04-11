@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e85de160dbdf042a5de969a08e8c13, type: 3}
+  m_Name: 3 - Main guitar
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5826419a401af5242a606a7c95ab0814, type: 3}
+  BPM: 60
+  Reverb: {fileID: 11400000, guid: 83b166c0e5b91154cbccccd14cdbe83d, type: 2}
+  Echo: {fileID: 11400000, guid: cb1456242515ba444ab39393a2c95379, type: 2}

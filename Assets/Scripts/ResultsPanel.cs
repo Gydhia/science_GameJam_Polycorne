@@ -9,7 +9,8 @@ public class ResultsPanel : MonoBehaviour
 {
     public RectTransform[] columns;
     public UnityEngine.UI.Text[] labels;
-
+    public UnityEngine.UI.Text globalscore;
+    public string score_suffix = " pts";
     public void Start()
     {
     }
@@ -37,5 +38,9 @@ public class ResultsPanel : MonoBehaviour
                 this.labels[i].text = "";
             }
         }
+        if (total_arrivals == 0)
+            globalscore.text = "";
+        else
+            globalscore.text = total_arrivals.ToString("0") + this.score_suffix;
     }
 }

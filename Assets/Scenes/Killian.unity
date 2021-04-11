@@ -317,7 +317,13 @@ MonoBehaviour:
   Musics:
   - {fileID: 11400000, guid: e411ab88510d0964996073bf98945f59, type: 2}
   - {fileID: 11400000, guid: 6573d09a0674b744193d4734499f3011, type: 2}
-  Sounds: []
+  - {fileID: 11400000, guid: eee2afe71fc9a3248a9c03fd981405a4, type: 2}
+  Sounds:
+  - {fileID: 11400000, guid: 7a6f298b03b93564ca4dd55b3a1731f1, type: 2}
+  - {fileID: 11400000, guid: d3f39c5c5a550244eb902835ebd9d9b6, type: 2}
+  - {fileID: 11400000, guid: 3cdcb470d521247409ffdd529e700338, type: 2}
+  - {fileID: 11400000, guid: fe21ebd2c235bf4478a58fb6dca038db, type: 2}
+  - {fileID: 11400000, guid: a8dacf9b7e86e87429bd8e8f56a10865, type: 2}
   MusicsContainer: {fileID: 583750423}
   SoundsContainer: {fileID: 1405552023}
   AudioMixer: {fileID: 24100000, guid: 8faf1ee0c2931ed47b0d6d0b7e198c23, type: 2}

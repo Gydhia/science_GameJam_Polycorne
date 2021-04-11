@@ -46,7 +46,7 @@ namespace Assets.Scripts
             Card card = this.gameObject.GetComponent<Card>();
             if (card != null)
             {
-                if(card.CardSpace != null)
+                if (card.CardSpace != null)
                 {
                     // this cardspace is readonly
                     if (!string.IsNullOrEmpty(card.CardSpace.CopyFromBox))
@@ -82,6 +82,7 @@ namespace Assets.Scripts
             eventData.pointerDrag = null;
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
+            Debug.Log("");
         }
 
 

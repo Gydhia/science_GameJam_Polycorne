@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Assets.Scripts
 {
@@ -13,15 +14,19 @@ namespace Assets.Scripts
         public int HandsCount;
         public BoxSO[] Boxes;
         public Canvas UICanvas;
+        public Canvas BoardCanvas;
         public ResultsPanel ResultsPanel;
 
         public int[] TrainArrivals;
 
         public TrainHandler StartStation;
-        public TrainHandler EndStation;
+        public TrainHandler[] EndStations;
         public int NumberOfTrains = 100;
-
+        public List<Train> trains;
+        
         private static Board _boardInstance;
+
+        public bool IsRunning;
         public static Board Instance
         {
             get
@@ -34,6 +39,22 @@ namespace Assets.Scripts
 
         public void Start()
         {
+            trains = new List<Train>();
+            GameObject[] test = GameObject.FindGameObjectsWithTag("CameraBoard");
+            if(test.Length > 0)
+            {
+                Camera CameraBoard = (Camera)test[0].GetComponent<Camera>();
+                
+                GameObject[] test2 = GameObject.FindGameObjectsWithTag("CameraMain");
+                if (test2.Length > 0)
+                {
+                    Camera CameraMain = (Camera)test2[0].GetComponent<Camera>();
+
+                    UniversalAdditionalCameraData cameraData = CameraMain.GetUniversalAdditionalCameraData();
+                    cameraData.cameraStack.Add(CameraBoard);
+                }
+            }
+
             this.ResetScores();
         }
 
@@ -46,8 +67,22 @@ namespace Assets.Scripts
 
         public void SendManyTrains(int HowMany)
         {
+            if (IsRunning)
+                return;
             this.ResetScores();
-            StartCoroutine(this.sendManyTrains(100));
+            IsRunning = true;
+            StartCoroutine(this.sendManyTrains(this.NumberOfTrains));
+            StartCoroutine(this.WaitTillNoMoreTrain());
+        }
+
+        private IEnumerator WaitTillNoMoreTrain()
+        {
+            yield return new WaitForSeconds(1);
+            while (trains.Any())
+                yield return 0;
+
+            Debug.Log("FINI");
+            IsRunning = false;
         }
 
         private IEnumerator sendManyTrains(int HowMany)
@@ -62,11 +97,19 @@ namespace Assets.Scripts
 
         public void SendTrain()
         {
-            var train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"));
-            int trackID = this.StartStation.DecideOutput();
-            train.PlaceOnHand(this.StartStation.HandsRight.ElementAt(trackID));
+            var hand = this.StartStation.DecideOutput();
+            if (hand != null || hand.ConnectedTrack == null)
+            {
+                var train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"));
+                train.PlaceOnHand(hand);
+                this.trains.Add(train);
+            }
         }
 
+        public bool IsEnd(TrainHandler box)
+        {
+            return this.EndStations.Contains(box);
+        }
 
         internal void RegisterTrainArrival(Train train, Hand hand)
         {
