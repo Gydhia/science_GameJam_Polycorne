@@ -6375,8 +6375,10 @@ MonoBehaviour:
   StartStation: {fileID: 0}
   EndStations: []
   NumberOfTrains: 100
+  Score: 0
   trains: []
-  NextLevel: Levels/BoardLevel_1
+  NextLevel: BoardLevel_1
+  CurrentLevel: Menu_Lea
   IsRunning: 0
 --- !u!114 &590962793
 MonoBehaviour:

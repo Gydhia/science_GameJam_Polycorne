@@ -27,6 +27,7 @@ namespace Assets.Scripts
         
         private static Board _boardInstance;
         public string NextLevel = "Menu_Lea";
+        public string CurrentLevel = "Menu_Lea";
 
         public bool IsRunning;
         public static Board Instance
