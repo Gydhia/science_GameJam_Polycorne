@@ -109,7 +109,8 @@ namespace Assets.Scripts
         }
         public void PlayHoverSound()
         {
-            SoundController.Instance.PlaySound(SoundController.SoundNames.HoverCard);
+            if(SoundController.Instance != null)
+                SoundController.Instance.PlaySound(SoundController.SoundNames.HoverCard);
         }
     }
 }
