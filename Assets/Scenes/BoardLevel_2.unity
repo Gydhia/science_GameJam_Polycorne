@@ -4645,6 +4645,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f23a36690517743b7f1d6d9b64565b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Trainstation: {fileID: 1278820085}
+  Tracks: {fileID: 1036036495}
+  card_deck: {fileID: 843123555}
   HandsCount: 3
   Boxes: []
   UICanvas: {fileID: 2055371111}
