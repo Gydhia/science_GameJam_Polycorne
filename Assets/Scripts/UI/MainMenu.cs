@@ -16,9 +16,17 @@ namespace Assets.Scripts.UI
         public GameObject Title;
         public GameObject Buttons;
 
+
+        private void Start()
+        {
+            SoundController.Instance.PlayMusic(SoundController.MusicNames.MenuTheme);
+        }
+
         public void OnClickPlayButton()
         {
-            SceneManager.LoadScene("SceneDuJeu");
+            SoundController.Instance.StopMusic();
+            SceneManager.LoadScene("BoardLevel_1");
+            SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
         }
 
         public void OnClickCreditsButton()
