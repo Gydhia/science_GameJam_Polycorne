@@ -786,7 +786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2629364655912016107, guid: e350016ce7376ae40875b267513c6728, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2629364655912016107, guid: e350016ce7376ae40875b267513c6728, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1355,6 +1355,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: STARGAREtrainstation_1x1_3 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6493885224945898395, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
+      propertyPath: OutputDistribution.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493885224945898395, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
+      propertyPath: OutputDistribution.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493885224945898395, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
+      propertyPath: OutputDistribution.Array.data[2]
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6493885224945898404, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1385,7 +1397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6493885224945898404, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6493885224945898404, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1440,6 +1452,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7069854050834516231, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
+      propertyPath: ConnectedTrack
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078323437565240865, guid: 3172f776004db4b9082c7e7baa42a25c, type: 3}
       propertyPath: ConnectedTrack
       value: 
       objectReference: {fileID: 1692920759}
@@ -1798,7 +1814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2629364655912016107, guid: e350016ce7376ae40875b267513c6728, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2629364655912016107, guid: e350016ce7376ae40875b267513c6728, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2237,7 +2253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8771278708893722343, guid: 97d5f0037c50e4890a69046ebb750bb3, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8771278708893722343, guid: 97d5f0037c50e4890a69046ebb750bb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2650,7 +2666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3645644567224458927, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3645644567224458927, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2722,17 +2738,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
---- !u!114 &712786630 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3645644567224458896, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
-  m_PrefabInstance: {fileID: 712786629}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7d3a477cb2c86c46a516cb1f9fcd301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &740592217
 GameObject:
   m_ObjectHideFlags: 0
@@ -4707,7 +4712,6 @@ MonoBehaviour:
   StartStation: {fileID: 355875856}
   EndStations:
   - {fileID: 666429720}
-  - {fileID: 712786630}
   NumberOfTrains: 100
   trains: []
   IsRunning: 0

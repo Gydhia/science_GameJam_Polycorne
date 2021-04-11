@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ScienceGameJam.UnityEditor
 {
    
-    [CustomEditor(typeof(Card))]
+    /*[CustomEditor(typeof(Card))]
     public class CardInspector : Editor
     {
         Card target;
@@ -26,6 +26,6 @@ namespace ScienceGameJam.UnityEditor
 
             base.OnInspectorGUI();
         }
-    }
+    }*/
 
 }
