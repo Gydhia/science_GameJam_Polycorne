@@ -25,8 +25,6 @@ namespace Assets.Scripts.UI
 
         public void OnClickPlayButton()
         {
-            if (SoundController.Instance != null) 
-                SoundController.Instance.StopMusic();
             SceneManager.LoadScene("BoardLevel_1");
             SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
         }
