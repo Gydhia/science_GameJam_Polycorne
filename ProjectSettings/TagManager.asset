@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CameraBoard
   - CameraMain
+  - Board
+  - ResultsPanel
   layers:
   - Default
   - TransparentFX
