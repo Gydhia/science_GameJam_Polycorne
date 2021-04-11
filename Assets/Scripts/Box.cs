@@ -86,7 +86,7 @@ namespace Assets.Scripts
                     this.HandsLeft[j] = newHand;
                 }
             }
-            if (Board.Instance.EndStation != this)
+            if (Board.Instance.IsEnd(this))
             {
                 this.HandsRight = new Hand[nbhands];
                 for (int j = 0; j < this.HandsRight.Length; j++)

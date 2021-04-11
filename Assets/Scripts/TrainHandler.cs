@@ -60,7 +60,7 @@ namespace Assets.Scripts
 
         protected virtual void TrainArrived(Train Train, Hand Hand)
         {
-            if (Board.Instance.EndStation == this)
+            if (Board.Instance.IsEnd(this))
             {
                 Board.Instance.RegisterTrainArrival(Train, Hand);
             }
@@ -129,16 +129,16 @@ namespace Assets.Scripts
 
         }
 
-        public int DecideOutput()
+        public Hand DecideOutput()
         {
             if (this.OutputDistribution == null || this.OutputDistribution.Count() <= 1)
                 // if no distribution was set, no weights: return a random output
-                return this.rand.Next(0, this.HandsRight.Count());
+                return this.HandsRight.ElementAt(this.rand.Next(0, this.HandsRight.Count()));
 
             double total_weight = this.OutputDistribution.Sum();
             // if no weight was set, no weights: return a random output
             if (total_weight == 0)
-                return this.rand.Next(0, this.HandsRight.Count());
+                return this.HandsRight.ElementAt(this.rand.Next(0, this.HandsRight.Count()));
 
             var result = this.rand.NextDouble() * total_weight;
 
@@ -148,7 +148,7 @@ namespace Assets.Scripts
                 chosen_output++;
                 result -= this.OutputDistribution.ElementAt(chosen_output);
             }
-            return chosen_output;
+            return this.HandsRight.ElementAt(chosen_output);
         }
 
         public abstract void RegenerateHands();
