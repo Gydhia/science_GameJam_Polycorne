@@ -56,6 +56,19 @@ public class SoundController : MonoBehaviour
     {
         PlayMusic(MusicNames.MenuTheme);
     }
+
+    public void DoDatSoundWork()
+    {
+        StartCoroutine(testsound());      
+    }
+    public IEnumerator testsound()
+    {
+        for (int i = 0; i < 100; i++) {
+            PlaySound(SoundNames.WhispCrash);
+            yield return new WaitForSeconds(Random.Range(0.05f, 0.1f));
+        }
+    }
+
     public void DoDatMusicStop()
     {
         StopMusic();

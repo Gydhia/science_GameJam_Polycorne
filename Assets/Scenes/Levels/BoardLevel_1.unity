@@ -1593,7 +1593,7 @@ MonoBehaviour:
   UICanvas: {fileID: 1261751633}
   BoardCanvas: {fileID: 1261751633}
   ResultsPanel: {fileID: 0}
-  TrainArrivals: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  TrainArrivals: 
   StartStation: {fileID: 1867757102}
   EndStation: {fileID: 1876298905}
   NumberOfTrains: 100
