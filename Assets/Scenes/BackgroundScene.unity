@@ -666,7 +666,6 @@ RectTransform:
   m_Children:
   - {fileID: 1140520125}
   - {fileID: 630748782}
-  - {fileID: 2012386086}
   - {fileID: 345366851}
   - {fileID: 1720967372}
   m_Father: {fileID: 471963901}
@@ -894,7 +893,7 @@ RectTransform:
   - {fileID: 488619290}
   - {fileID: 1553571268}
   m_Father: {fileID: 248087166}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1161,6 +1160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   director: {fileID: 942798966}
+  EndPopup: {fileID: 1439103267}
+  DialogPopup: {fileID: 546219692}
 --- !u!1 &488619289
 GameObject:
   m_ObjectHideFlags: 0
@@ -4221,6 +4222,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1439103268}
     m_Modifications:
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 471963903}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.UI.GameUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickCloseButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4239520789401144164, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -4665,7 +4694,7 @@ RectTransform:
   - {fileID: 1439103268}
   - {fileID: 546219693}
   m_Father: {fileID: 248087166}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5044,17 +5073,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012386085}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 46.566887}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -186.69211}
+  m_LocalScale: {x: 1, y: 1, z: 0.8287}
   m_Children:
   - {fileID: 1553589826}
-  m_Father: {fileID: 248087166}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -207.01402, y: 75}
-  m_SizeDelta: {x: -354.02805, y: 150}
+  m_AnchoredPosition: {x: -207.01404, y: -465}
+  m_SizeDelta: {x: 1565.9719, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2012386087
 MonoBehaviour:
@@ -5358,6 +5387,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 851773472}
     m_Modifications:
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 471963903}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.UI.GameUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickCloseButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 765524978566365470, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4239520789401144164, guid: b98b57565ffeb4afaa1a243f18597d34, type: 3}
       propertyPath: m_fontAsset
       value: 
