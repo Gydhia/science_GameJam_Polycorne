@@ -40,7 +40,7 @@ public class Train : MonoBehaviour
             {
                 if (this.lastWaypoint == 0)
                     this.ArrivedAtBeginningOfTracks();
-                else if (this.lastWaypoint == 1 && this.percentToNextWaypoint >= 1)
+                else if (this.lastWaypoint == 1 && this.percentToNextWaypoint <= 0)
                 {
                     this.ArrivedAtBeginningOfTracks();
                 }
