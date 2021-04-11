@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,7 @@ namespace Assets.Scripts
         public void ClickOnStart(int train)
         {
             this.Board.SendManyTrains(train);
+            this.GetComponent<GameUI>().StartTimeline();
         }
     }
 }
