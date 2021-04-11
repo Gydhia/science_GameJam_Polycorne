@@ -33,14 +33,14 @@ namespace Assets.Scripts
         public void OnCancelDrag(PointerEventData eventData)
         {
             eventData.pointerDrag = null;
-            canvasGroup.alpha = 1f;
+            // canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
             this.transform.position = originDrag;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            canvasGroup.alpha = 0.6f;
+            // canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
             originDrag = this.transform.position;
             Card card = this.gameObject.GetComponent<Card>();
@@ -82,7 +82,7 @@ namespace Assets.Scripts
         public void OnEndDrag(PointerEventData eventData)
         {
             eventData.pointerDrag = null;
-            canvasGroup.alpha = 1f;
+            // canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
             Debug.Log("");
         }

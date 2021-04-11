@@ -2134,6 +2134,7 @@ MonoBehaviour:
   - {fileID: 2125007033}
   NumberOfTrains: 100
   trains: []
+  NextLevel: Levels/BoardLevel_2
   IsRunning: 0
 --- !u!224 &1261751635
 RectTransform:
