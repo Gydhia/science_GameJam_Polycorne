@@ -8,6 +8,7 @@ public class TutorialUI : MonoBehaviour
 {
     public GameObject DialogPanel;
     public GameObject Image;
+    public GameObject Help;
 
     public TextMeshProUGUI TitleText;
     public TextMeshProUGUI MainText;
@@ -22,8 +23,10 @@ public class TutorialUI : MonoBehaviour
 
     private void Start()
     {
-        if(Dialogs.Count > 0)
+        if (Dialogs.Count > 0)
             ShowPopup();
+        else
+            Help.SetActive(false);
     }
 
     public void ClosePopup()
