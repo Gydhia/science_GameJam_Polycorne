@@ -47,3 +47,9 @@ TagManager:
   - name: Box
     uniqueID: 2692764935
     locked: 0
+  - name: Tracks
+    uniqueID: 768577763
+    locked: 0
+  - name: Whisp
+    uniqueID: 1513660829
+    locked: 0

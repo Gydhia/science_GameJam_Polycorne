@@ -13,26 +13,16 @@ namespace Assets.Scripts
         public BoxSO BoxSO;
         public BoxSO PreviousBoxSO;
 
-        /// <summary>
-        /// List of space available for cards
-        /// </summary>
-        public CardSpace CardSpacePrefab;
-        public Transform CardSpaceContainer;
-
-        /// <summary>
-        /// First half on left
-        /// Second half on right
-        /// </summary>
-        public Hand HandPrefab;
-        public Transform HandsContainer;
-
+        public UnityEngine.UI.Text Label;
+        public string CardNameForPlayer = "";
+        
         public void Start()
         {
             if (this.BoxSO == null)
                 throw new Exception("BoxSO is not defined for this Box");
 
             if (this.CardSpaces == null)
-                this.CardSpaces = new CardSpace[this.BoxSO.CardSpaceLength, this.BoxSO.CardSpaceHeight];
+                RegenerateCardsspace();
 
             base.Start();
         }
@@ -60,7 +50,7 @@ namespace Assets.Scripts
             }
         }
 
-        public void RegenerateHands()
+        public override void RegenerateHands()
         {
             if (this.HandsContainer == null)
                 return;
@@ -79,8 +69,8 @@ namespace Assets.Scripts
             }
 
             int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
-            int nbhands = this.BoxSO.CardSpaceHeight * handcount;
-
+            int nbhands = handcount;
+            int handsoffset = (this.BoxSO.CardSpaceHeight - 1) * handcount;
 
             if (Board.Instance.StartStation != this)
             {
@@ -88,7 +78,7 @@ namespace Assets.Scripts
                 for (int j = 0; j < this.HandsLeft.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
-                    newHand.transform.localPosition = new Vector3(0, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.transform.localPosition = new Vector3(0, canvascardheight - ((0.5f + j) * (canvascardheight / (float)(nbhands + handsoffset))), 0);
                     newHand.transform.Rotate(new Vector3(0, 0, 180));
                     newHand.Index = j;
                     newHand.LeftHand = true;
@@ -102,7 +92,7 @@ namespace Assets.Scripts
                 for (int j = 0; j < this.HandsRight.Length; j++)
                 {
                     Hand newHand = GameObject.Instantiate<Hand>(this.HandPrefab, this.HandsContainer);
-                    newHand.transform.localPosition = new Vector3(canvascardhlength, (j * (canvascardheight / (float)nbhands)) + (canvascardheight * 0.5f / nbhands), 0);
+                    newHand.transform.localPosition = new Vector3(canvascardhlength, canvascardheight - ((0.5f + j) * (canvascardheight / (float)(nbhands + handsoffset))), 0);
                     newHand.Index = j;
                     newHand.LeftHand = false;
                     newHand.name = "RIGHT HAND #" + j;
@@ -111,10 +101,22 @@ namespace Assets.Scripts
             }
         }
 
-        public void RegenerateCardsspace()
+        public override void RegenerateCardsspace(bool forceReset = false)
         {
             if (this.CardSpaceContainer == null)
                 return;
+            // deal with existing data
+            var existing_cardspaces = this.CardSpaceContainer.GetComponentsInChildren<CardSpace>();
+            if (!forceReset && existing_cardspaces.Count() > 0)
+            {
+                this.CardSpaces = new CardSpace[existing_cardspaces.Max(cs => cs.positionInBox.x) + 1, existing_cardspaces.Max(cs => cs.positionInBox.y) + 1];
+                foreach (var existing_cardspace in existing_cardspaces)
+                {
+                    existing_cardspace.Box = this;
+                    this.CardSpaces[existing_cardspace.positionInBox.x, existing_cardspace.positionInBox.y] = existing_cardspace;
+                }
+                return;
+            }
 
             float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
             float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
@@ -126,7 +128,6 @@ namespace Assets.Scripts
                 UnityEditor.EditorApplication.delayCall += () =>
                 {
                     GameObject.DestroyImmediate(child.gameObject);
-
                 };
             }
 
@@ -146,13 +147,14 @@ namespace Assets.Scripts
                 {
                     CardSpace cardspace = GameObject.Instantiate<CardSpace>(this.CardSpacePrefab, this.CardSpaceContainer);
                     float x = (k * (canvascardhlength / (float)this.BoxSO.CardSpaceLength)) + (canvascardhlength * 0.5f / (float)this.BoxSO.CardSpaceLength);
-                    float y = (l * (canvascardheight / (float)this.BoxSO.CardSpaceHeight)) + (canvascardheight * 0.5f / (float)this.BoxSO.CardSpaceHeight);
+                    float y = ((this.BoxSO.CardSpaceHeight - l - 1) * (canvascardheight / (float)this.BoxSO.CardSpaceHeight)) + (canvascardheight * 0.5f / (float)this.BoxSO.CardSpaceHeight);
                     cardspace.transform.localPosition = new Vector3(x, y, 0);
                     cardspace.Box = this;
+                    cardspace.positionInBox = new Vector2Int(k, l);
                     this.CardSpaces[k, l] = cardspace;
+
                 }
             }
         }
-
     }
 }
