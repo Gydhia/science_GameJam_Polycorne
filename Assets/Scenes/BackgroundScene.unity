@@ -1404,6 +1404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53620ce997bdfc244a939892018bca66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Board: {fileID: 0}
   director: {fileID: 942798966}
   EndPopup: {fileID: 1439103267}
   DialogPopup: {fileID: 546219692}
@@ -1411,6 +1412,10 @@ MonoBehaviour:
   PointScore: {fileID: 844174764}
   FeufolletArrivedScore: {fileID: 930175010}
   FeufolletLaunchedScore: {fileID: 2012396561}
+  LoseText: {fileID: 1120527046}
+  LoseText2: {fileID: 554633809}
+  WinText: {fileID: 802088165}
+  WinText2: {fileID: 2109656447}
 --- !u!1 &488619289
 GameObject:
   m_ObjectHideFlags: 0

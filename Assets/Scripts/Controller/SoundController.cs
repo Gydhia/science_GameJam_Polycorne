@@ -159,15 +159,19 @@ public class SoundController : MonoBehaviour
     {
         yield return new WaitForSeconds(FadingTime);
 
-        for (int i = 0; i < MusicSources[_finishingMusic.MusicID].Count; i++)
+        if(_finishingMusic != null && MusicSources.ContainsKey(_finishingMusic.MusicID))
         {
-            AudioSource audio = MusicSources[_finishingMusic.MusicID][i];
-            Destroy(audio.gameObject);
-        }
-        MusicSources[_finishingMusic.MusicID].Clear();
+            for (int i = 0; i < MusicSources[_finishingMusic.MusicID].Count; i++)
+            {
+                AudioSource audio = MusicSources[_finishingMusic.MusicID][i];
+                Destroy(audio.gameObject);
+            }
+            MusicSources[_finishingMusic.MusicID].Clear();
 
-        MusicSources.Remove(_finishingMusic.MusicID);
-        _finishingMusic = null;
+            MusicSources.Remove(_finishingMusic.MusicID);
+            _finishingMusic = null;
+        }
+        
         AudioMixer.SetFloat("Fading", MusicVolume);
     }
 
