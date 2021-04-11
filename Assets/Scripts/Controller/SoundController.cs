@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Controller;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -11,8 +12,10 @@ public class SoundController : MonoBehaviour
         StarDeparture,
         WhispArrival,
 
-        LevelCompletionSound,
+        LevelCompletion,
+        Play,
 
+        Click,
         DragCard,
         HoverCard,
         MergeCard
@@ -46,10 +49,13 @@ public class SoundController : MonoBehaviour
     {
         if (Instance == null) {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
         else {
             Destroy(this.gameObject);
         }
+
+        InputController.Instance.OnMouseButtonDown += MouseClick;
     }
     
     public void DoDatMusicWork()
@@ -187,5 +193,11 @@ public class SoundController : MonoBehaviour
             SoundSources.Remove(sound.SoundID);
 
         Destroy(audio.gameObject);
+    }
+
+    // Sounds controls
+    public void MouseClick()
+    {
+        PlaySound(SoundNames.Click);
     }
 }

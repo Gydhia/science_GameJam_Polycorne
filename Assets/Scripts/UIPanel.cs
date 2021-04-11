@@ -35,6 +35,8 @@ namespace Assets.Scripts
 
         public void ClickOnStart(int train)
         {
+            SoundController.Instance.PlaySound(SoundController.SoundNames.Play);
+            SoundController.Instance.PlayMusic(SoundController.MusicNames.ActionTheme);
             this.Board.SendManyTrains(train);
             this.GetComponent<GameUI>().StartTimeline();
         }

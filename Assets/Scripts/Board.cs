@@ -81,6 +81,9 @@ namespace Assets.Scripts
             while (trains.Any())
                 yield return 0;
 
+            SoundController.Instance.PlaySound(SoundController.SoundNames.LevelCompletion);
+            SoundController.Instance.StopMusic();
+            SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
             Debug.Log("FINI");
             IsRunning = false;
         }
