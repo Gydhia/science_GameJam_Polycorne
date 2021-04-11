@@ -566,13 +566,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4814584280158140107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11f8e4b2de62e34498c9b586e3ec6d2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 916cf7fade23fe74b9dd45190a24d71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardSpacePrefab: {fileID: 1212769817104253962, guid: 7e26fe7831c7fe94f9041be88b5ceabc, type: 3}
+  CardSpacePrefab: {fileID: 0}
   CardSpaceContainer: {fileID: 0}
-  HandPrefab: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
-  HandsContainer: {fileID: 4814584280448262920}
+  HandPrefab: {fileID: 0}
+  HandsContainer: {fileID: 0}
   HandsLeft:
   - {fileID: 8950349954441235006}
   - {fileID: 3938313229390869719}
