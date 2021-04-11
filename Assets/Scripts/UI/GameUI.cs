@@ -57,10 +57,13 @@ namespace Assets.Scripts.UI
 
         public void OnClickRestartButton()
         {
-            if (this.Board.Trainstation != null)
-                this.Board.Trainstation.SetActive(true);
-            if (this.Board.card_deck != null)
-                this.Board.card_deck.SetActive(true);
+            if (this.Board != null)
+            {
+                if (this.Board.Trainstation != null)
+                    this.Board.Trainstation.SetActive(true);
+                if (this.Board.card_deck != null)
+                    this.Board.card_deck.SetActive(true);
+            }
 
             if (SoundController.Instance != null)
                 SoundController.Instance.StopMusic();
@@ -70,10 +73,14 @@ namespace Assets.Scripts.UI
 
         public void OnClickNextButton()
         {
-            if (this.Board.Trainstation != null)
-                this.Board.Trainstation.SetActive(true);
-            if (this.Board.card_deck != null)
-                this.Board.card_deck.SetActive(true);
+            if(this.Board != null)
+            {
+                if (this.Board.Trainstation != null)
+                    this.Board.Trainstation.SetActive(true);
+                if (this.Board.card_deck != null)
+                    this.Board.card_deck.SetActive(true);
+            }
+            
 
             if (SoundController.Instance != null)
                 SoundController.Instance.StopMusic();
@@ -85,7 +92,7 @@ namespace Assets.Scripts.UI
         {
             if (this.Board != null)
             {
-                if(this.Board.Trainstation != null)
+                if (this.Board.Trainstation != null)
                     this.Board.Trainstation.SetActive(false);
                 if (this.Board.card_deck != null)
                     this.Board.card_deck.SetActive(false);
