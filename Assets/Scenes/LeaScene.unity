@@ -2994,6 +2994,7 @@ MonoBehaviour:
   HandsCount: 4
   Boxes: []
   UICanvas: {fileID: 0}
+  BoardCanvas: {fileID: 0}
   ResultsPanel: {fileID: 0}
   TrainArrivals: 
   StartStation: {fileID: 0}
