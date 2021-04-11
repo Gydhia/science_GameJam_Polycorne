@@ -48,6 +48,14 @@ namespace Assets.Scripts.UI
             SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
         }
 
+        public void OnClickNextButton()
+        {
+            if (SoundController.Instance != null)
+                SoundController.Instance.StopMusic();
+            SceneManager.LoadScene(Board.Instance.NextLevel);
+            SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
+        }
+
         public void FireEndPopup()
         {
             EndPopup.SetActive(true);
