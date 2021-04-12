@@ -58,6 +58,9 @@ namespace Assets.Scripts.UI
                     this.Board.card_deck.SetActive(true);
                 if (this.Board.Tracks != null)
                     this.Board.Tracks.SetActive(true);
+
+                if (this.Board.ResultsPanel != null)
+                    this.Board.ResultsPanel.gameObject.SetActive(false);
             }
         }
 
@@ -71,10 +74,14 @@ namespace Assets.Scripts.UI
                     this.Board.card_deck.SetActive(true);
                 if (this.Board.Tracks != null)
                     this.Board.Tracks.SetActive(true);
+
+                if (this.Board.ResultsPanel != null)
+                    this.Board.ResultsPanel.gameObject.SetActive(false);
             }
 
             if (SoundController.Instance != null)
                 SoundController.Instance.StopMusic();
+
             SceneManager.LoadScene(Board.Instance.CurrentLevel);
             SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
         }
@@ -89,6 +96,9 @@ namespace Assets.Scripts.UI
                     this.Board.card_deck.SetActive(true);
                 if (this.Board.Tracks != null)
                     this.Board.Tracks.SetActive(true);
+
+                if (this.Board.ResultsPanel != null)
+                    this.Board.ResultsPanel.gameObject.SetActive(false);
             }
             
 

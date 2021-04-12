@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2606937720503511504, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2629364655912016085, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: m_Name
       value: STARTGARE_trainstation_1x1_4 Variant
