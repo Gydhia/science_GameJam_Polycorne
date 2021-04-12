@@ -115,7 +115,7 @@ namespace Assets.Scripts.UI
             PointScore.GetComponent<TextMeshProUGUI>().text = Board.Instance.Score.ToString() + " pts";
             FeufolletArrivedScore.GetComponent<TextMeshProUGUI>().text = Board.Instance.Score.ToString() + " feu follets arrivés";
             FeufolletLaunchedScore.GetComponent<TextMeshProUGUI>().text = Board.Instance.NumberOfTrains.ToString() + " feu follets partis";
-            if(Board.Instance.Score > 50)
+            if(Board.Instance.Score >= 50)
             {
                 this.WinText.SetActive(true);
                 this.WinText2.SetActive(true);

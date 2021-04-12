@@ -4676,7 +4676,7 @@ MonoBehaviour:
   Trainstation: {fileID: 1067120075}
   Tracks: {fileID: 1869130669}
   card_deck: {fileID: 1456402304}
-  HandsCount: 3
+  HandsCount: 4
   Boxes: []
   UICanvas: {fileID: 1390460463}
   BoardCanvas: {fileID: 1390460463}
