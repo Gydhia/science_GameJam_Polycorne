@@ -2733,30 +2733,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5721114567123047907, guid: 1843e70bf985d4b75bd74bbcf393cac8, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5721114567123047907, guid: 1843e70bf985d4b75bd74bbcf393cac8, type: 3}
-      propertyPath: m_Color.g
-      value: 0.36470592
-      objectReference: {fileID: 0}
-    - target: {fileID: 5721114567123047907, guid: 1843e70bf985d4b75bd74bbcf393cac8, type: 3}
-      propertyPath: m_Color.b
-      value: 0.39782363
-      objectReference: {fileID: 0}
-    - target: {fileID: 7111506223445589901, guid: 1843e70bf985d4b75bd74bbcf393cac8, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7111506223445589901, guid: 1843e70bf985d4b75bd74bbcf393cac8, type: 3}
-      propertyPath: m_Color.g
-      value: 0.40124407
-      objectReference: {fileID: 0}
-    - target: {fileID: 7111506223445589901, guid: 1843e70bf985d4b75bd74bbcf393cac8, type: 3}
-      propertyPath: m_Color.b
-      value: 0.36470592
-      objectReference: {fileID: 0}
     - target: {fileID: 7213850567075662765, guid: 1843e70bf985d4b75bd74bbcf393cac8, type: 3}
       propertyPath: m_text
       value: = A x B
@@ -4676,7 +4652,7 @@ MonoBehaviour:
   Trainstation: {fileID: 1067120075}
   Tracks: {fileID: 1869130669}
   card_deck: {fileID: 1456402304}
-  HandsCount: 3
+  HandsCount: 4
   Boxes: []
   UICanvas: {fileID: 1390460463}
   BoardCanvas: {fileID: 1390460463}

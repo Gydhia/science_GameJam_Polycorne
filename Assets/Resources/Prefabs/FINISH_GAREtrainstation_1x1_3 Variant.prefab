@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2629364656536240019, guid: e350016ce7376ae40875b267513c6728, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2629364656536240028, guid: e350016ce7376ae40875b267513c6728, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
