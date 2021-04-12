@@ -60,6 +60,8 @@ namespace Assets.Scripts
 
                     UniversalAdditionalCameraData cameraData = CameraMain.GetUniversalAdditionalCameraData();
                     cameraData.cameraStack.Add(CameraBoard);
+                    if (CameraBoard.GetComponent<AudioListener>() != null)
+                        CameraBoard.GetComponent<AudioListener>().enabled = false;
                 }
             }
             if (SoundController.Instance != null && this.EndStations.Count() > 0) {
