@@ -13,7 +13,7 @@ namespace Assets.Scripts
         public Board Board;
         public ResultsPanel ResultsPanel;
 
-        public void Start()
+        public void Awake()
         {
             this.Board = GameObject.FindObjectOfType<Board>();
 
@@ -21,8 +21,31 @@ namespace Assets.Scripts
             if (ResultsPanel != null)
             {
                 this.ResultsPanel = ResultsPanel;
-                this.Board.ResultsPanel = ResultsPanel;
-                this.Board.ResultsPanel.gameObject.SetActive(false);
+                if (this.Board != null)
+                {
+                    this.Board.ResultsPanel = ResultsPanel;
+                    this.Board.ResultsPanel.gameObject.SetActive(false);
+                }
+            }
+        }
+
+        public void Start()
+        {
+            //this is a security when we start directly the level from the editor (scene are not loaded in the same order sometinme)
+            if(this.Board == null)
+            {
+                this.Board = GameObject.FindObjectOfType<Board>();
+
+                ResultsPanel ResultsPanel = GameObject.FindObjectOfType<ResultsPanel>(true);
+                if (ResultsPanel != null)
+                {
+                    this.ResultsPanel = ResultsPanel;
+                    if (this.Board != null)
+                    {
+                        this.Board.ResultsPanel = ResultsPanel;
+                        this.Board.ResultsPanel.gameObject.SetActive(false);
+                    }
+                }
             }
         }
 
