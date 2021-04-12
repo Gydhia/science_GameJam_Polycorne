@@ -83,6 +83,10 @@ namespace Assets.Scripts
         {
             if (IsRunning)
                 return;
+
+            if (this.ResultsPanel != null)
+                this.ResultsPanel.gameObject.SetActive(true);
+
             this.ResetScores();
             IsRunning = true;
             StartCoroutine(this.sendManyTrains(this.NumberOfTrains));
@@ -110,6 +114,7 @@ namespace Assets.Scripts
             for (int i = 0; i < HowMany; i++)
             {
                 this.SendTrain();
+                yield return new WaitForSecondsRealtime(0.05f);
                 yield return i / (float)HowMany;
             }
             yield break;
