@@ -2315,6 +2315,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 471963903}
+    - target: {fileID: 1381774827535617, guid: 2b907dbc0a192d54daf3eaa3515b4a33, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickRestartButton
+      objectReference: {fileID: 0}
     - target: {fileID: 1381775297153920, guid: 2b907dbc0a192d54daf3eaa3515b4a33, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
