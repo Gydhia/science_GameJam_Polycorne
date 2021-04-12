@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[3].y
       value: -40
       objectReference: {fileID: 0}
+    - target: {fileID: 1591507771207457236, guid: 01d36438fc331cb4c8e2f89ab0ed37df, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8dd0d763566184ce3bf2f2fb7a9aaa9f, type: 3}
     - target: {fileID: 4001950423833606519, guid: 01d36438fc331cb4c8e2f89ab0ed37df, type: 3}
       propertyPath: m_Sprite
       value: 

@@ -19,6 +19,8 @@ namespace Assets.Scripts.UI
 
         private void Start()
         {
+            Screen.SetResolution(1920, 1080, true);
+            
             if (SoundController.Instance != null) 
                 SoundController.Instance.PlayMusic(SoundController.MusicNames.MenuTheme);
 
