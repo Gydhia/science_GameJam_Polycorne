@@ -18,12 +18,14 @@ namespace Assets.Scripts
         public string CopyFromBox;
         public float OverlapWeight = 1;
 
-        [Range(0, 1)]
+        [Range(0, 100)]
         public float Padding = 0;
-        //public SpriteRenderer SpriteRenderer;
+        public SpriteRenderer SpriteRenderer;
 
         public Color ColorEmpty = Color.green;
         public Color ColorUsed = Color.blue;
+
+        public bool DropEnabled = true;
 
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -37,35 +39,40 @@ namespace Assets.Scripts
             {
                 this.Card.transform.position = this.transform.position;
             }
+            this.DropEnabled = true;
         }
 
 #if UNITY_EDITOR
         public void OnValidate()
         {
 
-            if (!Application.isPlaying)
+            /*if (!Application.isPlaying)
             {
                 //float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
-                float canvascardwidth = 1 - Padding;
-                float canvascardhlength = 1 - Padding;
+                float canvascardwidth = 100 - Padding;
+                float canvascardhlength = 100 - Padding;
 
-                this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(canvascardhlength, canvascardwidth);
-                //this.SpriteRenderer.size = new Vector2(canvascardhlength, canvascardwidth);
-            }
+                //this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(canvascardhlength, canvascardwidth);
+                this.SpriteRenderer.size = new Vector2(canvascardhlength, canvascardwidth);
+            }*/
         }
 #endif
 
         public void OnDrop(PointerEventData eventData)
         {
-                if (string.IsNullOrEmpty(this.CopyFromBox) && this.Box != Board.Instance.StartStation && !Board.Instance.IsEnd(this.Box))
+            if (this.DropEnabled == false)
+                return;
+
+            Debug.Log("test3");
+            if (string.IsNullOrEmpty(this.CopyFromBox) && this.Box != Board.Instance.StartStation && !Board.Instance.IsEnd(this.Box))
             {
                 Debug.Log(eventData);
                 if (eventData.pointerDrag != null)
                 {
                     if(SoundController.Instance != null)
                         SoundController.Instance.PlaySound(SoundController.SoundNames.MergeCard);
-                    eventData.pointerDrag.GetComponent<RectTransform>().position = this.GetComponent<RectTransform>().position;
-                    Card card = eventData.pointerDrag.GetComponent<Card>();
+                    eventData.pointerDrag.GetComponent<DragnDrop>().rootRectTransform.position = this.GetComponent<RectTransform>().position;
+                    Card card = eventData.pointerDrag.GetComponent<DragnDrop>().rootRectTransform.gameObject.GetComponent<Card>();
                     this.Card = card;
                     this.Card.CardSpace = this;
                     // replicate the card where it is supposed to be

@@ -15,6 +15,7 @@ namespace Assets.Scripts
         public GameObject Trainstation;
         public GameObject Tracks;
         public GameObject card_deck;
+        public GameObject Trains;
 
         public int HandsCount;
         public BoxSO[] Boxes;
@@ -87,6 +88,16 @@ namespace Assets.Scripts
             if (this.ResultsPanel != null)
                 this.ResultsPanel.gameObject.SetActive(true);
 
+            //disable dragndropon all cards !
+            foreach (DragnDrop drag in GameObject.FindObjectsOfType<DragnDrop>())
+            {
+                drag.DragEnabled = false;
+            }
+            foreach (CardSpace card in GameObject.FindObjectsOfType<CardSpace>())
+            {
+                card.DropEnabled = false;
+            }
+
             this.ResetScores();
             IsRunning = true;
             StartCoroutine(this.sendManyTrains(this.NumberOfTrains));
@@ -106,6 +117,16 @@ namespace Assets.Scripts
             Debug.Log("FINI");
             IsRunning = false;
 
+            //enable dragndropon all cards !
+            foreach (DragnDrop drag in GameObject.FindObjectsOfType<DragnDrop>())
+            {
+                drag.DragEnabled = true;
+            }
+            foreach (CardSpace card in GameObject.FindObjectsOfType<CardSpace>())
+            {
+                card.DropEnabled = true;
+            }
+
             GameUI.Instance.FireEndPopup();
         }
 
@@ -114,7 +135,7 @@ namespace Assets.Scripts
             for (int i = 0; i < HowMany; i++)
             {
                 this.SendTrain();
-                yield return new WaitForSecondsRealtime(0.05f);
+                yield return new WaitForSecondsRealtime(0.06f);
                 yield return i / (float)HowMany;
             }
             yield break;
@@ -125,7 +146,7 @@ namespace Assets.Scripts
             var hand = this.StartStation.DecideOutput();
             if (hand != null || hand.ConnectedTrack == null)
             {
-                var train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"));
+                Train train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"), this.Trains.transform);
                 train.PlaceOnHand(hand);
                 this.trains.Add(train);
             }

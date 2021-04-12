@@ -17,7 +17,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Board
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: Tracks
     uniqueID: 768577763
+    locked: 0
+  - name: Cards
+    uniqueID: 2650144317
     locked: 0
   - name: Whisp
     uniqueID: 1513660829
