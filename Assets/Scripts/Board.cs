@@ -67,10 +67,6 @@ namespace Assets.Scripts
             }
                 
             this.ResetScores();
-
-            if (this.ResultsPanel != null)
-                this.ResultsPanel.gameObject.SetActive(false);
-
         }
 
         public void ResetScores()
