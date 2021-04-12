@@ -60,6 +60,8 @@ namespace Assets.Scripts
 
                     UniversalAdditionalCameraData cameraData = CameraMain.GetUniversalAdditionalCameraData();
                     cameraData.cameraStack.Add(CameraBoard);
+                    if (CameraBoard.GetComponent<AudioListener>() != null)
+                        CameraBoard.GetComponent<AudioListener>().enabled = false;
                 }
             }
             if (SoundController.Instance != null && this.EndStations.Count() > 0) {
@@ -67,10 +69,6 @@ namespace Assets.Scripts
             }
                 
             this.ResetScores();
-
-            if (this.ResultsPanel != null)
-                this.ResultsPanel.gameObject.SetActive(false);
-
         }
 
         public void ResetScores()

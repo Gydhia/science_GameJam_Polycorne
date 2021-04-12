@@ -29,6 +29,8 @@ namespace Assets.Scripts.UI
                 if (board.ResultsPanel != null)
                     board.ResultsPanel.gameObject.SetActive(false);
             }
+
+            SceneManager.UnloadSceneAsync("BackgroundScene");
         }
 
         public void OnClickPlayButton()

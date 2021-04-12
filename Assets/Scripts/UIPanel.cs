@@ -17,13 +17,12 @@ namespace Assets.Scripts
         {
             this.Board = GameObject.FindObjectOfType<Board>();
 
-            GameObject[] test3 = GameObject.FindGameObjectsWithTag("ResultsPanel");
-            if (test3.Length > 0)
+            ResultsPanel ResultsPanel = GameObject.FindObjectOfType<ResultsPanel>(true);
+            if (ResultsPanel != null)
             {
-                ResultsPanel ResultsPanel = test3[0].GetComponent<ResultsPanel>();
-
                 this.ResultsPanel = ResultsPanel;
                 this.Board.ResultsPanel = ResultsPanel;
+                this.Board.ResultsPanel.gameObject.SetActive(false);
             }
         }
 
