@@ -21,6 +21,14 @@ namespace Assets.Scripts.UI
         {
             if (SoundController.Instance != null) 
                 SoundController.Instance.PlayMusic(SoundController.MusicNames.MenuTheme);
+
+            Board board = GameObject.FindObjectOfType<Board>();
+            if (board != null)
+            {
+                
+                if (board.ResultsPanel != null)
+                    board.ResultsPanel.gameObject.SetActive(false);
+            }
         }
 
         public void OnClickPlayButton()
