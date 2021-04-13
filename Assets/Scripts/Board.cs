@@ -160,11 +160,20 @@ namespace Assets.Scripts
 
         public bool IsEnd(TrainHandler box)
         {
+            if (this.EndStations == null)
+            {
+                Debug.LogWarning("There is no end station !!!!");
+                return false;
+            }
+            
             return this.EndStations.Contains(box);
         }
 
         public bool IsFail(TrainHandler box)
         {
+            if (this.FailStations == null)
+                return false;
+
             return this.FailStations.Contains(box);
         }
 
