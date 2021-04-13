@@ -23,9 +23,13 @@ namespace ScienceGameJam.UnityEditor
             {
                 this._target.RegenerateHands();
             }
+            if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Connect tracks"))
+            {
+                this._target.GenerateConnectedTracks();
+            }
             if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Snap tracks"))
             {
-                this._target.SnapTracks();
+                this._target.SnapTracks(false);
             }
 
             base.OnInspectorGUI();

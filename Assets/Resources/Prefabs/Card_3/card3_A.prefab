@@ -1156,19 +1156,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[0].x
-      value: -1
+      value: -51
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: -87
+      value: -37
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: -85.5
+      value: -35.5
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: 101
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[2].x
@@ -1197,6 +1197,10 @@ PrefabInstance:
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_SortingLayer
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: m_UseWorldSpace
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name
@@ -1321,11 +1325,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[0].x
-      value: -1
+      value: -51
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: -12.5
+      value: 37.5
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[1].y
@@ -1357,11 +1361,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[3].x
-      value: -1
+      value: -51
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[3].y
-      value: -50
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: m_UseWorldSpace
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name
@@ -1486,11 +1494,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[0].x
-      value: 101
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: -12.5
+      value: 37.5
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[1].y
@@ -1510,11 +1518,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[3].x
-      value: 101
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Positions.Array.data[3].y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_SortingOrder
@@ -1527,6 +1535,10 @@ PrefabInstance:
     - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_SortingLayer
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: m_UseWorldSpace
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name

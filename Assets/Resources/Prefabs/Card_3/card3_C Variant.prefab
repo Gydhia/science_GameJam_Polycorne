@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7639887970890001292, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
       propertyPath: m_Name
-      value: 'card3_C Variant '
+      value: card3_C Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7639887970890001330, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -285,6 +285,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7639887970890001330, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639887970890001330, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7639887971784117444, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}

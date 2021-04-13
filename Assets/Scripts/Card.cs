@@ -106,14 +106,26 @@ namespace Assets.Scripts
 
         }
 
-        public void SnapTracks()
+        public void SnapTracks(bool force = false)
         {
             foreach(Hand hand in this.HandsLeft){
-                hand.SnapTrack();
+                hand.SnapTrack(force);
             }
             foreach (Hand hand in this.HandsRight)
             {
-                hand.SnapTrack();
+                hand.SnapTrack(force);
+            }
+        }
+
+        public void GenerateConnectedTracks(bool force = false)
+        {
+            foreach (Hand hand in this.HandsLeft)
+            {
+                hand.GenerateConnectedTrack();
+            }
+            foreach (Hand hand in this.HandsRight)
+            {
+                hand.GenerateConnectedTrack();
             }
         }
 
