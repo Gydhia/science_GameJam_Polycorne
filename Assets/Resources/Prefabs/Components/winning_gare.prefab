@@ -114,7 +114,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -711665897
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7a12471d4e5fa4111bf54a0537caba6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -137,6 +137,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4334243301588321223}
   - component: {fileID: 3569458042606611052}
+  - component: {fileID: 3947118778410501634}
+  - component: {fileID: 8019481457687726282}
   m_Layer: 0
   m_Name: winning_gare
   m_TagString: Untagged
@@ -182,6 +184,39 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!95 &3947118778410501634
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380662546170995395}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2f9df39bd8b6b774d8ec4c7f963d5189, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8019481457687726282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380662546170995395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc11d02b8d1d2f49831b1cd7a825174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Box: {fileID: 0}
+  Animator: {fileID: 3947118778410501634}
 --- !u!1 &7792877974359914700
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +229,7 @@ GameObject:
   - component: {fileID: 9196069515567896627}
   - component: {fileID: 1844876190285549927}
   - component: {fileID: 5502451872345024183}
+  - component: {fileID: 1787759195507620426}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -296,7 +332,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -711665897
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 338bdf0a22fe4471796a1eba956f3ba9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -309,6 +345,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!111 &1787759195507620426
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792877974359914700}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 577382a11f48ba44caf5bc7ba744d439, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 577382a11f48ba44caf5bc7ba744d439, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &7861526952513019352
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +475,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -711665897
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b61250dd76ea94a1fbcc4cb9331d5295, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

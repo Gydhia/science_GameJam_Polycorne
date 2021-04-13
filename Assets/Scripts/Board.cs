@@ -177,12 +177,18 @@ namespace Assets.Scripts
             return this.FailStations.Contains(box);
         }
 
-        internal void RegisterTrainArrival(Train train, Hand hand)
+        internal void RegisterTrainArrival(Train train, Hand hand, TrainHandler trainHandler)
         {
             TrainArrivals[hand.Index]++;
             this.Score++;
             this.ResultsPanel.Refresh(TrainArrivals, NumberOfTrains, this.Score);
 
+            if(trainHandler is Box)
+            {
+                Box box = trainHandler as Box;
+                if (box.WinningGare != null)
+                    box.WinningGare.Animator.SetTrigger("Hit");
+            }
         }
 
     }

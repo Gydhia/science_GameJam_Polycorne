@@ -12,6 +12,7 @@ namespace Assets.Scripts
     {
         public BoxSO BoxSO;
         public BoxSO PreviousBoxSO;
+        public WinningGare WinningGare;
 
         public UnityEngine.UI.Text Label;
         public string CardNameForPlayer = "";
