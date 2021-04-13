@@ -57,6 +57,9 @@ TagManager:
   - name: Cards
     uniqueID: 2650144317
     locked: 0
+  - name: StartnStopBackground
+    uniqueID: 502680731
+    locked: 0
   - name: Whisp
     uniqueID: 1513660829
     locked: 0

@@ -27,6 +27,7 @@ namespace Assets.Scripts
 
         public TrainHandler StartStation;
         public TrainHandler[] EndStations;
+        public TrainHandler[] FailStations;
         public int NumberOfTrains = 100;
         public int Score = 0;
         public List<Train> trains;
@@ -132,6 +133,11 @@ namespace Assets.Scripts
 
         private IEnumerator sendManyTrains(int HowMany)
         {
+            /*while (true)
+            {
+                this.SendTrain();
+                yield return new WaitForSecondsRealtime(0.06f);
+            }*/
             for (int i = 0; i < HowMany; i++)
             {
                 this.SendTrain();
@@ -155,6 +161,11 @@ namespace Assets.Scripts
         public bool IsEnd(TrainHandler box)
         {
             return this.EndStations.Contains(box);
+        }
+
+        public bool IsFail(TrainHandler box)
+        {
+            return this.FailStations.Contains(box);
         }
 
         internal void RegisterTrainArrival(Train train, Hand hand)

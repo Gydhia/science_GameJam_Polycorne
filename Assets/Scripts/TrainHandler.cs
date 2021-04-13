@@ -60,6 +60,12 @@ namespace Assets.Scripts
 
         protected virtual void TrainArrived(Train Train, Hand Hand)
         {
+            if (Board.Instance.IsFail(this))
+            {
+                Train.Animator.SetBool("die", true);
+                Train.speed = 500;
+                Train.speedDecreaseOverTimeValue = 10;
+            }
             if (Board.Instance.IsEnd(this))
             {
                 Board.Instance.RegisterTrainArrival(Train, Hand);

@@ -12,9 +12,12 @@ public class Train : MonoBehaviour
     public int lastWaypoint;
     public float percentToNextWaypoint;
     public float speed;
+    public float speedDecreaseOverTimeValue = 0;
 
     public event NavigationNotification OnArrivedAtEndOfTracks; // event
     public event NavigationNotification OnArrivedAtBeginningOfTracks; // event
+
+    public Animator Animator;
 
     public void Start()
     {
@@ -35,6 +38,11 @@ public class Train : MonoBehaviour
                 }
                 else
                     this.MoveAlongPath(Time.deltaTime * this.speed);
+
+                if(this.speedDecreaseOverTimeValue > 0 && this.speed > 100)
+                {
+                    this.speed -= this.speedDecreaseOverTimeValue;
+                }
             }
             else if (this.speed < 0)
             {
