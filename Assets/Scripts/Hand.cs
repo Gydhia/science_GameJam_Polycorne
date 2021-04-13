@@ -9,25 +9,54 @@ namespace Assets.Scripts
 {
     public class Hand : MonoBehaviour
     {
+        private Card _card;
         public Track ConnectedTrack;
+        [SerializeField]
+        private Vector3 _worldPosition;
         public bool ConnectEndOfTrack = false;
         public int Index;
         public bool LeftHand = false;
 
+        public void Awake()
+        {
+            this._card = this.transform.parent.transform.parent.GetComponent<Card>();
+        }
+
         public void Update()
+        {
+            this._worldPosition = this.transform.position;
+            this.SnapTrack();
+            this.GenerateConnectedTrack();
+        }
+
+        public void GenerateConnectedTrack()
         {
             if (this.ConnectedTrack != null)
             {
                 if (ConnectEndOfTrack)
                 {
-                    if (this.ConnectedTrack.line.useWorldSpace)
-                        this.ConnectedTrack.line.SetPosition(this.ConnectedTrack.line.positionCount - 1, this.transform.position);
                     this.ConnectedTrack.HandAtEnd = this;
                 }
                 else
                 {
-                    if (this.ConnectedTrack.line.useWorldSpace)
-                        this.ConnectedTrack.line.SetPosition(0, this.transform.position);
+                    this.ConnectedTrack.HandAtBeginning = this;
+                }
+            }
+        }
+
+        public void SnapTrack(bool force = false)
+        {
+            if (this.ConnectedTrack != null)
+            {
+                if (ConnectEndOfTrack)
+                {
+                    if (this._card == null || force)
+                        this.ConnectedTrack.line.SetPosition(this.ConnectedTrack.line.positionCount - 1, new Vector3(this.transform.position.x, this.transform.position.y, this.ConnectedTrack.line.GetPosition(this.ConnectedTrack.line.positionCount - 1).z));
+                }
+                else
+                {
+                    if (this._card == null || force)
+                        this.ConnectedTrack.line.SetPosition(0, new Vector3(this.transform.position.x, this.transform.position.y, this.ConnectedTrack.line.GetPosition(0).z));
                     this.ConnectedTrack.HandAtBeginning = this;
                 }
             }

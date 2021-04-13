@@ -11,18 +11,27 @@ namespace Assets.Scripts
     public class DragnDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
         private Canvas canvas;
-        private RectTransform rectTransform;
-        private CanvasGroup canvasGroup;
+        public RectTransform rootRectTransform;
+        //private CanvasGroup canvasGroup;
         private RectTransform canvasRectTransform;
         private Vector3 originDrag;
+        private Collider2D _collider;
+        [SerializeField]
+        private Card _card;
+        //public EventTrigger EventTrigger;
+
+        public bool DragEnabled = true;
 
         private void Start()
         {
-            rectTransform = GetComponent<RectTransform>();
-            canvasGroup = GetComponent<CanvasGroup>();
-            canvas = GameObject.FindObjectOfType<Board>().UICanvas;
-            canvasRectTransform = this.gameObject.GetComponent<RectTransform>();
-
+            //rootRectTransform = this.GetComponentInParent<RectTransform>();
+            //canvasGroup = this.GetComponent<CanvasGroup>();
+            this.canvas = GameObject.FindObjectOfType<Board>().UICanvas;
+            this._collider = this.gameObject.GetComponent<Collider2D>();
+            this._card = this.gameObject.transform.parent.GetComponent<Card>();
+            //EventTrigger = GameObject.FindObjectOfType<EventTrigger>();
+            if (this.canvas != null)
+                this.canvasRectTransform = canvas.GetComponent<RectTransform>();
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -34,57 +43,69 @@ namespace Assets.Scripts
         {
             eventData.pointerDrag = null;
             // canvasGroup.alpha = 1f;
-            canvasGroup.blocksRaycasts = true;
-            this.transform.position = originDrag;
+            //canvasGroup.blocksRaycasts = true;
+            this.rootRectTransform.position = originDrag;
+
+            this._collider.enabled = true;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (this.DragEnabled == false)
+                return;
+
+            //when drag is ongoing, disable the collider, if not the drop is not detected
+            this._collider.enabled = false;
+
             // canvasGroup.alpha = 0.6f;
-            canvasGroup.blocksRaycasts = false;
+            //canvasGroup.blocksRaycasts = false;
             originDrag = this.transform.position;
-            Card card = this.gameObject.GetComponent<Card>();
-            if (card != null)
+            
+            if (this._card != null)
             {
-                if (card.CardSpace != null)
+                if (this._card.CardSpace != null)
                 {
                     if(SoundController.Instance != null)
                         SoundController.Instance.PlaySound(SoundController.SoundNames.DragCard);
                     // this cardspace is readonly
-                    if (!string.IsNullOrEmpty(card.CardSpace.CopyFromBox))
+                    if (!string.IsNullOrEmpty(this._card.CardSpace.CopyFromBox))
                     {
                         OnCancelDrag(eventData);
                         return;
                     }
-                    if (!string.IsNullOrEmpty(card.CardSpace.Box.CardNameForPlayer))
+                    if (!string.IsNullOrEmpty(this._card.CardSpace.Box.CardNameForPlayer))
                     {
-                        var other_cardspace = FindObjectsOfType<CardSpace>().Where(cs => cs.CopyFromBox == card.CardSpace.Box.CardNameForPlayer);
+                        var other_cardspace = FindObjectsOfType<CardSpace>().Where(cs => cs.CopyFromBox == this._card.CardSpace.Box.CardNameForPlayer);
                         foreach (var carspace_to_copy in other_cardspace)
                         {
                             GameObject.Destroy(carspace_to_copy.Card.gameObject);
                             carspace_to_copy.Card = null;
                         }
                     }
-                    card.CardSpace.Card = null;
-                    card.CardSpace = null;
+                    this._card.CardSpace.Card = null;
+                    this._card.CardSpace = null;
                 }
             }
         }
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (this.DragEnabled == false)
+                return;
             //Vector2 delta = ScreenToCanvas(eventData.position) - ScreenToCanvas(eventData.position - eventData.delta);
             //rectTransform.anchoredPosition += delta * canvas.scaleFactor;
-            this.rectTransform.anchoredPosition += eventData.delta / this.canvas.scaleFactor;
+            this.rootRectTransform.anchoredPosition += eventData.delta / this.canvas.scaleFactor;
             //this.transform.position = Input.mousePosition;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            if (this.DragEnabled == false)
+                return;
             eventData.pointerDrag = null;
             // canvasGroup.alpha = 1f;
-            canvasGroup.blocksRaycasts = true;
-            Debug.Log("");
+            //canvasGroup.blocksRaycasts = true;
+            this._collider.enabled = true;
         }
 
 
@@ -96,13 +117,13 @@ namespace Assets.Scripts
         private Vector3 LimitRectBoundsToCanvas()
         {
             Vector3 localPosition = Vector3.zero;
-            Vector2 rectPosition = this.rectTransform.anchoredPosition;
+            Vector2 rectPosition = this.rootRectTransform.anchoredPosition;
 
             if (this.canvas.renderMode == RenderMode.ScreenSpaceOverlay || (this.canvas.renderMode == RenderMode.ScreenSpaceCamera && this.canvas.worldCamera == null))
             {
                 // keep panel inside layout
-                localPosition.x = Mathf.Clamp(rectPosition.x, Vector2.zero.x, this.canvasRectTransform.rect.width - this.rectTransform.rect.width);
-                localPosition.y = Mathf.Clamp(rectPosition.y, -this.canvasRectTransform.rect.height + this.rectTransform.rect.height, Vector2.zero.y);
+                localPosition.x = Mathf.Clamp(rectPosition.x, Vector2.zero.x, this.canvasRectTransform.rect.width - this.rootRectTransform.rect.width);
+                localPosition.y = Mathf.Clamp(rectPosition.y, -this.canvasRectTransform.rect.height + this.rootRectTransform.rect.height, Vector2.zero.y);
             }
 
             return localPosition;

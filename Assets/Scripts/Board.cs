@@ -12,6 +12,11 @@ namespace Assets.Scripts
 {
     public class Board : MonoBehaviour
     {
+        public GameObject Trainstation;
+        public GameObject Tracks;
+        public GameObject card_deck;
+        public GameObject Trains;
+
         public int HandsCount;
         public BoxSO[] Boxes;
         public Canvas UICanvas;
@@ -45,7 +50,7 @@ namespace Assets.Scripts
         {
             trains = new List<Train>();
             GameObject[] test = GameObject.FindGameObjectsWithTag("CameraBoard");
-            if(test.Length > 0)
+            if(test.Length > 0) 
             {
                 Camera CameraBoard = (Camera)test[0].GetComponent<Camera>();
                 
@@ -56,6 +61,8 @@ namespace Assets.Scripts
 
                     UniversalAdditionalCameraData cameraData = CameraMain.GetUniversalAdditionalCameraData();
                     cameraData.cameraStack.Add(CameraBoard);
+                    if (CameraBoard.GetComponent<AudioListener>() != null)
+                        CameraBoard.GetComponent<AudioListener>().enabled = false;
                 }
             }
             if (SoundController.Instance != null && this.EndStations.Count() > 0) {
@@ -77,6 +84,20 @@ namespace Assets.Scripts
         {
             if (IsRunning)
                 return;
+
+            if (this.ResultsPanel != null)
+                this.ResultsPanel.gameObject.SetActive(true);
+
+            //disable dragndropon all cards !
+            foreach (DragnDrop drag in GameObject.FindObjectsOfType<DragnDrop>())
+            {
+                drag.DragEnabled = false;
+            }
+            foreach (CardSpace card in GameObject.FindObjectsOfType<CardSpace>())
+            {
+                card.DropEnabled = false;
+            }
+
             this.ResetScores();
             IsRunning = true;
             StartCoroutine(this.sendManyTrains(this.NumberOfTrains));
@@ -96,6 +117,16 @@ namespace Assets.Scripts
             Debug.Log("FINI");
             IsRunning = false;
 
+            //enable dragndropon all cards !
+            foreach (DragnDrop drag in GameObject.FindObjectsOfType<DragnDrop>())
+            {
+                drag.DragEnabled = true;
+            }
+            foreach (CardSpace card in GameObject.FindObjectsOfType<CardSpace>())
+            {
+                card.DropEnabled = true;
+            }
+
             GameUI.Instance.FireEndPopup();
         }
 
@@ -104,6 +135,7 @@ namespace Assets.Scripts
             for (int i = 0; i < HowMany; i++)
             {
                 this.SendTrain();
+                yield return new WaitForSecondsRealtime(0.06f);
                 yield return i / (float)HowMany;
             }
             yield break;
@@ -114,7 +146,7 @@ namespace Assets.Scripts
             var hand = this.StartStation.DecideOutput();
             if (hand != null || hand.ConnectedTrack == null)
             {
-                var train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"));
+                Train train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"), this.Trains.transform);
                 train.PlaceOnHand(hand);
                 this.trains.Add(train);
             }

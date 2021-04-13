@@ -13,23 +13,39 @@ namespace Assets.Scripts
         public Board Board;
         public ResultsPanel ResultsPanel;
 
+        public void Awake()
+        {
+            this.Board = GameObject.FindObjectOfType<Board>();
+
+            ResultsPanel ResultsPanel = GameObject.FindObjectOfType<ResultsPanel>(true);
+            if (ResultsPanel != null)
+            {
+                this.ResultsPanel = ResultsPanel;
+                if (this.Board != null)
+                {
+                    this.Board.ResultsPanel = ResultsPanel;
+                    this.Board.ResultsPanel.gameObject.SetActive(false);
+                }
+            }
+        }
+
         public void Start()
         {
-            GameObject[] test2 = GameObject.FindGameObjectsWithTag("Board");
-            if (test2.Length > 0)
+            //this is a security when we start directly the level from the editor (scene are not loaded in the same order sometinme)
+            if(this.Board == null)
             {
-                Board board = test2[0].GetComponent<Board>();
+                this.Board = GameObject.FindObjectOfType<Board>();
 
-                this.Board = board;
-            }
-
-            GameObject[] test3 = GameObject.FindGameObjectsWithTag("ResultsPanel");
-            if (test3.Length > 0)
-            {
-                ResultsPanel ResultsPanel = test3[0].GetComponent<ResultsPanel>();
-
-                this.ResultsPanel = ResultsPanel;
-                this.Board.ResultsPanel = ResultsPanel;
+                ResultsPanel ResultsPanel = GameObject.FindObjectOfType<ResultsPanel>(true);
+                if (ResultsPanel != null)
+                {
+                    this.ResultsPanel = ResultsPanel;
+                    if (this.Board != null)
+                    {
+                        this.Board.ResultsPanel = ResultsPanel;
+                        this.Board.ResultsPanel.gameObject.SetActive(false);
+                    }
+                }
             }
         }
 

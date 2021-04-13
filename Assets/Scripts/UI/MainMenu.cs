@@ -19,13 +19,25 @@ namespace Assets.Scripts.UI
 
         private void Start()
         {
+            Screen.SetResolution(1920, 1080, true);
+            
             if (SoundController.Instance != null) 
                 SoundController.Instance.PlayMusic(SoundController.MusicNames.MenuTheme);
+
+            Board board = GameObject.FindObjectOfType<Board>();
+            if (board != null)
+            {
+                
+                if (board.ResultsPanel != null)
+                    board.ResultsPanel.gameObject.SetActive(false);
+            }
+
+            SceneManager.UnloadSceneAsync("BackgroundScene");
         }
 
         public void OnClickPlayButton()
         {
-            SceneManager.LoadScene("BoardLevel_1");
+            SceneManager.LoadScene(GameObject.FindObjectOfType<Board>().NextLevel);
             SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
         }
 
