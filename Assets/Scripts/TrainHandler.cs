@@ -63,12 +63,12 @@ namespace Assets.Scripts
             if (Board.Instance.IsFail(this))
             {
                 Train.Animator.SetBool("die", true);
-                Train.speed = 500;
-                Train.speedDecreaseOverTimeValue = 10;
+                //Train.speed = 600;
+                Train.speedDecreaseOverTimeValue = 5;
             }
             if (Board.Instance.IsEnd(this))
             {
-                Board.Instance.RegisterTrainArrival(Train, Hand);
+                Board.Instance.RegisterTrainArrival(Train, Hand, this);
                 if (SoundController.Instance != null) 
                     SoundController.Instance.PlaySound(SoundController.SoundNames.WhispArrival);
             }
