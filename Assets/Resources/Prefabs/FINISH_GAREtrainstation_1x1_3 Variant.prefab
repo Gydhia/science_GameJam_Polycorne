@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 513929837774374872}
     m_Modifications:
+    - target: {fileID: 8636734917756652182, guid: 5f64a48900315ec4f8a027852941c015, type: 3}
+      propertyPath: CardSpace
+      value: 
+      objectReference: {fileID: 5490094972934906406}
     - target: {fileID: 8636734917756652183, guid: 5f64a48900315ec4f8a027852941c015, type: 3}
       propertyPath: m_Name
       value: card3_blackhole
@@ -139,6 +143,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2565853871651955746, guid: e350016ce7376ae40875b267513c6728, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2629364655664352534, guid: e350016ce7376ae40875b267513c6728, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2629364655664352534, guid: e350016ce7376ae40875b267513c6728, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2629364655664352534, guid: e350016ce7376ae40875b267513c6728, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2629364655912016085, guid: e350016ce7376ae40875b267513c6728, type: 3}
       propertyPath: m_Name
       value: FINISH_GAREtrainstation_1x1_3 Variant
@@ -263,6 +283,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3531438851193208760, guid: e350016ce7376ae40875b267513c6728, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 4281423396437267641, guid: e350016ce7376ae40875b267513c6728, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -282,6 +306,10 @@ PrefabInstance:
     - target: {fileID: 5732429094060636706, guid: e350016ce7376ae40875b267513c6728, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043274011682513057, guid: e350016ce7376ae40875b267513c6728, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 6256143835250772925, guid: e350016ce7376ae40875b267513c6728, type: 3}
       propertyPath: m_Enabled
@@ -451,6 +479,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e26fe7831c7fe94f9041be88b5ceabc, type: 3}
+--- !u!114 &5490094972934906406 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1212769817104253962, guid: 7e26fe7831c7fe94f9041be88b5ceabc, type: 3}
+  m_PrefabInstance: {fileID: 6693514474275595820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d7888007b04a234bab238d37b1056b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6875563856794282270
 PrefabInstance:
   m_ObjectHideFlags: 0

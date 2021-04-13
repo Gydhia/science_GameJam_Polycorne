@@ -63,6 +63,8 @@ namespace Assets.Scripts
             if (Board.Instance.IsFail(this))
             {
                 Train.Animator.SetBool("die", true);
+                Train.speed = 500;
+                Train.speedDecreaseOverTimeValue = 10;
             }
             if (Board.Instance.IsEnd(this))
             {

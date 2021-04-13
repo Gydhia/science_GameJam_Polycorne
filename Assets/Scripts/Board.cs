@@ -133,6 +133,11 @@ namespace Assets.Scripts
 
         private IEnumerator sendManyTrains(int HowMany)
         {
+            /*while (true)
+            {
+                this.SendTrain();
+                yield return new WaitForSecondsRealtime(0.06f);
+            }*/
             for (int i = 0; i < HowMany; i++)
             {
                 this.SendTrain();
