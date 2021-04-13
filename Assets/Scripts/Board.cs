@@ -27,6 +27,7 @@ namespace Assets.Scripts
 
         public TrainHandler StartStation;
         public TrainHandler[] EndStations;
+        public TrainHandler[] FailStations;
         public int NumberOfTrains = 100;
         public int Score = 0;
         public List<Train> trains;
@@ -155,6 +156,11 @@ namespace Assets.Scripts
         public bool IsEnd(TrainHandler box)
         {
             return this.EndStations.Contains(box);
+        }
+
+        public bool IsFail(TrainHandler box)
+        {
+            return this.FailStations.Contains(box);
         }
 
         internal void RegisterTrainArrival(Train train, Hand hand)

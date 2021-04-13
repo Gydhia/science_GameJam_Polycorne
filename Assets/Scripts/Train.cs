@@ -16,6 +16,8 @@ public class Train : MonoBehaviour
     public event NavigationNotification OnArrivedAtEndOfTracks; // event
     public event NavigationNotification OnArrivedAtBeginningOfTracks; // event
 
+    public Animator Animator;
+
     public void Start()
     {
 
