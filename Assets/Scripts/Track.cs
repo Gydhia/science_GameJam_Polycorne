@@ -13,8 +13,8 @@ public class Track : MonoBehaviour
     public int vertexCount = 10;
     public float radiusCut = 20f;
 
-    public Hand HandAtBeginning { get; set; }
-    public Hand HandAtEnd { get; set; }
+    public Hand HandAtBeginning;
+    public Hand HandAtEnd;
 
     public event NavigationNotification OnTrainArrivedAtEnd; // event
     public event NavigationNotification OnTrainArrivedAtStart; // event

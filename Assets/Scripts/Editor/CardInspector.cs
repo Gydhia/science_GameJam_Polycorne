@@ -5,15 +5,15 @@ using UnityEngine;
 namespace ScienceGameJam.UnityEditor
 {
    
-    /*[CustomEditor(typeof(Card))]
+    [CustomEditor(typeof(Card))]
     public class CardInspector : Editor
     {
-        Card target;
+        Card _target;
 
         public void OnEnable()
         {
             if(base.target != null)
-                this.target = (Card)base.target;
+                this._target = (Card)base.target;
         }
         
 
@@ -21,11 +21,19 @@ namespace ScienceGameJam.UnityEditor
         {
             if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Regenerate Hands"))
             {
-                this.target.RegenerateHands();
+                this._target.RegenerateHands();
+            }
+            if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Connect tracks"))
+            {
+                this._target.GenerateConnectedTracks();
+            }
+            if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Snap tracks"))
+            {
+                this._target.SnapTracks(false);
             }
 
             base.OnInspectorGUI();
         }
-    }*/
+    }
 
 }

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 568259633013175383, guid: 47a946d578b9d4104a918937ea2b2617, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: -35
+      value: -35.5
       objectReference: {fileID: 0}
     - target: {fileID: 568259633013175383, guid: 47a946d578b9d4104a918937ea2b2617, type: 3}
       propertyPath: m_Positions.Array.data[1].y
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6169464834420157226, guid: 47a946d578b9d4104a918937ea2b2617, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: -35
+      value: -37
       objectReference: {fileID: 0}
     - target: {fileID: 6169464834420157226, guid: 47a946d578b9d4104a918937ea2b2617, type: 3}
       propertyPath: m_Positions.Array.data[1].y
@@ -61,11 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6784026085460508985, guid: 47a946d578b9d4104a918937ea2b2617, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: 35
+      value: 37.5
       objectReference: {fileID: 0}
     - target: {fileID: 6784026085460508985, guid: 47a946d578b9d4104a918937ea2b2617, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: 35
+      value: 37.5
       objectReference: {fileID: 0}
     - target: {fileID: 8057927058878752288, guid: 47a946d578b9d4104a918937ea2b2617, type: 3}
       propertyPath: ConnectedTrack

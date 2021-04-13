@@ -127,16 +127,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2838137903613583892, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1602202361
-      objectReference: {fileID: 0}
-    - target: {fileID: 2838137903613583892, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2838137903613583892, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: 35
+      value: 37.5
       objectReference: {fileID: 0}
     - target: {fileID: 2838137903613583892, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[2].x
@@ -144,35 +140,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2838137903613583892, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: 50
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 2838137903613583892, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: 35
+      value: 37.5
       objectReference: {fileID: 0}
     - target: {fileID: 3231600182656141319, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3231600182656141319, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1602202361
-      objectReference: {fileID: 0}
-    - target: {fileID: 3231600182656141319, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3231600182656141319, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: -35
+      value: -37
       objectReference: {fileID: 0}
     - target: {fileID: 3231600182656141319, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: 50
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 3231600182656141319, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: -35
+      value: -35.5
       objectReference: {fileID: 0}
     - target: {fileID: 4216671276442287862, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: ConnectedTrack
@@ -219,16 +211,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8439637771720899945, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1602202361
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439637771720899945, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8439637771720899945, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[0].x
-      value: -50
+      value: -51
       objectReference: {fileID: 0}
     - target: {fileID: 8439637771720899945, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[0].y
@@ -236,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8439637771720899945, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: 50
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 8439637771720899945, guid: 2e52964551cf447ccae4e92c7d6be0e5, type: 3}
       propertyPath: m_Positions.Array.data[1].y

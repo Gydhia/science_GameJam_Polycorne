@@ -27,15 +27,15 @@ RectTransform:
   m_GameObject: {fileID: 2072880846803509842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 4814584280448262920}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 102.96, y: 12.5}
-  m_SizeDelta: {x: 0.16, y: 0.16}
+  m_AnchorMin: {x: 1, y: 0.07}
+  m_AnchorMax: {x: 1, y: 0.07}
+  m_AnchoredPosition: {x: 1, y: 0}
+  m_SizeDelta: {x: 0.16000366, y: 0.15999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &8209079059845435444
 SpriteRenderer:
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectedTrack: {fileID: 5602537187557322021}
+  _worldPosition: {x: 51, y: -43, z: 0}
   ConnectEndOfTrack: 1
   Index: 3
   LeftHand: 0
@@ -131,15 +132,15 @@ RectTransform:
   m_GameObject: {fileID: 2100039009764477624}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 4814584280448262920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -3.11, y: 87.5}
-  m_SizeDelta: {x: 0.16, y: 0.16}
+  m_AnchorMin: {x: 0, y: 0.93}
+  m_AnchorMax: {x: 0, y: 0.93}
+  m_AnchoredPosition: {x: -1, y: 0}
+  m_SizeDelta: {x: 0.16, y: 0.16000056}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6999549605684973457
 SpriteRenderer:
@@ -205,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectedTrack: {fileID: 5078883623436683062}
+  _worldPosition: {x: -51, y: 43, z: 0}
   ConnectEndOfTrack: 0
   Index: 0
   LeftHand: 1
@@ -235,15 +237,15 @@ RectTransform:
   m_GameObject: {fileID: 3140139345355636348}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 4814584280448262920}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -3.11, y: 62.5}
-  m_SizeDelta: {x: 0.16, y: 0.16}
+  m_AnchorMin: {x: 0, y: 0.63}
+  m_AnchorMax: {x: 0, y: 0.63}
+  m_AnchoredPosition: {x: -1, y: 0}
+  m_SizeDelta: {x: 0.16, y: 0.15999508}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6701618273413742098
 SpriteRenderer:
@@ -309,6 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectedTrack: {fileID: 1443222310251075659}
+  _worldPosition: {x: -51, y: 13, z: 0}
   ConnectEndOfTrack: 0
   Index: 1
   LeftHand: 1
@@ -509,6 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootRectTransform: {fileID: 4814584280158140149}
+  _card: {fileID: 0}
   DragEnabled: 1
 --- !u!1 &4814584280158140107
 GameObject:
@@ -549,7 +553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: -50}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4814584280158140106
@@ -712,15 +716,15 @@ RectTransform:
   m_GameObject: {fileID: 5095941087369738880}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 4814584280448262920}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -3.11, y: 37.5}
-  m_SizeDelta: {x: 0.16, y: 0.16}
+  m_AnchorMin: {x: 0, y: 0.35}
+  m_AnchorMax: {x: 0, y: 0.35}
+  m_AnchoredPosition: {x: -1, y: 0}
+  m_SizeDelta: {x: 0.16, y: 0.15999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &8432606772352921268
 SpriteRenderer:
@@ -786,6 +790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectedTrack: {fileID: 1443222310251075659}
+  _worldPosition: {x: -51, y: -15, z: 0}
   ConnectEndOfTrack: 1
   Index: 2
   LeftHand: 1
@@ -816,15 +821,15 @@ RectTransform:
   m_GameObject: {fileID: 5911185174789555177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 4814584280448262920}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 102.96, y: 62.5}
-  m_SizeDelta: {x: 0.16, y: 0.16}
+  m_AnchorMin: {x: 1, y: 0.63}
+  m_AnchorMax: {x: 1, y: 0.63}
+  m_AnchoredPosition: {x: 1, y: 0}
+  m_SizeDelta: {x: 0.16000366, y: 0.15999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &3421062164400484260
 SpriteRenderer:
@@ -890,6 +895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectedTrack: {fileID: 7851183684289429660}
+  _worldPosition: {x: 51, y: 13, z: 0}
   ConnectEndOfTrack: 1
   Index: 1
   LeftHand: 0
@@ -1007,15 +1013,15 @@ RectTransform:
   m_GameObject: {fileID: 6211451084722071351}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 4814584280448262920}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 102.96, y: 37.5}
-  m_SizeDelta: {x: 0.16, y: 0.16}
+  m_AnchorMin: {x: 1, y: 0.35}
+  m_AnchorMax: {x: 1, y: 0.35}
+  m_AnchoredPosition: {x: 1, y: 0}
+  m_SizeDelta: {x: 0.16000366, y: 0.15999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &73147467795479412
 SpriteRenderer:
@@ -1081,6 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectedTrack: {fileID: 5078883623436683062}
+  _worldPosition: {x: 51, y: -15, z: 0}
   ConnectEndOfTrack: 1
   Index: 2
   LeftHand: 0
@@ -1111,15 +1118,15 @@ RectTransform:
   m_GameObject: {fileID: 7281523367219664298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 4814584280448262920}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 102.96, y: 87.5}
-  m_SizeDelta: {x: 0.16, y: 0.16}
+  m_AnchorMin: {x: 1, y: 0.93}
+  m_AnchorMax: {x: 1, y: 0.93}
+  m_AnchoredPosition: {x: 1, y: 0}
+  m_SizeDelta: {x: 0.16000366, y: 0.16000462}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2867199393759559486
 SpriteRenderer:
@@ -1185,6 +1192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectedTrack: {fileID: 7851183684289429660}
+  _worldPosition: {x: 51, y: 43, z: 0}
   ConnectEndOfTrack: 0
   Index: 0
   LeftHand: 0
@@ -1215,15 +1223,15 @@ RectTransform:
   m_GameObject: {fileID: 7510599239448482314}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 4814584280448262920}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -3.11, y: 12.5}
-  m_SizeDelta: {x: 0.16, y: 0.16}
+  m_AnchorMin: {x: 0, y: 0.07}
+  m_AnchorMax: {x: 0, y: 0.07}
+  m_AnchoredPosition: {x: -1, y: 0}
+  m_SizeDelta: {x: 0.16, y: 0.15999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2565041178867333159
 SpriteRenderer:
@@ -1289,6 +1297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectedTrack: {fileID: 5602537187557322021}
+  _worldPosition: {x: -51, y: -43, z: 0}
   ConnectEndOfTrack: 0
   Index: 3
   LeftHand: 1
