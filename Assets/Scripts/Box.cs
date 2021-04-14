@@ -12,6 +12,7 @@ namespace Assets.Scripts
     {
         public BoxSO BoxSO;
         public BoxSO PreviousBoxSO;
+
         public WinningGare WinningGare;
 
         public UnityEngine.UI.Text Label;
@@ -21,6 +22,10 @@ namespace Assets.Scripts
         {
             if (this.BoxSO == null)
                 throw new Exception("BoxSO is not defined for this Box");
+
+            Board.Instance.RegisterBox(this);
+
+            this.AreTracksAutoSnapped = true;
 
             if (this.CardSpaces == null)
                 RegenerateCardsspace();
@@ -34,7 +39,7 @@ namespace Assets.Scripts
             {
                 if (this.BoxSO != null && this.BoxSO != this.PreviousBoxSO)
                 {
-                    float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
+                    float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
                     float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
                     float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
 
@@ -56,7 +61,7 @@ namespace Assets.Scripts
             if (this.HandsContainer == null)
                 return;
 
-            float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
+            float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
             float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
             float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
 
@@ -71,7 +76,7 @@ namespace Assets.Scripts
             }
 #endif
 
-            int handcount = GameObject.FindObjectOfType<Board>().HandsCount;
+            int handcount = Board.Instance.HandsCount;
             int nbhands = handcount;
             int handsoffset = (this.BoxSO.CardSpaceHeight - 1) * handcount;
 
@@ -86,6 +91,7 @@ namespace Assets.Scripts
                     newHand.Index = j;
                     newHand.LeftHand = true;
                     newHand.name = "LEFT HAND #" + j;
+                    newHand.TrainHandler = this;
                     this.HandsLeft[j] = newHand;
                 }
             }
@@ -99,6 +105,7 @@ namespace Assets.Scripts
                     newHand.Index = j;
                     newHand.LeftHand = false;
                     newHand.name = "RIGHT HAND #" + j;
+                    newHand.TrainHandler = this;
                     this.HandsRight[j] = newHand;
                 }
             }
@@ -121,7 +128,7 @@ namespace Assets.Scripts
                 return;
             }
 
-            float pixerperunit = GameObject.FindObjectOfType<Board>().UICanvas.referencePixelsPerUnit;
+            float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
             float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
             float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
 

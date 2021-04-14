@@ -9,7 +9,25 @@ namespace Assets.Scripts
 {
     public class Card : TrainHandler
     {
+        /// <summary>
+        /// The cardspace the card is located currently. Null if the card is free
+        /// </summary>
         public CardSpace CardSpace;
+
+        /// <summary>
+        /// Define if card can be played by the player. If not, then the card should not be draggable;
+        /// </summary>
+        public bool IsPlayable = true;
+
+        public void Start()
+        {
+            this.AreTracksAutoSnapped = false;
+
+            Board.Instance.RegisterCard(this);
+
+            base.Start();
+        }
+
         private Connections[] Connections;
 
         //       A                B
@@ -69,36 +87,50 @@ namespace Assets.Scripts
             return B;
         }
 
-        protected override void TrainArrived(Train Train, Hand Hand)
+        protected override void TrainArrivedOrLeave(Train train, Hand hand)
         {
+            if (this.CurrentCrossingTrains.Contains(train))
+            {
+                //train leaves the trainholder
+                this.CurrentCrossingTrains.Remove(train);
+                Debug.Log("Train leaves: " + hand + " - " + this);
+
+            }
+            else
+            {
+                //train arrives in the trainholder
+                this.CurrentCrossingTrains.Add(train);
+                Debug.Log("Train arrive: " + hand + " - " + this);
+            }
+
             Hand exit = null;
             if (this.CardSpace != null)
             {
-                if (Hand.LeftHand)
+                if (hand.LeftHand)
                 {
                     if (this.CardSpace.positionInBox.x == 0)
-                        exit = this.CardSpace.Box.HandsLeft[Hand.Index];
+                        exit = this.CardSpace.Box.HandsLeft[hand.Index];
                     else
                     {
                         var leftCardSpace = this.CardSpace.Box.CardSpaces[this.CardSpace.positionInBox.x - 1, this.CardSpace.positionInBox.y];
                         if (leftCardSpace != null && leftCardSpace.Card != null)
-                            exit = leftCardSpace.Card.HandsRight[Hand.Index];
+                            exit = leftCardSpace.Card.HandsRight[hand.Index];
                     }
                 }
                 else
                 {
                     if (this.CardSpace.positionInBox.x == this.CardSpace.Box.CardSpaces.GetLength(0) - 1)
-                        exit = this.CardSpace.Box.HandsRight[Hand.Index];
+                        exit = this.CardSpace.Box.HandsRight[hand.Index];
                     else
                     {
                         var rightCardSpace = this.CardSpace.Box.CardSpaces[this.CardSpace.positionInBox.x + 1, this.CardSpace.positionInBox.y];
                         if (rightCardSpace != null && rightCardSpace.Card != null)
-                            exit = rightCardSpace.Card.HandsLeft[Hand.Index];
+                            exit = rightCardSpace.Card.HandsLeft[hand.Index];
                     }
                 }
             }
             if (exit != null)
-                Train.PlaceOnHand(exit);
+                train.PlaceOnHand(exit);
             else
             {
                 // WE4RE LEAVING FROM A CARD WITHOUT A BOX; eXIT;
@@ -165,6 +197,7 @@ namespace Assets.Scripts
                     newHand.Index = j;
                     newHand.LeftHand = true;
                     newHand.name = "LEFT HAND #" + j;
+                    newHand.TrainHandler = this;
                     this.HandsLeft[j] = newHand;
                 }
             }
@@ -178,6 +211,7 @@ namespace Assets.Scripts
                     newHand.Index = j;
                     newHand.LeftHand = false;
                     newHand.name = "RIGHT HAND #" + j;
+                    newHand.TrainHandler = this;
                     this.HandsRight[j] = newHand;
                 }
             }

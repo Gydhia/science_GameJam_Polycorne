@@ -46,6 +46,7 @@ public class Track : MonoBehaviour
     public void Train_OnArrivedAtEndOfTracks(Train Train)
     {
         this.StopWatchingTrain(Train);
+
         // forward event to whomever is connected to this track
         if (this.OnTrainArrivedAtEnd != null)
             this.OnTrainArrivedAtEnd.Invoke(Train, this.HandAtEnd);

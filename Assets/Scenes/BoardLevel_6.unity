@@ -5137,12 +5137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f23a36690517743b7f1d6d9b64565b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trainstation: {fileID: 1067120075}
-  Tracks: {fileID: 1869130669}
-  card_deck: {fileID: 1456402304}
-  Trains: {fileID: 1163195864}
+  TrainstationsContainer: {fileID: 1067120075}
+  TracksContainer: {fileID: 1869130669}
+  CardDeckContainer: {fileID: 1456402304}
+  TrainsContainer: {fileID: 1869130669}
   HandsCount: 4
   Boxes: []
+  Cards: []
   UICanvas: {fileID: 1390460463}
   BoardCanvas: {fileID: 1390460463}
   ResultsPanel: {fileID: 0}
@@ -5150,9 +5151,11 @@ MonoBehaviour:
   StartStation: {fileID: 1922577521}
   EndStations:
   - {fileID: 1759950825}
+  FailStations: []
   NumberOfTrains: 100
   Score: 0
-  trains: []
+  Trains:
+  - {fileID: 0}
   NextLevel: Menu_Lea
   CurrentLevel: BoardLevel_6
   IsRunning: 0
@@ -5192,7 +5195,7 @@ GameObject:
   - component: {fileID: 1456402305}
   - component: {fileID: 1456402306}
   m_Layer: 8
-  m_Name: card_deck
+  m_Name: CardsDeck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

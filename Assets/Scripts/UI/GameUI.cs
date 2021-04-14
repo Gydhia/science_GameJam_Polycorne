@@ -52,12 +52,12 @@ namespace Assets.Scripts.UI
 
             if (this.Board != null)
             {
-                if (this.Board.Trainstation != null)
-                    this.Board.Trainstation.SetActive(true);
-                if (this.Board.card_deck != null)
-                    this.Board.card_deck.SetActive(true);
-                if (this.Board.Tracks != null)
-                    this.Board.Tracks.SetActive(true);
+                if (this.Board.TrainstationsContainer != null)
+                    this.Board.TrainstationsContainer.SetActive(true);
+                if (this.Board.CardDeckContainer != null)
+                    this.Board.CardDeckContainer.SetActive(true);
+                if (this.Board.TracksContainer != null)
+                    this.Board.TracksContainer.SetActive(true);
 
                 if (this.Board.ResultsPanel != null)
                     this.Board.ResultsPanel.gameObject.SetActive(false);
@@ -68,12 +68,12 @@ namespace Assets.Scripts.UI
         {
             if (this.Board != null)
             {
-                if (this.Board.Trainstation != null)
-                    this.Board.Trainstation.SetActive(true);
-                if (this.Board.card_deck != null)
-                    this.Board.card_deck.SetActive(true);
-                if (this.Board.Tracks != null)
-                    this.Board.Tracks.SetActive(true);
+                if (this.Board.TrainstationsContainer != null)
+                    this.Board.TrainstationsContainer.SetActive(true);
+                if (this.Board.CardDeckContainer != null)
+                    this.Board.CardDeckContainer.SetActive(true);
+                if (this.Board.TracksContainer != null)
+                    this.Board.TracksContainer.SetActive(true);
 
                 if (this.Board.ResultsPanel != null)
                     this.Board.ResultsPanel.gameObject.SetActive(false);
@@ -90,12 +90,12 @@ namespace Assets.Scripts.UI
         {
             if(this.Board != null)
             {
-                if (this.Board.Trainstation != null)
-                    this.Board.Trainstation.SetActive(true);
-                if (this.Board.card_deck != null)
-                    this.Board.card_deck.SetActive(true);
-                if (this.Board.Tracks != null)
-                    this.Board.Tracks.SetActive(true);
+                if (this.Board.TrainstationsContainer != null)
+                    this.Board.TrainstationsContainer.SetActive(true);
+                if (this.Board.CardDeckContainer != null)
+                    this.Board.CardDeckContainer.SetActive(true);
+                if (this.Board.TracksContainer != null)
+                    this.Board.TracksContainer.SetActive(true);
 
                 if (this.Board.ResultsPanel != null)
                     this.Board.ResultsPanel.gameObject.SetActive(false);
@@ -112,12 +112,12 @@ namespace Assets.Scripts.UI
         {
             if (this.Board != null)
             {
-                if (this.Board.Trainstation != null)
-                    this.Board.Trainstation.SetActive(false);
-                if (this.Board.card_deck != null)
-                    this.Board.card_deck.SetActive(false);
-                if (this.Board.Tracks != null)
-                    this.Board.Tracks.SetActive(false);
+                if (this.Board.TrainstationsContainer != null)
+                    this.Board.TrainstationsContainer.SetActive(false);
+                if (this.Board.CardDeckContainer != null)
+                    this.Board.CardDeckContainer.SetActive(false);
+                if (this.Board.TracksContainer != null)
+                    this.Board.TracksContainer.SetActive(false);
             }
             EndPopup.SetActive(true);
             PercentScore.GetComponent<TextMeshProUGUI>().text =

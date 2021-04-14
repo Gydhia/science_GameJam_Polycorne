@@ -219,6 +219,7 @@ MonoBehaviour:
   lastWaypoint: 0
   percentToNextWaypoint: 0
   speed: 700
+  speedDecreaseOverTimeValue: 0
   Animator: {fileID: 8238293961548049152}
 --- !u!95 &8238293961548049152
 Animator:
