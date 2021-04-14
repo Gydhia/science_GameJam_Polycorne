@@ -28,6 +28,7 @@ public class Train : MonoBehaviour
     {
         if (this.currentPath != null)
         {
+            Debug.Log(this.currentPath + " " + this.lastWaypoint + " " + this.currentPath.line.positionCount);
             if (this.speed > 0)
             {
                 if (this.lastWaypoint == this.currentPath.line.positionCount - 1)
@@ -44,6 +45,7 @@ public class Train : MonoBehaviour
                     this.speed -= this.speedDecreaseOverTimeValue;
                 }
             }
+            //ERROR: cannot reach this one as the value is already greater than 0 when the next frame execute this code
             else if (this.speed < 0)
             {
                 if (this.lastWaypoint == 0)
@@ -80,19 +82,23 @@ public class Train : MonoBehaviour
 
     private void ArrivedAtEndOfTracks()
     {
-        var tracksTheTrainIsLeaving = this.currentPath;
+        Track tracksTheTrainIsLeaving = this.currentPath;
         this.currentPath = null;
-            tracksTheTrainIsLeaving.Train_OnArrivedAtEndOfTracks(this);
+        tracksTheTrainIsLeaving.Train_OnArrivedAtEndOfTracks(this);
+        Debug.Log("ArrivedAtEndOfTracks " + tracksTheTrainIsLeaving);
+
+
         //if (this.OnArrivedAtEndOfTracks != null)
-            //this.OnArrivedAtEndOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtEnd);
+        //this.OnArrivedAtEndOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtEnd);
         /*        this.currentPath.StopWatchingTrain();
                 GameObject.Destroy(this.gameObject);*/
     }
     private void ArrivedAtBeginningOfTracks()
     {
-        var tracksTheTrainIsLeaving = this.currentPath;
+        Track tracksTheTrainIsLeaving = this.currentPath;
         this.currentPath = null;
         tracksTheTrainIsLeaving.Train_OnArrivedAtStartOfTracks(this);
+        Debug.Log("ArrivedAtBeginningOfTracks " + tracksTheTrainIsLeaving);
         //if (this.OnArrivedAtBeginningOfTracks != null)
         //this.OnArrivedAtBeginningOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtBeginning);
         /*        this.currentPath.StopWatchingTrain();
@@ -101,7 +107,7 @@ public class Train : MonoBehaviour
 
     public void OnDestroy()
     {
-        Board.Instance.trains.Remove(this);
+        Board.Instance.Trains.Remove(this);
     }
 
     public void PlaceOnHand(Hand hand)
@@ -139,6 +145,8 @@ public class Train : MonoBehaviour
 
         this.percentToNextWaypoint += distance / lengthTillNextWP;
 
+        Debug.Log("MoveAlongPath:" + this.percentToNextWaypoint);
+
         if (this.percentToNextWaypoint >= 1)
         {
             float extralength = (this.percentToNextWaypoint - 1) * lengthTillNextWP;
@@ -149,6 +157,7 @@ public class Train : MonoBehaviour
             else
                 this.ArrivedAtEndOfTracks();
         }
+        //ERROR cannot reached this condtion as the train is always greater than 0
         else if (this.percentToNextWaypoint <= 0)
         {
             float extralength = (this.percentToNextWaypoint) * lengthTillNextWP;

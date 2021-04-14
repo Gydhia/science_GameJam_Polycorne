@@ -12,13 +12,15 @@ namespace Assets.Scripts
 {
     public class Board : MonoBehaviour
     {
-        public GameObject Trainstation;
-        public GameObject Tracks;
-        public GameObject card_deck;
-        public GameObject Trains;
+        public GameObject TrainstationsContainer;
+        public GameObject TracksContainer;
+        public GameObject CardDeckContainer;
+        public GameObject TrainsContainer;
 
         public int HandsCount;
-        public BoxSO[] Boxes;
+        public List<Box> Boxes;
+        public List<Card> Cards;
+
         public Canvas UICanvas;
         public Canvas BoardCanvas;
         public ResultsPanel ResultsPanel;
@@ -30,13 +32,15 @@ namespace Assets.Scripts
         public TrainHandler[] FailStations;
         public int NumberOfTrains = 100;
         public int Score = 0;
-        public List<Train> trains;
+        public List<Train> Trains;
         
         private static Board _boardInstance;
+
         public string NextLevel = "Menu_Lea";
         public string CurrentLevel = "Menu_Lea";
 
         public bool IsRunning;
+
         public static Board Instance
         {
             get
@@ -49,7 +53,7 @@ namespace Assets.Scripts
 
         public void Start()
         {
-            trains = new List<Train>();
+            this.Trains = new List<Train>();
             GameObject[] test = GameObject.FindGameObjectsWithTag("CameraBoard");
             if(test.Length > 0) 
             {
@@ -108,7 +112,7 @@ namespace Assets.Scripts
         private IEnumerator WaitTillNoMoreTrain()
         {
             yield return new WaitForSeconds(1);
-            while (trains.Any())
+            while (Trains.Any())
                 yield return 0;
             if (SoundController.Instance != null)
             {
@@ -152,9 +156,9 @@ namespace Assets.Scripts
             var hand = this.StartStation.DecideOutput();
             if (hand != null || hand.ConnectedTrack == null)
             {
-                Train train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"), this.Trains.transform);
+                Train train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"), this.TrainsContainer.transform);
                 train.PlaceOnHand(hand);
-                this.trains.Add(train);
+                this.Trains.Add(train);
             }
         }
 
@@ -189,6 +193,22 @@ namespace Assets.Scripts
                 if (box.WinningGare != null)
                     box.WinningGare.Animator.SetTrigger("Hit");
             }
+        }
+
+        internal void RegisterBox(Box box)
+        {
+            if (this.Boxes == null)
+                this.Boxes = new List<Box>();
+
+            this.Boxes.Add(box);
+        }
+
+        internal void RegisterCard(Card card)
+        {
+            if (this.Cards == null)
+                this.Cards = new List<Card>();
+
+            this.Cards.Add(card);
         }
 
     }

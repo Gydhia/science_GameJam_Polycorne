@@ -100,7 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrainHandler: {fileID: 0}
   ConnectedTrack: {fileID: 0}
+  _worldPosition: {x: 0, y: 0, z: 0}
   ConnectEndOfTrack: 0
   Index: 1
   LeftHand: 0
@@ -199,6 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d3a477cb2c86c46a516cb1f9fcd301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AreTracksAutoSnapped: 1
+  CurrentCrossingTrains: []
   CardSpacePrefab: {fileID: 1212769817104253962, guid: 7e26fe7831c7fe94f9041be88b5ceabc, type: 3}
   CardSpaceContainer: {fileID: 4427277710327585022}
   HandPrefab: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
@@ -220,6 +224,7 @@ MonoBehaviour:
   - 30
   BoxSO: {fileID: 11400000, guid: 92c4fb6967e633a40a6c695ff18639e5, type: 2}
   PreviousBoxSO: {fileID: 11400000, guid: 92c4fb6967e633a40a6c695ff18639e5, type: 2}
+  WinningGare: {fileID: 0}
   Label: {fileID: 5678868975273022580}
   CardNameForPlayer: 
 --- !u!1 &632456144718849791
@@ -488,7 +493,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrainHandler: {fileID: 0}
   ConnectedTrack: {fileID: 0}
+  _worldPosition: {x: 0, y: 0, z: 0}
   ConnectEndOfTrack: 0
   Index: 2
   LeftHand: 0
@@ -629,7 +636,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrainHandler: {fileID: 0}
   ConnectedTrack: {fileID: 0}
+  _worldPosition: {x: 0, y: 0, z: 0}
   ConnectEndOfTrack: 0
   Index: 2
   LeftHand: 1
@@ -688,9 +697,12 @@ MonoBehaviour:
   Box: {fileID: 632456144093151670}
   positionInBox: {x: 0, y: 1}
   CopyFromBox: 
+  OverlapWeight: 1
   Padding: 0.05
+  SpriteRenderer: {fileID: 0}
   ColorEmpty: {r: 0, g: 1, b: 0, a: 1}
   ColorUsed: {r: 0, g: 0, b: 1, a: 1}
+  DropEnabled: 1
 --- !u!222 &5750716819903771349
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -905,7 +917,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrainHandler: {fileID: 0}
   ConnectedTrack: {fileID: 0}
+  _worldPosition: {x: 0, y: 0, z: 0}
   ConnectEndOfTrack: 0
   Index: 3
   LeftHand: 1
@@ -1009,7 +1023,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrainHandler: {fileID: 0}
   ConnectedTrack: {fileID: 0}
+  _worldPosition: {x: 0, y: 0, z: 0}
   ConnectEndOfTrack: 0
   Index: 1
   LeftHand: 1
@@ -1200,7 +1216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrainHandler: {fileID: 0}
   ConnectedTrack: {fileID: 0}
+  _worldPosition: {x: 0, y: 0, z: 0}
   ConnectEndOfTrack: 0
   Index: 3
   LeftHand: 0
@@ -1304,7 +1322,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrainHandler: {fileID: 0}
   ConnectedTrack: {fileID: 0}
+  _worldPosition: {x: 0, y: 0, z: 0}
   ConnectEndOfTrack: 0
   Index: 0
   LeftHand: 0
@@ -1408,7 +1428,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrainHandler: {fileID: 0}
   ConnectedTrack: {fileID: 0}
+  _worldPosition: {x: 0, y: 0, z: 0}
   ConnectEndOfTrack: 0
   Index: 0
   LeftHand: 1
@@ -1554,9 +1576,12 @@ MonoBehaviour:
   Box: {fileID: 632456144093151670}
   positionInBox: {x: 0, y: 0}
   CopyFromBox: 
+  OverlapWeight: 1
   Padding: 0.05
+  SpriteRenderer: {fileID: 0}
   ColorEmpty: {r: 0, g: 1, b: 0, a: 1}
   ColorUsed: {r: 0, g: 0, b: 1, a: 1}
+  DropEnabled: 1
 --- !u!222 &3303379186576841732
 CanvasRenderer:
   m_ObjectHideFlags: 0

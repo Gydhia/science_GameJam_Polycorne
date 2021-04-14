@@ -963,6 +963,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 6308fbd50578144bcba084e23d55df98, type: 3}
+    - target: {fileID: 4814584280158140106, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
+      propertyPath: IsPlayable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4814584280158140107, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
       propertyPath: m_Name
       value: card3_blackhole
@@ -2637,11 +2641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6701618273413742098, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6999549605684973457, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7835510378796609114, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2661,7 +2665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8432606772352921268, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8788873556568851309, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
       propertyPath: m_AnchorMin.x

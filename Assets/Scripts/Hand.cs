@@ -9,18 +9,14 @@ namespace Assets.Scripts
 {
     public class Hand : MonoBehaviour
     {
-        private Card _card;
+        public TrainHandler TrainHandler;
+
         public Track ConnectedTrack;
         [SerializeField]
         private Vector3 _worldPosition;
         public bool ConnectEndOfTrack = false;
         public int Index;
         public bool LeftHand = false;
-
-        public void Awake()
-        {
-            this._card = this.transform.parent.transform.parent.GetComponent<Card>();
-        }
 
         public void Update()
         {
@@ -50,14 +46,13 @@ namespace Assets.Scripts
             {
                 if (ConnectEndOfTrack)
                 {
-                    if (this._card == null || force)
+                    if (this.TrainHandler != null && this.TrainHandler.AreTracksAutoSnapped)
                         this.ConnectedTrack.line.SetPosition(this.ConnectedTrack.line.positionCount - 1, new Vector3(this.transform.position.x, this.transform.position.y, this.ConnectedTrack.line.GetPosition(this.ConnectedTrack.line.positionCount - 1).z));
                 }
                 else
                 {
-                    if (this._card == null || force)
+                    if (this.TrainHandler != null && this.TrainHandler.AreTracksAutoSnapped)
                         this.ConnectedTrack.line.SetPosition(0, new Vector3(this.transform.position.x, this.transform.position.y, this.ConnectedTrack.line.GetPosition(0).z));
-                    this.ConnectedTrack.HandAtBeginning = this;
                 }
             }
         }
