@@ -37,7 +37,7 @@ namespace Assets.Scripts.UI
 
         public void Start()
         {
-            this.Board = GameObject.FindObjectOfType<Board>();
+            this.Board = Board.Instance;
         }
 
         public void StartTimeline()

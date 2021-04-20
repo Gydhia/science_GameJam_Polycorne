@@ -5,13 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts
+
+public class CardSprite : DragnDrop
 {
-    public class CardSprite : DragnDrop
-    {
-        public SpriteRenderer SpriteRenderer;
-        public Sprite Sprite;
+    public SpriteRenderer SpriteRenderer;
+    public Sprite Sprite;
 
 
-    }
 }

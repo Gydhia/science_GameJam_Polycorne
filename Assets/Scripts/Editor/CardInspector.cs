@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ScienceGameJam.UnityEditor
 {
-   
+
     [CustomEditor(typeof(Card))]
     public class CardInspector : Editor
     {
@@ -26,6 +26,18 @@ namespace ScienceGameJam.UnityEditor
             if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Connect tracks"))
             {
                 this._target.GenerateConnectedTracks();
+                foreach (Hand hand in this._target.AllHands)
+                {
+                    SerializedObject handSerializedObject = new SerializedObject(hand);
+                    handSerializedObject.Update();
+                }
+                foreach (Track track in this._target.Tracks)
+                {
+                    SerializedObject trackSerializedObject = new SerializedObject(track);
+                    trackSerializedObject.Update();
+                }
+
+                EditorUtility.SetDirty(this._target.gameObject);
             }
             if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Snap tracks"))
             {

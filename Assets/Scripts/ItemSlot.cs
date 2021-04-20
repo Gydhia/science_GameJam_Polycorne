@@ -6,18 +6,15 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts
+public class ItemSlot : MonoBehaviour, IDropHandler
 {
-    public class ItemSlot : MonoBehaviour, IDropHandler
+    public void OnDrop(PointerEventData eventData)
     {
-        public void OnDrop(PointerEventData eventData)
+        Debug.Log(eventData);
+        if(eventData.pointerDrag != null)
         {
-            Debug.Log(eventData);
-            if(eventData.pointerDrag != null)
-            {
-                eventData.pointerDrag.GetComponent<RectTransform>().position = this.GetComponent<RectTransform>().position;
+            eventData.pointerDrag.GetComponent<RectTransform>().position = this.GetComponent<RectTransform>().position;
 
-            }
         }
     }
 }

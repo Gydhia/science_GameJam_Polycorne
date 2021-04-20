@@ -24,7 +24,7 @@ namespace Assets.Scripts.UI
             if (SoundController.Instance != null) 
                 SoundController.Instance.PlayMusic(SoundController.MusicNames.MenuTheme);
 
-            Board board = GameObject.FindObjectOfType<Board>();
+            Board board = Board.Instance;
             if (board != null)
             {
                 
@@ -37,7 +37,7 @@ namespace Assets.Scripts.UI
 
         public void OnClickPlayButton()
         {
-            SceneManager.LoadScene(GameObject.FindObjectOfType<Board>().NextLevel);
+            SceneManager.LoadScene(Board.Instance.NextLevel);
             SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
         }
 

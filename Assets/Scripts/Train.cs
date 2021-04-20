@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using ScienceGameJam;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,11 @@ using UnityEngine;
 
 public class Train : MonoBehaviour
 {
-    public Track currentPath;
+    public Guid GUID;
+
+    public Track currentTrack;
+    public TrainHandler currentTrainHandler;
+
     public int lastWaypoint;
     public float percentToNextWaypoint;
     public float speed;
@@ -21,29 +26,29 @@ public class Train : MonoBehaviour
 
     public void Start()
     {
-
+        this.GUID = System.Guid.NewGuid();
     }
 
     public void Update()
     {
-        if (this.currentPath != null)
+        if (this.currentTrack != null)
         {
-            Debug.Log(this.currentPath + " " + this.lastWaypoint + " " + this.currentPath.line.positionCount);
+            //Debug.Log(this.currentTrack + " " + this.lastWaypoint + " " + this.currentTrack.line.positionCount);
             if (this.speed > 0)
             {
-                if (this.lastWaypoint == this.currentPath.line.positionCount - 1)
+                if (this.lastWaypoint == this.currentTrack.line.positionCount - 1)
                     this.ArrivedAtEndOfTracks();
-                else if (this.lastWaypoint == this.currentPath.line.positionCount - 2 && this.percentToNextWaypoint >= 1)
+                else if (this.lastWaypoint == this.currentTrack.line.positionCount - 2 && this.percentToNextWaypoint >= 1)
                 {
                     this.ArrivedAtEndOfTracks();
                 }
                 else
                     this.MoveAlongPath(Time.deltaTime * this.speed);
 
-                if(this.speedDecreaseOverTimeValue > 0 && this.speed > 100)
+                /*if(this.speedDecreaseOverTimeValue > 0 && this.speed > 100)
                 {
                     this.speed -= this.speedDecreaseOverTimeValue;
-                }
+                }*/
             }
             //ERROR: cannot reach this one as the value is already greater than 0 when the next frame execute this code
             else if (this.speed < 0)
@@ -59,16 +64,16 @@ public class Train : MonoBehaviour
             }
         }
 
-        if (this.currentPath != null)
+        if (this.currentTrack != null)
         {
             Vector3 positionOnLine;
             if (this.speed > 0)
-                positionOnLine = Vector3.Lerp(this.currentPath.line.GetPosition(this.lastWaypoint), this.currentPath.line.GetPosition(this.lastWaypoint + 1), this.percentToNextWaypoint);
+                positionOnLine = Vector3.Lerp(this.currentTrack.line.GetPosition(this.lastWaypoint), this.currentTrack.line.GetPosition(this.lastWaypoint + 1), this.percentToNextWaypoint);
             else
-                positionOnLine = Vector3.Lerp(this.currentPath.line.GetPosition(this.lastWaypoint - 1), this.currentPath.line.GetPosition(this.lastWaypoint), this.percentToNextWaypoint);
+                positionOnLine = Vector3.Lerp(this.currentTrack.line.GetPosition(this.lastWaypoint - 1), this.currentTrack.line.GetPosition(this.lastWaypoint), this.percentToNextWaypoint);
 
-            if (!this.currentPath.line.useWorldSpace)
-                positionOnLine += this.currentPath.line.transform.position;
+            if (!this.currentTrack.line.useWorldSpace)
+                positionOnLine += this.currentTrack.line.transform.position;
             this.transform.position = positionOnLine;
 
         }
@@ -82,10 +87,10 @@ public class Train : MonoBehaviour
 
     private void ArrivedAtEndOfTracks()
     {
-        Track tracksTheTrainIsLeaving = this.currentPath;
-        this.currentPath = null;
+        Track tracksTheTrainIsLeaving = this.currentTrack;
+        this.currentTrack = null;
+        //Debug.Log("ArrivedAtEndOfTracks " + tracksTheTrainIsLeaving + " " + tracksTheTrainIsLeaving.TrainHandler);
         tracksTheTrainIsLeaving.Train_OnArrivedAtEndOfTracks(this);
-        Debug.Log("ArrivedAtEndOfTracks " + tracksTheTrainIsLeaving);
 
 
         //if (this.OnArrivedAtEndOfTracks != null)
@@ -95,10 +100,10 @@ public class Train : MonoBehaviour
     }
     private void ArrivedAtBeginningOfTracks()
     {
-        Track tracksTheTrainIsLeaving = this.currentPath;
-        this.currentPath = null;
+        Track tracksTheTrainIsLeaving = this.currentTrack;
+        this.currentTrack = null;
+        //Debug.Log("ArrivedAtBeginningOfTracks " + tracksTheTrainIsLeaving + " " + tracksTheTrainIsLeaving.TrainHandler);
         tracksTheTrainIsLeaving.Train_OnArrivedAtStartOfTracks(this);
-        Debug.Log("ArrivedAtBeginningOfTracks " + tracksTheTrainIsLeaving);
         //if (this.OnArrivedAtBeginningOfTracks != null)
         //this.OnArrivedAtBeginningOfTracks.Invoke(this, tracksTheTrainIsLeaving.HandAtBeginning);
         /*        this.currentPath.StopWatchingTrain();
@@ -115,9 +120,14 @@ public class Train : MonoBehaviour
         if (hand == null || hand.ConnectedTrack == null)
             return;
 
+        //if the train is placed on a hand, than it means that it arrives on the train handler of the hand
+        hand.TrainHandler.CurrentCrossingTrains.Add(this);
+        hand.ConnectedTrack.CurrentCrossingTrains.Add(this);
+        //Debug.Log("Train arrives: " + hand + " - " + hand.TrainHandler);
+
         if (hand.ConnectEndOfTrack)
         {
-            this.currentPath = hand.ConnectedTrack;
+            this.currentTrack = hand.ConnectedTrack;
             this.lastWaypoint = hand.ConnectedTrack.line.positionCount - 1;
             this.percentToNextWaypoint = 1;
             this.speed = -Math.Abs(this.speed);
@@ -125,7 +135,7 @@ public class Train : MonoBehaviour
         }
         else
         {
-            this.currentPath = hand.ConnectedTrack;
+            this.currentTrack = hand.ConnectedTrack;
             this.lastWaypoint = 0;
             this.percentToNextWaypoint = 0;
             this.speed = Math.Abs(this.speed);
@@ -137,22 +147,22 @@ public class Train : MonoBehaviour
     {
         float lengthTillNextWP;
         if (distance > 0)
-            lengthTillNextWP = (this.currentPath.line.GetPosition(this.lastWaypoint + 1) - this.currentPath.line.GetPosition(this.lastWaypoint)).magnitude;
+            lengthTillNextWP = (this.currentTrack.line.GetPosition(this.lastWaypoint + 1) - this.currentTrack.line.GetPosition(this.lastWaypoint)).magnitude;
         else if (distance < 0)
-            lengthTillNextWP = (this.currentPath.line.GetPosition(this.lastWaypoint - 1) - this.currentPath.line.GetPosition(this.lastWaypoint)).magnitude;
+            lengthTillNextWP = (this.currentTrack.line.GetPosition(this.lastWaypoint - 1) - this.currentTrack.line.GetPosition(this.lastWaypoint)).magnitude;
         else
             return;
 
         this.percentToNextWaypoint += distance / lengthTillNextWP;
 
-        Debug.Log("MoveAlongPath:" + this.percentToNextWaypoint);
+        //Debug.Log("MoveAlongPath:" + this.percentToNextWaypoint);
 
         if (this.percentToNextWaypoint >= 1)
         {
             float extralength = (this.percentToNextWaypoint - 1) * lengthTillNextWP;
             this.percentToNextWaypoint = 0;
             this.lastWaypoint++;
-            if (this.lastWaypoint < this.currentPath.line.positionCount - 1)
+            if (this.lastWaypoint < this.currentTrack.line.positionCount - 1)
                 this.MoveAlongPath(extralength);
             else
                 this.ArrivedAtEndOfTracks();
@@ -191,5 +201,4 @@ public class Train : MonoBehaviour
         //    }
         //}
     }
-
 }

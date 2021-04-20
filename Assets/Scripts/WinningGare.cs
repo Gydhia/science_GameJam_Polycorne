@@ -5,11 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts
+public class WinningGare : MonoBehaviour
 {
-    public class WinningGare : MonoBehaviour
-    {
-        public Box Box;
-        public Animator Animator;
-    }
+    public Box Box;
+    public Animator Animator;
 }

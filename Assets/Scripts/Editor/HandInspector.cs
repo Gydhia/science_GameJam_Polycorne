@@ -21,13 +21,19 @@ namespace ScienceGameJam.UnityEditor
         {
             if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Snap track"))
             {
-                serializedObject.Update();
                 this._target.SnapTrack();
-                serializedObject.ApplyModifiedProperties();
-                serializedObject.SetIsDifferentCacheDirty();
             }
 
             base.OnInspectorGUI();
+        }
+
+        public void OnSceneGUI()
+        {
+            if(Event.current.type == EventType.Repaint)
+            {
+                Handles.color = Color.magenta;
+                Handles.SphereHandleCap(0, this._target.transform.position, this._target.transform.rotation, 10f, EventType.Repaint);
+            }
         }
     }
 
