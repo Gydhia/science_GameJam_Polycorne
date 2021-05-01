@@ -42,7 +42,7 @@ public class Box : TrainHandler
         {
             if (this.BoxSO != null && this.BoxSO != this.PreviousBoxSO)
             {
-                float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
+                float pixerperunit = Board.Instance.BoardCanvas.referencePixelsPerUnit;
                 float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
                 float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
 
@@ -64,7 +64,7 @@ public class Box : TrainHandler
         if (this.HandsContainer == null)
             return;
 
-        float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
+        float pixerperunit = Board.Instance.BoardCanvas.referencePixelsPerUnit;
         float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
         float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
 
@@ -131,7 +131,7 @@ public class Box : TrainHandler
             return;
         }
 
-        float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
+        float pixerperunit = Board.Instance.BoardCanvas.referencePixelsPerUnit;
         float canvascardheight = this.BoxSO.CardSpaceHeight * pixerperunit;
         float canvascardhlength = this.BoxSO.CardSpaceLength * pixerperunit;
 

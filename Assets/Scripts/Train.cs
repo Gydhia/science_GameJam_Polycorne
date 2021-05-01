@@ -121,7 +121,7 @@ public class Train : MonoBehaviour
             return;
 
         //if the train is placed on a hand, than it means that it arrives on the train handler of the hand
-        hand.TrainHandler.CurrentCrossingTrains.Add(this);
+        hand.TrainHandler.TrainEnter(this);
         hand.ConnectedTrack.CurrentCrossingTrains.Add(this);
         //Debug.Log("Train arrives: " + hand + " - " + hand.TrainHandler);
 

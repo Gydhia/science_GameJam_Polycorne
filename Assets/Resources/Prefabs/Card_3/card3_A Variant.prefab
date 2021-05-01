@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[3].y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1443222310251075657, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f310232f69918e4581dbfbeddc341fa, type: 2}
     - target: {fileID: 1443222310251075659, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
       propertyPath: HandAtBeginning
       value: 
@@ -99,6 +103,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4814584280158140149, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814584280158140149, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5078883623436683060, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
       propertyPath: m_Parameters.colorGradient.ctime1
       value: 65535
@@ -143,6 +155,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[3].y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5078883623436683060, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f310232f69918e4581dbfbeddc341fa, type: 2}
     - target: {fileID: 5078883623436683062, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
       propertyPath: HandAtBeginning
       value: 
@@ -235,6 +251,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[1].y
       value: -35.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5602537187557322023, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f310232f69918e4581dbfbeddc341fa, type: 2}
     - target: {fileID: 6601264346219994070, guid: f281443da1e61ae4b888fbf730c74129, type: 3}
       propertyPath: _connectedTrack
       value: 

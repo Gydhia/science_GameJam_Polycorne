@@ -28,8 +28,8 @@ namespace Assets.Scripts.UI
             if (board != null)
             {
                 
-                if (board.ResultsPanel != null)
-                    board.ResultsPanel.gameObject.SetActive(false);
+                if (board.UIPanel.ResultsPanel != null)
+                    board.UIPanel.ResultsPanel.gameObject.SetActive(false);
             }
 
             SceneManager.UnloadSceneAsync("BackgroundScene");

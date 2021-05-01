@@ -88,6 +88,18 @@ public abstract class TrainHandler : MonoBehaviour
             this.Tracks.Remove(track);
     }
 
+    public void TrainEnter(Train train)
+    {
+        this.CurrentCrossingTrains.Add(train);
+        train.currentTrainHandler = this;
+    }
+
+    public void TrainExit(Train train)
+    {
+        this.CurrentCrossingTrains.Remove(train);
+        train.currentTrainHandler = null;
+    }
+
     protected virtual void TrainArrivedOrLeave(Train train, Hand hand)
     {
         if (Board.Instance.IsFailStation(this))

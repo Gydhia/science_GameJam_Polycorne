@@ -3,6 +3,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 using ScienceGameJam;
+using UnityEditor.Experimental.SceneManagement;
 
 public class Hand : MonoBehaviour
 {
@@ -111,22 +112,60 @@ public class Hand : MonoBehaviour
             if (Board.Instance == null || Board.Instance.EditorPreset == null)
                 return;
 
-            if (this.TrainHandler == null)
+            bool draw = false;
+
+            // we don't want the Hand from card to be displayed in scene
+            if (PrefabStageUtility.GetCurrentPrefabStage() != null)
             {
-                Handles.color = Color.red;
+                if (this.TrainHandler == null)
+                {
+                    Handles.color = Color.red;
+                    draw = true;
+                }
+                else
+                {
+                    if (this.ConnectedTrack != null)
+                    {
+                        Handles.color = Color.green;
+                        draw = true;
+                    }
+                    else
+                    {
+                        Handles.color = Color.yellow;
+                        draw = true;
+                    }
+                }
             }
             else
             {
-                if (this.TrainHandler != null && this.ConnectedTrack != null)
-                    Handles.color = Color.green;
-                else if (this.TrainHandler.TrainHandlerType == TrainHandlerType.Box)
-                    Handles.color = Color.blue;
-                else if (this.TrainHandler.TrainHandlerType == TrainHandlerType.Card)
-                    Handles.color = Color.cyan;               
+                if (this.TrainHandler == null)
+                {
+                    Handles.color = Color.red;
+                    draw = true;
+                }
+                else
+                {
+                    if (this.TrainHandler.TrainHandlerType != TrainHandlerType.Card)
+                    {
+                        if (this.ConnectedTrack != null)
+                        {
+                            Handles.color = Color.green;
+                            draw = true;
+                        }
+                        else
+                        {
+                            Handles.color = Color.yellow;
+                            draw = true;
+                        }
+                    }
+                }      
             }
 
-            Handles.SphereHandleCap(0, this.transform.position, this.transform.rotation, Board.Instance.EditorPreset.HandBallSize, EventType.Repaint);
-            Handles.CircleHandleCap(0, this.transform.position, this.transform.rotation, Board.Instance.EditorPreset.HandSnapDistance, EventType.Repaint);
+            if (draw)
+            {
+                Handles.SphereHandleCap(0, this.transform.position, this.transform.rotation, Board.Instance.EditorPreset.HandBallSize, EventType.Repaint);
+                Handles.CircleHandleCap(0, this.transform.position, this.transform.rotation, Board.Instance.EditorPreset.HandSnapDistance, EventType.Repaint);
+            }
         }
     }
 #endif

@@ -166,7 +166,7 @@ public class Card : TrainHandler
         if (this.HandsContainer == null)
             return;
 
-        float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
+        float pixerperunit = Board.Instance.BoardCanvas.referencePixelsPerUnit;
         float canvascardheight = this.gameObject.GetComponent<RectTransform>().rect.height;
         float canvascardhlength = this.gameObject.GetComponent<RectTransform>().rect.height;
 
@@ -222,7 +222,7 @@ public class Card : TrainHandler
         if (this.TrackContainer == null)
             return;
 
-        float pixerperunit = Board.Instance.UICanvas.referencePixelsPerUnit;
+        float pixerperunit = Board.Instance.BoardCanvas.referencePixelsPerUnit;
         float canvascardheight = this.gameObject.GetComponent<RectTransform>().rect.height;
         float canvascardhlength = this.gameObject.GetComponent<RectTransform>().rect.height;
 

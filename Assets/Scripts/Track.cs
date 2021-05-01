@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEditor.Experimental.SceneManagement;
 #endif
 using UnityEngine;
 
@@ -38,6 +39,14 @@ namespace ScienceGameJam
             }
         }
 
+        public bool IsWorldTrack
+        {
+            get
+            {
+                return this.TrainHandler == null;
+            }
+        }
+
         public event NavigationNotification OnTrainArrivedAtEnd; // event
         public event NavigationNotification OnTrainArrivedAtStart; // event
 
@@ -45,7 +54,19 @@ namespace ScienceGameJam
         public void Start()
         {
             line = GetComponent<LineRenderer>();
-            CurrentCrossingTrains = new List<Train>();
+            this.CurrentCrossingTrains = new List<Train>();
+
+            if(this.HandAtBeginning != null)
+                this.HandAtBeginning.RegisterTrack(this, false);
+
+            if (this.HandAtEnd != null)
+                this.HandAtEnd.RegisterTrack(this, true);
+
+            // reset track color
+            if (Application.isPlaying && this.line.material != Board.Instance.EditorPreset.MaterialTrack)
+            {
+                this.line.material = Board.Instance.EditorPreset.MaterialTrack;
+            }
         }
 
         public bool Disconnect(bool beginning)
@@ -105,53 +126,88 @@ namespace ScienceGameJam
                 if (this.line == null)
                     return;
 
-                if (this.line.GetComponent<Track>() == null || this.line.GetComponent<Track>().TrainHandler == null)
+                if (!Application.isPlaying)
                 {
-                    this.line.sharedMaterial.color = Color.red;
-                    return;
-                }
+                    if (PrefabStageUtility.GetCurrentPrefabStage() != null && this.TrainHandler == null)
+                    {
+                        this.line.material = Board.Instance.EditorPreset.MaterialTrackError;
+                        return;
+                    }
 
-                if(this.HandAtEnd != null && this.HandAtBeginning != null)
-                    this.line.sharedMaterial.color = Color.green;
-                else
-                    this.line.sharedMaterial.color = Color.yellow;
+                    if (this.HandAtEnd != null && this.HandAtBeginning != null)
+                        this.line.material = Board.Instance.EditorPreset.MaterialTrackValid;
+                    else
+                        this.line.material = Board.Instance.EditorPreset.MaterialTrackNotConnected;
+                }
 
                 Vector3 offset1 = Vector3.up * 10;
                 Vector3 offset2 = Vector3.up * 10 + Vector3.left * 100;
 
-                Handles.Label(this.line.GetPosition(0) + offset1, name + " START", new GUIStyle() { fontSize = 12, });
-                Handles.Label(this.line.GetPosition(this.line.positionCount - 1) + offset2, name + " END", new GUIStyle() { fontSize = 12 });
-
-
-                //draw the number of train label
-                GUIContent content = new GUIContent(CurrentCrossingTrains.Count.ToString());
-                GUIStyle style = new GUIStyle(GUI.skin.box);
-
-                style.alignment = TextAnchor.MiddleCenter;
-                Vector2 size = style.CalcSize(content);
-
-                int position = this.line.positionCount / 2;
-                Vector3 pos = this.line.GetPosition(position);
-                if (!this.line.useWorldSpace)
+                // if we're not on a prefab and the track is a world track
+                // 
+                if (((PrefabStageUtility.GetCurrentPrefabStage() != null && !this.IsWorldTrack)
+                    || (PrefabStageUtility.GetCurrentPrefabStage() == null && this.IsWorldTrack)))
                 {
-                    Track track = this.line.gameObject.GetComponent<Track>();
-                    if (track != null && track.TrainHandler != null)
-                        track.TrainHandler.transform.TransformPoint(pos);
-                    else
-                        return;
+                    // display beginning of track
+                    GUIContent contentBegin = new GUIContent(name + " START");
+                    GUIStyle styleBegin = new GUIStyle(GUI.skin.box);
+                    styleBegin.alignment = TextAnchor.MiddleCenter;
+
+                    Vector2 sizeBegin = styleBegin.CalcSize(contentBegin);
+                    Vector3 posBegin = this.line.GetPosition(0);
+                    if (!this.IsWorldTrack)
+                        this.TrainHandler.transform.TransformPoint(posBegin);
+
+                    Handles.BeginGUI();
+                    Vector2 pos2DBegin = HandleUtility.WorldToGUIPoint(posBegin) - Vector2.up * 30;
+                    GUI.Box(new Rect(pos2DBegin.x - (sizeBegin.x + 20) / 2.0f, pos2DBegin.y - 10, sizeBegin.x + 20, sizeBegin.y + 10), contentBegin, styleBegin);
+                    Handles.EndGUI();
+
+
+                    // display end of track
+                    GUIContent contentEnd = new GUIContent(name + " END");
+                    GUIStyle styleEnd = new GUIStyle(GUI.skin.box);
+                    styleEnd.alignment = TextAnchor.MiddleCenter;
+
+                    Vector2 sizeEnd = styleEnd.CalcSize(contentEnd);
+                    Vector3 posEnd = this.line.GetPosition(this.line.positionCount - 1);
+                    if (!this.IsWorldTrack)
+                        this.TrainHandler.transform.TransformPoint(posEnd);
+
+                    Handles.BeginGUI();
+                    Vector2 pos2DEnd = HandleUtility.WorldToGUIPoint(posEnd) - Vector2.up * 30;
+                    GUI.Box(new Rect(pos2DEnd.x - (sizeEnd.x + 20)/2.0f, pos2DEnd.y - 10, sizeEnd.x + 20, sizeEnd.y + 10), contentEnd, styleEnd);
+                    Handles.EndGUI();
+
+                    //Handles.Label(this.line.GetPosition(0) + offset1, name + " START", new GUIStyle() { fontSize = 12, });
+                    //Handles.Label(this.line.GetPosition(this.line.positionCount - 1) + offset2, name + " END", new GUIStyle() { fontSize = 12 });
                 }
-                    
-                if (this.line.positionCount == 2)
+
+                if (Application.isPlaying
+                    && PrefabStageUtility.GetCurrentPrefabStage() == null && this.IsWorldTrack)
                 {
-                    pos = (line.GetPosition(1) + line.GetPosition(0)) / 2;
+                    // draw the number of train label
+                    GUIContent content = new GUIContent(this.CurrentCrossingTrains.Count.ToString());
+                    GUIStyle style = new GUIStyle(GUI.skin.box);
+
+                    style.alignment = TextAnchor.MiddleCenter;
+                    Vector2 size = style.CalcSize(content);
+
+                    int position = this.line.positionCount / 2;
+                    Vector3 pos = this.line.GetPosition(position);
+                    if (!this.IsWorldTrack)
+                        this.TrainHandler.transform.TransformPoint(pos);
+
+                    if (this.line.positionCount == 2)
+                    {
+                        pos = (line.GetPosition(1) + line.GetPosition(0)) / 2;
+                    }
+
+                    Handles.BeginGUI();
+                    Vector2 pos2D = HandleUtility.WorldToGUIPoint(pos) - Vector2.up * 30;
+                    GUI.Box(new Rect(pos2D.x - 10, pos2D.y - 10, 2.0f * size.x, size.y + 10), content, style);
+                    Handles.EndGUI();
                 }
-
-                Handles.BeginGUI();
-
-                Vector2 pos2D = HandleUtility.WorldToGUIPoint(pos) - Vector2.up * 30;
-                GUI.Box(new Rect(pos2D.x - 10, pos2D.y - 10, 2.0f * size.x, size.y + 10), content, style);
-
-                Handles.EndGUI();
             }
         }
 #endif
@@ -164,9 +220,9 @@ namespace ScienceGameJam
 
         public void Train_OnArrivedAtEndOfTracks(Train Train)
         {
-            CurrentCrossingTrains.Remove(Train);
+            this.CurrentCrossingTrains.Remove(Train);
             if (TrainHandler != null)
-                TrainHandler.CurrentCrossingTrains.Remove(Train);
+                TrainHandler.TrainExit(Train);
             StopWatchingTrain(Train);
 
             // forward event to whomever is connected to this track
@@ -175,9 +231,9 @@ namespace ScienceGameJam
         }
         public void Train_OnArrivedAtStartOfTracks(Train Train)
         {
-            CurrentCrossingTrains.Remove(Train);
+            this.CurrentCrossingTrains.Remove(Train);
             if (TrainHandler != null)
-                TrainHandler.CurrentCrossingTrains.Remove(Train);
+                TrainHandler.TrainExit(Train);
             StopWatchingTrain(Train);
             // forward event to whomever is connected to this track
             if (OnTrainArrivedAtStart != null)

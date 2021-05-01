@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80b1776c19137746a69232c2e595021, type: 3}
   m_Name: EditorPreset
   m_EditorClassIdentifier: 
+  MaterialTrack: {fileID: 2100000, guid: 7fe4594450c8e1649bd9e27e8eda2c33, type: 2}
+  MaterialTrackValid: {fileID: 2100000, guid: 6f310232f69918e4581dbfbeddc341fa, type: 2}
+  MaterialTrackError: {fileID: 2100000, guid: 08ee02ff55d0a494f8021105c64ab662, type: 2}
+  MaterialTrackNotConnected: {fileID: 2100000, guid: d2a52fef2a6a41243a4b9bc48be1f08d, type: 2}
   HandSnapDistance: 12
   HandBallSize: 10
   TrackBallSize: 5

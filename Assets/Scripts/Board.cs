@@ -7,42 +7,50 @@ using UnityEngine.Rendering.Universal;
 using ScienceGameJam.Mechanics.Preset;
 using Assets.Scripts;
 using System;
+using TMPro;
 
 public class Board : MonoBehaviour
 {
+    [Header("Object containers")]
     public GameObject TrainstationsContainer;
     public GameObject TracksContainer;
     public GameObject CardDeckContainer;
     public GameObject TrainsContainer;
 
+    [Header("Prefabs")]
+    public Train TrainPrefab;
+
+    [Header("Board settings")]
+    public int LevelNumber = 0;
     public int HandsCount;
-    public List<Box> Boxes;
-    public List<Card> Cards;
-
-    public Canvas UICanvas;
-    public Canvas BoardCanvas;
-
-    public ResultsPanel ResultsPanel;
-
-    public EditorPreset EditorPreset;
-
-    public int[] TrainArrivals;
-
-    public TrainHandler StartStation;
-    public TrainHandler[] EndStations;
-    public TrainHandler[] FailStations;
     public int NumberOfTrains = 100;
     public bool UnlimitedTrains = false;
     public int TrainsBeginningSpeed = 700;
-    public int Score = 0;
-    public List<Train> Trains;
-        
-    private static Board _boardInstance;
 
+    [Header("Level elements")]
+    public TrainHandler StartStation;
+    public TrainHandler[] EndStations;
+    public TrainHandler[] FailStations;
+
+    [Header("Level transition")]
     public string NextLevel = "Menu_Lea";
     public string CurrentLevel = "Menu_Lea";
 
+    [Header("Editor settings")]
+    public EditorPreset EditorPreset;
+
+    [Header("Runtime values")]
+    public UIPanel UIPanel;
+    public Canvas BoardCanvas;
+    public List<Box> Boxes;
+    public List<Card> Cards;
     public bool IsRunning;
+    public List<Train> Trains;
+    public int Score = 0;
+    public int[] TrainArrivals;
+
+
+    private static Board _boardInstance;    
 
     public static Board Instance
     {
@@ -56,6 +64,11 @@ public class Board : MonoBehaviour
 
     public void Start()
     {
+        if (this.BoardCanvas == null)
+        {
+            this.BoardCanvas = this.gameObject.GetComponentInParent<Canvas>();
+        }
+
         this.UnlimitedTrains = false;
         this.Trains = new List<Train>();
         GameObject[] test = GameObject.FindGameObjectsWithTag("CameraBoard");
@@ -77,16 +90,20 @@ public class Board : MonoBehaviour
         if (SoundController.Instance != null && this.EndStations.Count() > 0) {
             SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
         }
-                
+    }
+
+    public void InitUI()
+    {
         this.ResetScores();
+        this.UIPanel.ResultsPanel.gameObject.SetActive(false);
     }
 
     public void ResetScores()
     {
         this.Score = 0;
         this.TrainArrivals = new int[this.HandsCount];
-        if(this.ResultsPanel != null)
-                this.ResultsPanel.Refresh(null, this.NumberOfTrains, 0);
+        if(this.UIPanel.ResultsPanel != null)
+            this.UIPanel.ResultsPanel.Refresh(null, this.NumberOfTrains, 0);
     }
 
     public void SendManyTrains(int HowMany)
@@ -94,8 +111,8 @@ public class Board : MonoBehaviour
         if (IsRunning)
             return;
 
-        if (this.ResultsPanel != null)
-            this.ResultsPanel.gameObject.SetActive(true);
+        if (this.UIPanel.ResultsPanel != null)
+            this.UIPanel.ResultsPanel.gameObject.SetActive(true);
 
         //disable dragndropon all cards !
         foreach (DragnDrop drag in GameObject.FindObjectsOfType<DragnDrop>())
@@ -109,7 +126,7 @@ public class Board : MonoBehaviour
 
         this.ResetScores();
         IsRunning = true;
-        StartCoroutine(this.sendManyTrains(this.NumberOfTrains));
+        StartCoroutine(this._sendManyTrains(this.NumberOfTrains));
         StartCoroutine(this.WaitTillNoMoreTrain());
     }
 
@@ -139,7 +156,7 @@ public class Board : MonoBehaviour
         GameUI.Instance.FireEndPopup();
     }
 
-    private IEnumerator sendManyTrains(int HowMany)
+    private IEnumerator _sendManyTrains(int HowMany)
     {
         while (this.UnlimitedTrains)
         {
@@ -158,10 +175,10 @@ public class Board : MonoBehaviour
 
     public void SendTrain()
     {
-        var hand = this.StartStation.DecideOutput();
+        Hand hand = this.StartStation.DecideOutput();
         if (hand != null || hand.ConnectedTrack == null)
         {
-            Train train = GameObject.Instantiate<Train>(Resources.Load<Train>("prefabs/train"), this.TrainsContainer.transform);
+            Train train = GameObject.Instantiate<Train>(this.TrainPrefab, this.TrainsContainer.transform);
             train.speed = this.TrainsBeginningSpeed;
 
             train.PlaceOnHand(hand);
@@ -211,7 +228,7 @@ public class Board : MonoBehaviour
     {
         TrainArrivals[hand.Index]++;
         this.Score++;
-        this.ResultsPanel.Refresh(TrainArrivals, NumberOfTrains, this.Score);
+        this.UIPanel.ResultsPanel.Refresh(TrainArrivals, NumberOfTrains, this.Score);
 
         if(trainHandler is Box)
         {

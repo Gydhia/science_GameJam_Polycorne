@@ -24,7 +24,7 @@ public class DragnDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     {
         //rootRectTransform = this.GetComponentInParent<RectTransform>();
         //canvasGroup = this.GetComponent<CanvasGroup>();
-        this.canvas = Board.Instance.UICanvas;
+        this.canvas = Board.Instance.BoardCanvas;
         this._collider = this.gameObject.GetComponent<Collider2D>();
         this._card = this.gameObject.transform.parent.GetComponent<Card>();
         //EventTrigger = GameObject.FindObjectOfType<EventTrigger>();

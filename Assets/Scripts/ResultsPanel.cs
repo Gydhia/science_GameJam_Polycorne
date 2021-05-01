@@ -28,7 +28,7 @@ public class ResultsPanel : MonoBehaviour
             for (int i = 0; i < trainArrivals.Length && i < this.columns.Count() && i < this.labels.Count(); i++)
             {
                 this.columns[i].sizeDelta = new Vector2(this.columns[i].sizeDelta.x, trainArrivals[i]);
-                this.labels[i].text = (100f * trainArrivals[i] / (float)expectedTotal).ToString("0") + "%";
+                this.labels[i].text = (Board.Instance.NumberOfTrains * trainArrivals[i] / (float)expectedTotal).ToString("0") + "%";
             }
         }
         else

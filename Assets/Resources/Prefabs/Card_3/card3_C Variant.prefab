@@ -7,14 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1498506031860131358, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 33e0822ab9fb94e82a8668b288b78629, type: 3}
-    - target: {fileID: 1498506031860131358, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2193587550457473424, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
       propertyPath: _worldPosition.x
       value: -51
@@ -59,6 +51,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[3].y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4382521742913160462, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f310232f69918e4581dbfbeddc341fa, type: 2}
     - target: {fileID: 5024840162703393301, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
       propertyPath: _worldPosition.x
       value: 51
@@ -75,6 +71,10 @@ PrefabInstance:
       propertyPath: _connectedTrack
       value: 
       objectReference: {fileID: 3285523862177073590}
+    - target: {fileID: 5024840162703393301, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
+      propertyPath: _connectEndOfTrack
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5087484410818600848, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
       propertyPath: _worldPosition.x
       value: 51
@@ -295,6 +295,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[0].x
       value: -51
       objectReference: {fileID: 0}
+    - target: {fileID: 7284210272169488480, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f310232f69918e4581dbfbeddc341fa, type: 2}
     - target: {fileID: 7284210272169488482, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
       propertyPath: _handAtBeginning
       value: 
@@ -334,6 +338,10 @@ PrefabInstance:
     - target: {fileID: 7639887970890001330, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639887970890001330, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7639887971784117444, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
       propertyPath: m_IsActive
@@ -379,6 +387,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[3].z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7975121749959432819, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f310232f69918e4581dbfbeddc341fa, type: 2}
     - target: {fileID: 8307705041012655761, guid: 6e0c84d3507254a2f93fdeec7e9f42b2, type: 3}
       propertyPath: ConnectedTrack
       value: 
