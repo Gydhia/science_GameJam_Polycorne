@@ -47,8 +47,8 @@ namespace ScienceGameJam
             }
         }
 
-        public event NavigationNotification OnTrainArrivedAtEnd; // event
-        public event NavigationNotification OnTrainArrivedAtStart; // event
+        public event TrackNavigationEventData.Event OnTrainExited; // event
+        public event TrackNavigationEventData.Event OnTrainEntered; // event
 
 
         public void Start()
@@ -67,6 +67,15 @@ namespace ScienceGameJam
             {
                 this.line.material = Board.Instance.EditorPreset.MaterialTrack;
             }
+        }
+
+        public void Update()
+        {
+            if(this.HandAtEnd != null)
+                this.HandAtEnd.SnapTrack();
+
+            if (this.HandAtBeginning != null)
+                this.HandAtBeginning.SnapTrack();
         }
 
         public bool Disconnect(bool beginning)
@@ -106,9 +115,9 @@ namespace ScienceGameJam
 
             hand.RegisterTrack(this, !beginning);
             if (beginning)
-                _handAtBeginning = hand;
+                this._handAtBeginning = hand;
             else
-                _handAtEnd = hand;
+                this._handAtEnd = hand;
 
             /*if (hand.TrainHandler != null)
                 TrainHandler.RegisterTrack(this);*/
@@ -218,33 +227,46 @@ namespace ScienceGameJam
             //train.OnArrivedAtBeginningOfTracks += Train_OnArrivedAtStartOfTracks;
         }
 
-        public void Train_OnArrivedAtEndOfTracks(Train Train)
+        public void FireTrainExited(Train train, Hand viaHand)
         {
-            this.CurrentCrossingTrains.Remove(Train);
-            if (TrainHandler != null)
-                TrainHandler.TrainExit(Train);
-            StopWatchingTrain(Train);
+            this.CurrentCrossingTrains.Remove(train);
+            train.currentTrack = null;
 
-            // forward event to whomever is connected to this track
-            if (OnTrainArrivedAtEnd != null)
-                OnTrainArrivedAtEnd.Invoke(Train, HandAtEnd);
-        }
-        public void Train_OnArrivedAtStartOfTracks(Train Train)
-        {
-            this.CurrentCrossingTrains.Remove(Train);
-            if (TrainHandler != null)
-                TrainHandler.TrainExit(Train);
-            StopWatchingTrain(Train);
-            // forward event to whomever is connected to this track
-            if (OnTrainArrivedAtStart != null)
-                OnTrainArrivedAtStart.Invoke(Train, HandAtBeginning);
+            // if the track is not a world track: it means that it is part of a trainhandler
+            // therefor: notify it
+            if (!this.IsWorldTrack)
+            {
+                this.TrainHandler.FireTrainExited(train, viaHand);
+            }
+            // it is a world, so no trainhandler to warn about exit. But
+            else
+            {
+                viaHand.TrainHandler.FireTrainEntered(train, viaHand);
+            }
+
+            if (this.OnTrainExited != null)
+                this.OnTrainExited.Invoke(new TrackNavigationEventData(train, this, viaHand));
         }
 
-        internal void StopWatchingTrain(Train train)
+        public void FireTrainEntered(Train train, Hand viaHand)
         {
-            //train.OnArrivedAtEndOfTracks -= Train_OnArrivedAtEndOfTracks;
-            //train.OnArrivedAtEndOfTracks -= Train_OnArrivedAtStartOfTracks;
+            if(train != null && !this.CurrentCrossingTrains.Contains(train))
+                this.CurrentCrossingTrains.Add(train);
+            train.currentTrack = this;
+
+            train.Previoushand = viaHand;
+            if (this.HandAtBeginning == viaHand)
+                train.NextHand = this.HandAtEnd;
+            else
+                train.NextHand = this.HandAtBeginning;
+
+            if (this.TrainHandler != null)
+                this.TrainHandler.FireTrainEntered(train, viaHand);
+
+            if (this.OnTrainEntered != null)
+                this.OnTrainEntered.Invoke(new TrackNavigationEventData(train, this, viaHand));
         }
+
         public void CurveLineWithBezier()
         {
             Vector3[] linePoints = new Vector3[line.positionCount];
@@ -297,6 +319,18 @@ namespace ScienceGameJam
         {
             if (this.TrainHandler != trainHandler)
                 this.TrainHandler = trainHandler;
+
+            if (this.TrainHandler != null && !this.TrainHandler.Tracks.Contains(this))
+                this.TrainHandler.RegisterTrack(this);
+        }
+
+        public void UnregisterTrainHandler(TrainHandler trainHandler)
+        {
+            if (this.TrainHandler != null && this.TrainHandler.Tracks.Contains(this))
+                this.TrainHandler.UnregisterTrack(this);
+
+            if (this.TrainHandler == trainHandler)
+                this.TrainHandler = null;
         }
     }
 }

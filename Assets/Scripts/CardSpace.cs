@@ -27,7 +27,7 @@ public class CardSpace : MonoBehaviour, IDropHandler, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("test2");
+        
     }
 
 
@@ -61,7 +61,6 @@ public class CardSpace : MonoBehaviour, IDropHandler, IPointerDownHandler
         if (this.DropEnabled == false)
             return;
 
-        Debug.Log("test3");
         if (string.IsNullOrEmpty(this.CopyFromBox) && this.Box != Board.Instance.StartStation && !Board.Instance.IsEndStation(this.Box))
         {
             Debug.Log(eventData);
@@ -96,5 +95,10 @@ public class CardSpace : MonoBehaviour, IDropHandler, IPointerDownHandler
     public void RegisterCard(Card card)
     {
         this.Card = card;
+    }
+
+    public void UnregisterCard()
+    {
+        this.Card = null;
     }
 }

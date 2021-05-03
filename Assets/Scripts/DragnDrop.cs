@@ -34,7 +34,7 @@ public class DragnDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("test");
+        
     }
 
     public void OnCancelDrag(PointerEventData eventData)
@@ -74,13 +74,14 @@ public class DragnDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
                 if (!string.IsNullOrEmpty(this._card.CardSpace.Box.CardNameForPlayer))
                 {
                     var other_cardspace = FindObjectsOfType<CardSpace>().Where(cs => cs.CopyFromBox == this._card.CardSpace.Box.CardNameForPlayer);
-                    foreach (var carspace_to_copy in other_cardspace)
+                    foreach (CardSpace carspace_to_copy in other_cardspace)
                     {
-                        carspace_to_copy.Card.RegisterCardSpace(null);
-                        GameObject.Destroy(carspace_to_copy.Card.gameObject);
+                        Card card = carspace_to_copy.Card;
+                        card.UnregisterCardSpace();
+                        GameObject.Destroy(card.gameObject);
                     }
                 }
-                this._card.RegisterCardSpace(null);
+                this._card.UnregisterCardSpace();
             }
         }
     }

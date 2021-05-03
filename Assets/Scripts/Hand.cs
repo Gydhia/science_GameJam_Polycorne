@@ -57,7 +57,8 @@ public class Hand : MonoBehaviour
 
     public void RegisterTrainHandler(TrainHandler trainHandler)
     {
-        this.TrainHandler = trainHandler;
+        if(this.TrainHandler != trainHandler)
+            this.TrainHandler = trainHandler;
     }
 
     public void GenerateConnectedTrack()

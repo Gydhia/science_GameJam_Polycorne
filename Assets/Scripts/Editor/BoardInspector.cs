@@ -21,10 +21,12 @@ namespace ScienceGameJam.UnityEditor
         {
             if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Collect all boxes"))
             {
+                this._target.ClearBoxes();
                 this._target.CollectAllBoxes();
             }
             if (GUI.Button(GUILayoutUtility.GetRect(0, int.MaxValue, 20, 20), "Collect all cards"))
             {
+                this._target.ClearCards();
                 this._target.CollectAllCards();
             }
 

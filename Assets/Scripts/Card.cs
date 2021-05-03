@@ -20,14 +20,22 @@ public class Card : TrainHandler
     public Transform TrackContainer;
 
     /// <summary>
-    /// Define if card can be played by the player. If not, then the card should not be draggable;
+    /// Define if card can be played by the player. If not, then the card should not be draggable
     /// </summary>
+    [Tooltip("Define if card can be played by the player. If not, then the card should not be draggable")]
     public bool IsPlayable = true;
+
+    public override TrainHandlerType TrainHandlerType
+    {
+        get
+        {
+            return TrainHandlerType.Card;
+        }
+    }
 
     public override void Start()
     {
         this.AreTracksAutoSnapped = false;
-        this.TrainHandlerType = TrainHandlerType.Card;
 
         if (this.CardSpace == null)
             this.RegisterCardSpace(this.gameObject.GetComponentInParent<CardSpace>());
@@ -37,6 +45,18 @@ public class Card : TrainHandler
         Board.Instance.RegisterCard(this);
 
         base.Start();
+    }
+
+    protected override bool _fireTrainEntered(Train train, Hand viaHand)
+    {
+        //nothing to do here
+        return true;
+    }
+
+    protected override void _fireTrainExited(Train train, Hand viaHand)
+    {
+        if (this.CardSpace != null && this.CardSpace.Box != null)
+            this.CardSpace.Box.FireTrainExitCard(train, this, viaHand);
     }
 
     private Connections[] Connections;
@@ -98,7 +118,7 @@ public class Card : TrainHandler
         return B;
     }
 
-    protected override void TrainArrivedOrLeave(Train train, Hand hand)
+    protected void TrainArrivedOrLeave(Train train, Hand hand)
     {
         Hand exit = null;
         if (this.CardSpace != null)
@@ -271,18 +291,19 @@ public class Card : TrainHandler
 
     public void RegisterCardSpace(CardSpace cardspace)
     {
-        //if we deregister the cardspace, the, also deregister the card from cardspace
-        if (cardspace == null)
-        {
-            if (this.CardSpace != null)
-                this.CardSpace.RegisterCard(null);
-        }
-        else
-        {
-            cardspace.RegisterCard(this);
-        }
-
         this.CardSpace = cardspace;
+
+        if (this.CardSpace != null)
+            this.CardSpace.RegisterCard(this);
+    }
+
+    public void UnregisterCardSpace()
+    {
+        //if we deregister the cardspace, the, also deregister the card from cardspace
+        if (this.CardSpace != null)
+            this.CardSpace.UnregisterCard();
+
+        this.CardSpace = null;
     }
 
 }

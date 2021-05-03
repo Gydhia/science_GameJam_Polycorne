@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor;
+using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
 
 public abstract class TrainHandler : MonoBehaviour
@@ -17,14 +19,12 @@ public abstract class TrainHandler : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    public TrainHandlerType TrainHandlerType;
+    public abstract TrainHandlerType TrainHandlerType
+    {
+        get;
+    }
 
-    /// <summary>
-    /// List of space available for cards
-    /// </summary>
-    public CardSpace[,] CardSpaces;
-
-    public List<Train> CurrentCrossingTrains;
+    
 
     [Header("Hand autocreation elements")]
     public Hand HandPrefab;
@@ -35,14 +35,20 @@ public abstract class TrainHandler : MonoBehaviour
     public Hand[] HandsRight;
     public IEnumerable<Hand> AllHands => this.HandsLeft.Concat(this.HandsRight);
 
-    [Header("Tracks instances")]
+    [Header("Runtime values")]
+    public List<Train> CurrentCrossingTrains;
     public List<Track> Tracks;
-
-    public double[] OutputDistribution;
     public System.Random rand;
+
+    public event TrainHandlerNavigationEventData.Event OnTrainExited; // event
+    public event TrainHandlerNavigationEventData.Event OnTrainEntered; // event
+
 
     public void Awake()
     {
+        if (this.Tracks == null)
+            this.Tracks = new List<Track>();
+
         if (this.HandsLeft == null)
             this.HandsLeft = new Hand[Board.Instance.HandsCount];
 
@@ -52,10 +58,17 @@ public abstract class TrainHandler : MonoBehaviour
         foreach(Hand hand in this.AllHands)
         {
             hand.RegisterTrainHandler(this);
-        }
+            if (hand.ConnectedTrack != null)
+            {
+                // register only tracks that belong to this trainhandler
+                if(!hand.ConnectedTrack.IsWorldTrack)
+                    this.RegisterTrack(hand.ConnectedTrack);
 
-        if (this.Tracks == null)
-            this.Tracks = new List<Track>();
+                // but always register to track that are either connected to this trainhandler or belong to this train handler
+                /*hand.ConnectedTrack.OnTrainEntered += _onTrainEntered;
+                hand.ConnectedTrack.OnTrainExited += _onTrainExited;*/
+            }
+        }
     }
 
     public virtual void Start()
@@ -63,142 +76,67 @@ public abstract class TrainHandler : MonoBehaviour
         this.CurrentCrossingTrains = new List<Train>();
 
         this.rand = new System.Random();
-
-        foreach (Hand hand in this.AllHands)
-        {
-            if (hand.ConnectedTrack != null)
-            {
-                if (hand.ConnectEndOfTrack)
-                    hand.ConnectedTrack.OnTrainArrivedAtEnd += TrainArrivedOrLeave;
-                else
-                    hand.ConnectedTrack.OnTrainArrivedAtStart += TrainArrivedOrLeave;
-            }
-        }
     }
 
     public void RegisterTrack(Track track)
     {
         if (track != null && !this.Tracks.Contains(track))
             this.Tracks.Add(track);
+
+        if (track.TrainHandler != this)
+            track.RegisterTrainHandler(this);
     }
 
     public void UnregisterTrack(Track track)
     {
         if (track != null && this.Tracks.Contains(track))
             this.Tracks.Remove(track);
+
+        if (track.TrainHandler == this)
+            track.UnregisterTrainHandler(this);
     }
 
-    public void TrainEnter(Train train)
+    private void _onTrainExited(TrackNavigationEventData data)
     {
-        this.CurrentCrossingTrains.Add(train);
-        train.currentTrainHandler = this;
+        throw new NotImplementedException();
     }
 
-    public void TrainExit(Train train)
+    private void _onTrainEntered(TrackNavigationEventData data)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    public void FireTrainEntered(Train train, Hand viaHand)
+    {
+        bool isTrainAllowedToEnter = this._fireTrainEntered(train, viaHand);
+
+        if (isTrainAllowedToEnter)
+        {
+            if (train != null && !this.CurrentCrossingTrains.Contains(train))
+                this.CurrentCrossingTrains.Add(train);
+            train.currentTrainHandler = this;
+
+            if (this.OnTrainEntered != null)
+                this.OnTrainEntered.Invoke(new TrainHandlerNavigationEventData(train, this, viaHand));
+        }
+    }
+
+    protected abstract bool _fireTrainEntered(Train train, Hand viaHand);
+
+    public virtual void FireTrainExited(Train train, Hand viaHand)
     {
         this.CurrentCrossingTrains.Remove(train);
+
+        this._fireTrainExited(train, viaHand);
+
         train.currentTrainHandler = null;
+
+        if (this.OnTrainExited != null)
+            this.OnTrainExited.Invoke(new TrainHandlerNavigationEventData(train, this, viaHand));
     }
 
-    protected virtual void TrainArrivedOrLeave(Train train, Hand hand)
-    {
-        if (Board.Instance.IsFailStation(this))
-        {
-            train.Animator.SetBool("die", true);
-            //train.speedDecreaseOverTimeValue = 5;
-        }
-        if (Board.Instance.IsEndStation(this))
-        {
-            Board.Instance.RegisterTrainArrival(train, hand, this);
-            if (SoundController.Instance != null) 
-                SoundController.Instance.PlaySound(SoundController.SoundNames.WhispArrival);
-        }
-        else if (Board.Instance.StartStation == this)
-        {
-            return;
-        }
-        else
-        {
-            if (this.CardSpaces != null &&
-                this.CardSpaces.Length > 0 &&
-                this.CardSpaces[0, 0] != null &&
-                this.CardSpaces[0, 0].Card != null)
-            {
-                // choose which card to use if overlap.
-                int y = 0;
-
-                if (hand.LeftHand)
-                {
-                    if (this.CardSpaces.GetLength(1) > 1)
-                    {
-                        y = -1;
-                        float total_weight = 0;
-                        for (int i = 0; i < this.CardSpaces.GetLength(1); i++) total_weight += this.CardSpaces[0, i].OverlapWeight;
-                        var result = this.rand.NextDouble() * total_weight;
-                        while (result > 0)
-                        {
-                            y++;
-                            result -= this.CardSpaces[0, y].OverlapWeight;
-                        }
-                    }
-                    if (this.CardSpaces[0, y].Card != null)
-                        train.PlaceOnHand(this.CardSpaces[0, y].Card.HandsLeft[hand.Index]);
-                }
-                else
-                {
-                    if (this.CardSpaces.GetLength(1) > 1)
-                    {
-                        y = -1;
-                        float total_weight = 0;
-                        for (int i = 0; i < this.CardSpaces.GetLength(1); i++) total_weight += this.CardSpaces[this.CardSpaces.GetLength(0) - 1, i].OverlapWeight;
-                        var result = this.rand.NextDouble() * total_weight;
-                        while (result > 0)
-                        {
-                            y++;
-                            result -= this.CardSpaces[this.CardSpaces.GetLength(0) - 1, y].OverlapWeight;
-                        }
-                    }
-                    if (this.CardSpaces[this.CardSpaces.GetLength(0) - 1, y].Card != null)
-                        train.PlaceOnHand(this.CardSpaces[this.CardSpaces.GetLength(0) - 1, y].Card.HandsRight[hand.Index]);
-                }
-            }
-            else
-            {
-                // HERE IS A FAKE BEHAVIOUR:
-                // it should fail, but let's connect across the BOX for now
-                //Hand exit;
-                //if (Hand.LeftHand)
-                //    exit = this.HandsRight.First(h => h.Index == Hand.Index);
-                //else
-                //    exit = this.HandsLeft.First(h => h.Index == Hand.Index);
-                //Train.PlaceOnHand(exit);
-            }
-
-        }
-
-    }
-
-    public Hand DecideOutput()
-    {
-        if (this.OutputDistribution == null || this.OutputDistribution.Count() <= 1)
-            // if no distribution was set, no weights: return a random output
-            return this.HandsRight.ElementAt(this.rand.Next(0, this.HandsRight.Count()));
-
-        double total_weight = this.OutputDistribution.Sum();
-        // if no weight was set, no weights: return a random output
-        if (total_weight == 0)
-            return this.HandsRight.ElementAt(this.rand.Next(0, this.HandsRight.Count()));
-
-        var result = this.rand.NextDouble() * total_weight;
-
-        int chosen_output = -1;
-        while (result > 0)
-        {
-            chosen_output++;
-            result -= this.OutputDistribution.ElementAt(chosen_output);
-        }
-        return this.HandsRight.ElementAt(chosen_output);
-    }
+    protected abstract void _fireTrainExited(Train train, Hand viaHand);
 
     public void GenerateHandsOwner()
     {
@@ -209,6 +147,44 @@ public abstract class TrainHandler : MonoBehaviour
     }
 
     public abstract void RegenerateHands();
+
+#if UNITY_EDITOR
+    public void OnDrawGizmos()
+    {
+        if (Event.current.type == EventType.Repaint)
+        {
+            // display handler name
+            GUIContent contentName = new GUIContent(this.name);
+            GUIStyle styleName = new GUIStyle(GUI.skin.box);
+            styleName.alignment = TextAnchor.MiddleCenter;
+            Vector2 sizeName = styleName.CalcSize(contentName);
+
+            Handles.BeginGUI();
+            Vector3 posName = this.transform.position;
+            posName.y += this.transform.GetComponent<RectTransform>().rect.height / 2f;
+            Vector2 pos2DName = HandleUtility.WorldToGUIPoint(posName) - Vector2.up * 40;
+            GUI.Box(new Rect(pos2DName.x - (sizeName.x + 20) / 2.0f, pos2DName.y - 10, sizeName.x + 20, sizeName.y + 10), contentName, styleName);
+            Handles.EndGUI();
+
+            if (Application.isPlaying
+                && PrefabStageUtility.GetCurrentPrefabStage() == null && this.TrainHandlerType != TrainHandlerType.Card)
+            {
+                // draw the number of train label
+                GUIContent content = new GUIContent(this.CurrentCrossingTrains.Count.ToString());
+                GUIStyle style = new GUIStyle(GUI.skin.box);
+                style.alignment = TextAnchor.MiddleCenter;
+                Vector2 size = style.CalcSize(content);
+
+                Vector3 pos = this.transform.position;
+                pos.y += this.transform.GetComponent<RectTransform>().rect.height / 2f;
+                Handles.BeginGUI();
+                Vector2 pos2D = HandleUtility.WorldToGUIPoint(pos) - Vector2.up * 70;
+                GUI.Box(new Rect(pos2D.x - 10, pos2D.y - 10, 2.0f * size.x, size.y + 10), content, style);
+                Handles.EndGUI();
+            }
+        }
+    }
+#endif
 }
 
 public enum TrainHandlerType

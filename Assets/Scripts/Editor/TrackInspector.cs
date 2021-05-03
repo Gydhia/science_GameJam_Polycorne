@@ -2,6 +2,7 @@
 using UnityEditor;
 using ScienceGameJam;
 using UnityEditor.Experimental.SceneManagement;
+using UnityEditor.SceneManagement;
 
 namespace ScienceGameJam.UnityEditor
 {
@@ -122,9 +123,15 @@ namespace ScienceGameJam.UnityEditor
                                     dist = ((Vector2)hand.transform.position - (Vector2)newPositionHandlePositionStart).magnitude;
                                     if (dist < Board.Instance.EditorPreset.HandSnapDistance)
                                     {
-                                        Debug.Log(dist + " " + hand);
+                                        Undo.RecordObject(this._target, "TrackSnap change");
+                                        //Debug.Log(dist + " " + hand);
                                         this._target.ConnectToHand(hand, true, true);
                                         snapped = true;
+
+                                        /*SerializedObject obj = new SerializedObject(this._target);
+                                        obj.FindProperty("_handAtBeginning").objectReferenceValue = hand;
+                                        obj.ApplyModifiedProperties();
+                                        Undo.RecordObject(this._target, "Changing the component on myObject");*/
                                     }
                                 }
                             }
@@ -143,7 +150,8 @@ namespace ScienceGameJam.UnityEditor
                                     float dist = ((Vector2)hand.transform.position - (Vector2)newPositionStart).magnitude;
                                     if (dist < Board.Instance.EditorPreset.HandSnapDistance)
                                     {
-                                        Debug.Log(dist + " " + hand);
+                                        Undo.RecordObject(this._target, "TrackSnap change");
+                                        //Debug.Log(dist + " " + hand);
                                         this._target.ConnectToHand(hand, true, true);
                                         snapped = true;
                                     }
@@ -155,7 +163,15 @@ namespace ScienceGameJam.UnityEditor
                     if(!snapped)
                         this._target.line.SetPosition(0, newPositionStart);
                     else
+                    {
                         EditorUtility.SetDirty(this._target.gameObject);
+                        PrefabUtility.RecordPrefabInstancePropertyModifications(this._target);
+                        if (PrefabStageUtility.GetCurrentPrefabStage() == null)
+                        {
+                            //EditorSceneManager.MarkSceneDirty(this._target.gameObject.scene); //This used to happen automatically from SetDirty
+                        }
+                    }
+                        
                 }
                     
                 if (newPositionStop != positionStop)
@@ -178,7 +194,8 @@ namespace ScienceGameJam.UnityEditor
                                     dist = ((Vector2)hand.transform.position - (Vector2)newPositionHandlePositionStop).magnitude;
                                     if (dist < Board.Instance.EditorPreset.HandSnapDistance)
                                     {
-                                        Debug.Log(dist + " " + hand);
+                                        Undo.RecordObject(this._target, "TrackSnap change");
+                                        //Debug.Log(dist + " " + hand);
                                         this._target.ConnectToHand(hand, false, true);
                                         snapped = true;
                                     }
@@ -191,17 +208,21 @@ namespace ScienceGameJam.UnityEditor
                         //if there is not train handler, it means that we should stick to the hand of a box only !
                         foreach (Box box in Board.Instance.Boxes)
                         {
-                            foreach (Hand hand in box.AllHands)
+                            if(box != null)
                             {
-                                //if the the hand is not already occupied
-                                if (hand.TrainHandler != null)
+                                foreach (Hand hand in box.AllHands)
                                 {
-                                    float dist = ((Vector2)hand.transform.position - (Vector2)newPositionStop).magnitude;
-                                    if (dist < Board.Instance.EditorPreset.HandSnapDistance)
+                                    //if the the hand is not already occupied
+                                    if (hand.TrainHandler != null)
                                     {
-                                        Debug.Log(dist + " " + hand);
-                                        this._target.ConnectToHand(hand, false, true);
-                                        snapped = true;
+                                        float dist = ((Vector2)hand.transform.position - (Vector2)newPositionStop).magnitude;
+                                        if (dist < Board.Instance.EditorPreset.HandSnapDistance)
+                                        {
+                                            Undo.RecordObject(this._target, "TrackSnap change");
+                                            //Debug.Log(dist + " " + hand);
+                                            this._target.ConnectToHand(hand, false, true);
+                                            snapped = true;
+                                        }
                                     }
                                 }
                             }
@@ -211,7 +232,14 @@ namespace ScienceGameJam.UnityEditor
                     if (!snapped)
                         this._target.line.SetPosition(this._target.line.positionCount - 1, newPositionStop);
                     else
+                    {
                         EditorUtility.SetDirty(this._target.gameObject);
+                        PrefabUtility.RecordPrefabInstancePropertyModifications(this._target);
+                        if (PrefabStageUtility.GetCurrentPrefabStage() == null)
+                        {
+                            //EditorSceneManager.MarkSceneDirty(this._target.gameObject.scene); //This used to happen automatically from SetDirty
+                        }
+                    }
                 }
             }
         }

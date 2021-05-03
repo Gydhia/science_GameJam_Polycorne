@@ -336,6 +336,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7337815865764434406, guid: 1b4bcd3cce5638048b94ed534e57b0b9, type: 3}
+      propertyPath: m_Name
+      value: CardSpaceA1
+      objectReference: {fileID: 0}
     - target: {fileID: 7597676535197109265, guid: 1b4bcd3cce5638048b94ed534e57b0b9, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -375,6 +379,10 @@ PrefabInstance:
     - target: {fileID: 8338029507038156157, guid: 1b4bcd3cce5638048b94ed534e57b0b9, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8338029507038156157, guid: 1b4bcd3cce5638048b94ed534e57b0b9, type: 3}
+      propertyPath: m_Name
+      value: CardSpaceB1
       objectReference: {fileID: 0}
     - target: {fileID: 8796415599899820150, guid: 1b4bcd3cce5638048b94ed534e57b0b9, type: 3}
       propertyPath: m_Layer

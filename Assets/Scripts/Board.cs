@@ -28,9 +28,9 @@ public class Board : MonoBehaviour
     public int TrainsBeginningSpeed = 700;
 
     [Header("Level elements")]
-    public TrainHandler StartStation;
-    public TrainHandler[] EndStations;
-    public TrainHandler[] FailStations;
+    public Box StartStation;
+    public Box[] EndStations;
+    public Box[] FailStations;
 
     [Header("Level transition")]
     public string NextLevel = "Menu_Lea";
@@ -90,10 +90,16 @@ public class Board : MonoBehaviour
         if (SoundController.Instance != null && this.EndStations.Count() > 0) {
             SoundController.Instance.PlayMusic(SoundController.MusicNames.MainTheme);
         }
+
+        this.ClearBoxes();
+        this.ClearCards();
+        this.CollectAllBoxes();
+        this.CollectAllCards();
     }
 
-    public void InitUI()
+    public void InitUI(UIPanel uiPanel)
     {
+        this.UIPanel = uiPanel;
         this.ResetScores();
         this.UIPanel.ResultsPanel.gameObject.SetActive(false);
     }
@@ -158,27 +164,30 @@ public class Board : MonoBehaviour
 
     private IEnumerator _sendManyTrains(int HowMany)
     {
+        int j = 0;
         while (this.UnlimitedTrains)
         {
-            this.SendTrain();
+            this.SendTrain(j);
+            j++;
             yield return new WaitForSecondsRealtime(0.06f);
         }
             
         for (int i = 0; i < HowMany; i++)
         {
-            this.SendTrain();
+            this.SendTrain(i);
             yield return new WaitForSecondsRealtime(0.06f);
             yield return i / (float)HowMany;
         }
         yield break;
     }
 
-    public void SendTrain()
+    public void SendTrain(int trainNumber)
     {
         Hand hand = this.StartStation.DecideOutput();
         if (hand != null || hand.ConnectedTrack == null)
         {
             Train train = GameObject.Instantiate<Train>(this.TrainPrefab, this.TrainsContainer.transform);
+            train.name = "Train_" + trainNumber;
             train.speed = this.TrainsBeginningSpeed;
 
             train.PlaceOnHand(hand);
@@ -256,9 +265,21 @@ public class Board : MonoBehaviour
             this.Cards.Add(card);
     }
 
+    public void ClearBoxes()
+    {
+        if (this.Boxes != null)
+            this.Boxes.Clear();
+    }
+
+    public void ClearCards()
+    {
+        if (this.Cards != null)
+            this.Cards.Clear();
+    }
+
     public void CollectAllBoxes()
     {
-        foreach(Transform child in this.TrainstationsContainer.transform)
+        foreach (Transform child in this.TrainstationsContainer.transform)
         {
             Box box = child.GetComponent<Box>();
             if (box != null)
