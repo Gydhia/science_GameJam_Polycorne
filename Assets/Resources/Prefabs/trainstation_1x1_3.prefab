@@ -100,10 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrainHandler: {fileID: 0}
-  ConnectedTrack: {fileID: 0}
+  TrainHandler: {fileID: 2629364655912016084}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: 0, y: 0, z: 0}
-  ConnectEndOfTrack: 0
   Index: 1
   LeftHand: 1
 --- !u!1 &407301624462350643
@@ -206,10 +206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrainHandler: {fileID: 0}
-  ConnectedTrack: {fileID: 0}
+  TrainHandler: {fileID: 2629364655912016084}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: 0, y: 0, z: 0}
-  ConnectEndOfTrack: 0
   Index: 0
   LeftHand: 0
 --- !u!1 &1061264668858949214
@@ -312,10 +312,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrainHandler: {fileID: 0}
-  ConnectedTrack: {fileID: 0}
+  TrainHandler: {fileID: 2629364655912016084}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: 0, y: 0, z: 0}
-  ConnectEndOfTrack: 0
   Index: 1
   LeftHand: 0
 --- !u!1 &2088990981090604836
@@ -527,9 +527,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreTracksAutoSnapped: 1
+  TrainHandlerType: 0
   CurrentCrossingTrains: []
-  CardSpacePrefab: {fileID: 1212769817104253962, guid: 7e26fe7831c7fe94f9041be88b5ceabc, type: 3}
-  CardSpaceContainer: {fileID: 1282214334505763228}
   HandPrefab: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
   HandsContainer: {fileID: 2629364655664352534}
   HandsLeft:
@@ -540,12 +539,15 @@ MonoBehaviour:
   - {fileID: 5577183984650970015}
   - {fileID: 3744990563358988290}
   - {fileID: 2042605238697946478}
+  Tracks: []
   OutputDistribution:
   - 10
   - 20
   - 40
   BoxSO: {fileID: 11400000, guid: ea37d9999b1257c4396d7fdeb737367a, type: 2}
   PreviousBoxSO: {fileID: 11400000, guid: ea37d9999b1257c4396d7fdeb737367a, type: 2}
+  CardSpacePrefab: {fileID: 1212769817104253962, guid: 7e26fe7831c7fe94f9041be88b5ceabc, type: 3}
+  CardSpaceContainer: {fileID: 1282214334505763228}
   WinningGare: {fileID: 0}
   Label: {fileID: 7094554267819134230}
   CardNameForPlayer: 
@@ -850,10 +852,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrainHandler: {fileID: 0}
-  ConnectedTrack: {fileID: 0}
+  TrainHandler: {fileID: 2629364655912016084}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: 0, y: 0, z: 0}
-  ConnectEndOfTrack: 0
   Index: 2
   LeftHand: 1
 --- !u!1 &4915653371938526929
@@ -1091,10 +1093,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrainHandler: {fileID: 0}
-  ConnectedTrack: {fileID: 0}
+  TrainHandler: {fileID: 2629364655912016084}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: 0, y: 0, z: 0}
-  ConnectEndOfTrack: 0
   Index: 0
   LeftHand: 1
 --- !u!1 &8859570380107016452
@@ -1197,9 +1199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrainHandler: {fileID: 0}
-  ConnectedTrack: {fileID: 0}
+  TrainHandler: {fileID: 2629364655912016084}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: 0, y: 0, z: 0}
-  ConnectEndOfTrack: 0
   Index: 2
   LeftHand: 0

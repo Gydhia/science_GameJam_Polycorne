@@ -100,9 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConnectedTrack: {fileID: 5602537187557322021}
+  TrainHandler: {fileID: 4814584280158140106}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: 51, y: -43, z: 0}
-  ConnectEndOfTrack: 1
   Index: 3
   LeftHand: 0
 --- !u!1 &2100039009764477624
@@ -205,9 +206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConnectedTrack: {fileID: 5078883623436683062}
+  TrainHandler: {fileID: 4814584280158140106}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: -51, y: 43, z: 0}
-  ConnectEndOfTrack: 0
   Index: 0
   LeftHand: 1
 --- !u!1 &3140139345355636348
@@ -310,9 +312,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConnectedTrack: {fileID: 1443222310251075659}
+  TrainHandler: {fileID: 4814584280158140106}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: -51, y: 13, z: 0}
-  ConnectEndOfTrack: 0
   Index: 1
   LeftHand: 1
 --- !u!1 &3168052460902053930
@@ -568,10 +571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916cf7fade23fe74b9dd45190a24d71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardSpacePrefab: {fileID: 0}
-  CardSpaceContainer: {fileID: 0}
-  HandPrefab: {fileID: 0}
-  HandsContainer: {fileID: 0}
+  AreTracksAutoSnapped: 0
+  HandPrefab: {fileID: 4512119214010800826, guid: 1c185c014b683484abce699d7baf950c, type: 3}
+  HandsContainer: {fileID: 4814584280448262920}
   HandsLeft:
   - {fileID: 8950349954441235006}
   - {fileID: 3938313229390869719}
@@ -582,8 +584,16 @@ MonoBehaviour:
   - {fileID: 6736461311738762333}
   - {fileID: 7885049524423597906}
   - {fileID: 1331140398960367973}
-  OutputDistribution: []
+  CurrentCrossingTrains: []
+  Tracks:
+  - {fileID: 5078883623436683062}
+  - {fileID: 1443222310251075659}
+  - {fileID: 5602537187557322021}
+  - {fileID: 7851183684289429660}
   CardSpace: {fileID: 0}
+  TrackPrefab: {fileID: 7635671422392040737, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+  TrackContainer: {fileID: 8762287715607413972}
+  IsPlayable: 1
 --- !u!95 &5599042227083811582
 Animator:
   serializedVersion: 3
@@ -789,9 +799,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConnectedTrack: {fileID: 1443222310251075659}
+  TrainHandler: {fileID: 4814584280158140106}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: -51, y: -15, z: 0}
-  ConnectEndOfTrack: 1
   Index: 2
   LeftHand: 1
 --- !u!1 &5911185174789555177
@@ -894,9 +905,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConnectedTrack: {fileID: 7851183684289429660}
+  TrainHandler: {fileID: 4814584280158140106}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: 51, y: 13, z: 0}
-  ConnectEndOfTrack: 1
   Index: 1
   LeftHand: 0
 --- !u!1 &6167262468349888540
@@ -1086,9 +1098,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConnectedTrack: {fileID: 5078883623436683062}
+  TrainHandler: {fileID: 4814584280158140106}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: 51, y: -15, z: 0}
-  ConnectEndOfTrack: 1
   Index: 2
   LeftHand: 0
 --- !u!1 &7281523367219664298
@@ -1191,9 +1204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConnectedTrack: {fileID: 7851183684289429660}
+  TrainHandler: {fileID: 4814584280158140106}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: 51, y: 43, z: 0}
-  ConnectEndOfTrack: 0
   Index: 0
   LeftHand: 0
 --- !u!1 &7510599239448482314
@@ -1296,9 +1310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31709ca79eaa7fa4bbc0cde840d5c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConnectedTrack: {fileID: 5602537187557322021}
+  TrainHandler: {fileID: 4814584280158140106}
+  _connectedTrack: {fileID: 0}
+  _connectEndOfTrack: 0
   _worldPosition: {x: -51, y: -43, z: 0}
-  ConnectEndOfTrack: 0
   Index: 3
   LeftHand: 1
 --- !u!1001 &360951262007360957
@@ -1308,6 +1323,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8762287715607413972}
     m_Modifications:
+    - target: {fileID: 7635671422392040737, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 4814584280158140106}
     - target: {fileID: 7635671422392040738, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1460,6 +1479,10 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d2a52fef2a6a41243a4b9bc48be1f08d, type: 2}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name
       value: Track 4
@@ -1493,6 +1516,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8762287715607413972}
     m_Modifications:
+    - target: {fileID: 7635671422392040737, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 4814584280158140106}
     - target: {fileID: 7635671422392040738, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1645,6 +1672,10 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d2a52fef2a6a41243a4b9bc48be1f08d, type: 2}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name
       value: Track 3
@@ -1678,6 +1709,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8762287715607413972}
     m_Modifications:
+    - target: {fileID: 7635671422392040737, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 4814584280158140106}
     - target: {fileID: 7635671422392040738, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1814,6 +1849,10 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d2a52fef2a6a41243a4b9bc48be1f08d, type: 2}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name
       value: Track 1
@@ -1847,6 +1886,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8762287715607413972}
     m_Modifications:
+    - target: {fileID: 7635671422392040737, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 4814584280158140106}
     - target: {fileID: 7635671422392040738, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1999,6 +2042,10 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7635671422392040739, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d2a52fef2a6a41243a4b9bc48be1f08d, type: 2}
     - target: {fileID: 7635671422392040764, guid: 924f2ddeb339eaf498bc6daa608095bf, type: 3}
       propertyPath: m_Name
       value: Track 2

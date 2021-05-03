@@ -37,7 +37,7 @@ namespace Assets.Scripts.UI
 
         public void Start()
         {
-            this.Board = GameObject.FindObjectOfType<Board>();
+            this.Board = Board.Instance;
         }
 
         public void StartTimeline()
@@ -59,8 +59,8 @@ namespace Assets.Scripts.UI
                 if (this.Board.TracksContainer != null)
                     this.Board.TracksContainer.SetActive(true);
 
-                if (this.Board.ResultsPanel != null)
-                    this.Board.ResultsPanel.gameObject.SetActive(false);
+                if (this.Board.UIPanel.ResultsPanel != null)
+                    this.Board.UIPanel.ResultsPanel.gameObject.SetActive(false);
             }
         }
 
@@ -75,8 +75,8 @@ namespace Assets.Scripts.UI
                 if (this.Board.TracksContainer != null)
                     this.Board.TracksContainer.SetActive(true);
 
-                if (this.Board.ResultsPanel != null)
-                    this.Board.ResultsPanel.gameObject.SetActive(false);
+                if (this.Board.UIPanel.ResultsPanel != null)
+                    this.Board.UIPanel.ResultsPanel.gameObject.SetActive(false);
             }
 
             if (SoundController.Instance != null)
@@ -97,8 +97,8 @@ namespace Assets.Scripts.UI
                 if (this.Board.TracksContainer != null)
                     this.Board.TracksContainer.SetActive(true);
 
-                if (this.Board.ResultsPanel != null)
-                    this.Board.ResultsPanel.gameObject.SetActive(false);
+                if (this.Board.UIPanel.ResultsPanel != null)
+                    this.Board.UIPanel.ResultsPanel.gameObject.SetActive(false);
             }
             
 

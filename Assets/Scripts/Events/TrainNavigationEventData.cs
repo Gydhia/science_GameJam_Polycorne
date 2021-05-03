@@ -1,22 +1,23 @@
 ﻿using Assets.Scripts;
+using ScienceGameJam;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
-public delegate void NavigationNotification(Train Train, Hand Hand);
-
-public class NavigationEvent
+public class TrainNavigationEventData
 {
+    public delegate void Event(TrainNavigationEventData data);
+
     public Train Train;
     public Track Tracks;
+    public Hand ViaHand;
 
-    public NavigationEvent(Train train, Track tracks)
+    public TrainNavigationEventData(Train train, Track tracks, Hand viaHand)
     {
         Train = train;
         Tracks = tracks;
+        ViaHand = viaHand;
     }
 }

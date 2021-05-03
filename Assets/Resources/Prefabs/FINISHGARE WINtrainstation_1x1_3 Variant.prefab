@@ -134,10 +134,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 762285443988898828, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8771278708893722328}
+    - target: {fileID: 770755410554792746, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8771278708893722328}
     - target: {fileID: 1449167825695286707, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2671318756484357702, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8771278708893722328}
     - target: {fileID: 3278660897250595581, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -146,6 +158,10 @@ PrefabInstance:
       propertyPath: WinningGare
       value: 
       objectReference: {fileID: 8197994773765416886}
+    - target: {fileID: 3645644567224458896, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: AreTracksAutoSnapped
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3645644567224458897, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
       propertyPath: m_Name
       value: FINISHGARE WINtrainstation_1x1_3 Variant
@@ -246,6 +262,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5072641600616097190, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8771278708893722328}
+    - target: {fileID: 5605801088158624007, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8771278708893722328}
     - target: {fileID: 6442155937892170854, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -254,6 +278,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6596836785320043995, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8771278708893722328}
     - target: {fileID: 7155300306596997849, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -268,6 +296,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+--- !u!114 &8771278708893722328 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3645644567224458896, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}
+  m_PrefabInstance: {fileID: 5417331072166901832}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d3a477cb2c86c46a516cb1f9fcd301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8771278707606929809 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3645644567848057305, guid: c3d8d4ecaef2b453680968446eb81c1f, type: 3}

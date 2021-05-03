@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 539808921554109189, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8992170216140376620}
+    - target: {fileID: 630093641168156275, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8992170216140376620}
     - target: {fileID: 1159299978282517813, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -27,6 +35,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1743573396328775916, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8992170216140376620}
     - target: {fileID: 2088990981090604836, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -115,14 +127,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4822408257539713222, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8992170216140376620}
     - target: {fileID: 4931747359754663147, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5421364353713445290, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8992170216140376620}
     - target: {fileID: 5438250237933831971, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5452593400617182891, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8992170216140376620}
     - target: {fileID: 6180662383963360856, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -135,6 +159,14 @@ PrefabInstance:
       propertyPath: m_DrawMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6571668880657659928, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8992170216140376620}
+    - target: {fileID: 8299480542661596679, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+      propertyPath: TrainHandler
+      value: 
+      objectReference: {fileID: 8992170216140376620}
     - target: {fileID: 8351510579636675560, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -145,3 +177,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+--- !u!114 &8992170216140376620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2629364655912016084, guid: 458e866fd769baf42ae2b1e7688e7428, type: 3}
+  m_PrefabInstance: {fileID: 6392853153313673976}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d3a477cb2c86c46a516cb1f9fcd301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

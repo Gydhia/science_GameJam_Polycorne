@@ -151,5 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2029c09b68c361418437e4db506700b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  line: {fileID: 7635671422392040739}
   vertexCount: 10
   radiusCut: 20
+  CurrentCrossingTrains: []
+  TrainHandler: {fileID: 0}
+  _handAtBeginning: {fileID: 0}
+  _handAtEnd: {fileID: 0}

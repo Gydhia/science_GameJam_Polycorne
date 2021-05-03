@@ -24,12 +24,12 @@ namespace Assets.Scripts.UI
             if (SoundController.Instance != null) 
                 SoundController.Instance.PlayMusic(SoundController.MusicNames.MenuTheme);
 
-            Board board = GameObject.FindObjectOfType<Board>();
+            Board board = Board.Instance;
             if (board != null)
             {
                 
-                if (board.ResultsPanel != null)
-                    board.ResultsPanel.gameObject.SetActive(false);
+                if (board.UIPanel.ResultsPanel != null)
+                    board.UIPanel.ResultsPanel.gameObject.SetActive(false);
             }
 
             SceneManager.UnloadSceneAsync("BackgroundScene");
@@ -37,7 +37,7 @@ namespace Assets.Scripts.UI
 
         public void OnClickPlayButton()
         {
-            SceneManager.LoadScene(GameObject.FindObjectOfType<Board>().NextLevel);
+            SceneManager.LoadScene(Board.Instance.NextLevel);
             SceneManager.LoadScene("BackgroundScene", LoadSceneMode.Additive);
         }
 

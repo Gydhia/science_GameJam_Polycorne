@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class TutorialUI : MonoBehaviour
 {
     public GameObject DialogPanel;
-    public GameObject Image;
     public GameObject Help;
 
     public TextMeshProUGUI TitleText;
@@ -32,13 +31,11 @@ public class TutorialUI : MonoBehaviour
     public void ClosePopup()
     {
         DialogPanel.SetActive(false);
-        Image.SetActive(false);
     }
 
     public void ShowPopup()
     {
         DialogPanel.SetActive(true);
-        Image.SetActive(true);
 
         ShowNextDialog();
     }

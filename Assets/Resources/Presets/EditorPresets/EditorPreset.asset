@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80b1776c19137746a69232c2e595021, type: 3}
+  m_Name: EditorPreset
+  m_EditorClassIdentifier: 
+  MaterialTrack: {fileID: 2100000, guid: 7fe4594450c8e1649bd9e27e8eda2c33, type: 2}
+  MaterialTrackValid: {fileID: 2100000, guid: 6f310232f69918e4581dbfbeddc341fa, type: 2}
+  MaterialTrackError: {fileID: 2100000, guid: 08ee02ff55d0a494f8021105c64ab662, type: 2}
+  MaterialTrackNotConnected: {fileID: 2100000, guid: d2a52fef2a6a41243a4b9bc48be1f08d, type: 2}
+  HandSnapDistance: 12
+  HandBallSize: 10
+  TrackBallSize: 5
+  HandBoxTexture: {fileID: 2800000, guid: ec19a0d04ff9307429ff0fd381c5d5fc, type: 3}
+  HandCardTexture: {fileID: 2800000, guid: 89d99788446561549a9b556732ddaf4c, type: 3}
+  HandErrorTexture: {fileID: 2800000, guid: ed9ceb2c8c8e34142adfaa51f242a626, type: 3}
